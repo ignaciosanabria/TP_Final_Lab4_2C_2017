@@ -1,0 +1,69 @@
+<div class="back-color">
+  <div class="top-content">
+    <div class="inner-bg">
+      <div class="container">
+<div class="row">
+    <br>
+    <div class="page-header">
+        <h1>Bienvenido al Sistema de gestion de Eventos y Fiestas del Salon Palace Eventual</h1>
+        <strong>La manera mas sencilla de organizar tu fiesta!</strong>
+    </div>
+  <div class="col-sm-5">
+      <div class="form-box">
+        <div class="form-top">
+            <div class="form-top-left">
+              <h3>Si sos empleado ingresa acá!</h3>
+              <p>Rellena los campos con tu usuario y contraseña para ingresar</p>
+            </div>
+            <div class="form-top-right">
+              <i class="fa fa-lock"></i>
+            </div>
+        </div>
+        <div class="form-bottom">
+            <div class="login-form">
+                  <label>Mail:</label>
+                  <input type="text" name="mailEmpleado" [(ngModel)]="mailEmpleado" placeholder="Ingrese su mail" class="form-control" id="mailEmpleado">
+                  <label>Clave:</label>
+                  <input type="password" name="form-emppassword" [(ngModel)]="claveEmpleado" placeholder="Ingrese su clave" class="form-control" id="form-emppassword">
+                  <br><br>
+                  <button mat-raised-button color="warn" class="btn btn-primary"(click)="LoginEmpleado()">Ingresar</button>
+                  <br>
+                  <button mat-raised-button color="warn" class="btn btn-success" (click)="TestAdmin()">IngresarAdmin</button>
+                  <br>
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="col-sm-1 middle-border"></div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-5">
+      <div class="form-box">
+        <div class="form-top">
+            <div class="form-top-left">
+              <h3>Si sos cliente ingresa acá!</h3>
+              <p>Rellena los campos de abajo</p>
+            </div>
+            <div class="form-top-right">
+              <i class="fa fa-pencil"></i>
+            </div>
+        </div>
+        <div class="form-bottom">
+            <div class="registration-form"><label>Mail:</label>
+                <input type="text" name="mailCliente" [(ngModel)]="mailCliente" placeholder="Ingrese su mail" class="form-control" id="mailCliente">
+                <label>Clave:</label>
+                <input type="password" name="form-emppassword" [(ngModel)]="claveCliente" placeholder="Ingrese su clave" class="form-control" id="form-emppassword">
+                <br><br>
+                  <button mat-raised-button color="warn" class="btn btn-primary" (click)="LoginCliente()">Ingresar</button>
+                  <button mat-raised-button color="warn" class="btn btn-success" (click)="TestCliente()">IngresarCliente</button>
+            </div>
+        </div>
+      </div>
+  </div>
+  <!-- <footer>
+    <p>Diseñado por <a href="https://github.com/ignaciosanabria/">Ignacio Sanabria - Github</a></p> 
+  </footer> -->
+</div>
+</div>
+</div>
+</div>
+</div>
