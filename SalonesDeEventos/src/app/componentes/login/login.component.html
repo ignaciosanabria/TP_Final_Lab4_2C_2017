@@ -1,13 +1,19 @@
 <div class="back-color">
   <div class="top-content">
     <div class="inner-bg">
+        <div class="page-header">
+            <!-- <h1>Bienvenido al Sistema de gestion de Eventos y Fiestas del Salon Palace Eventual</h1>
+            <strong>La manera mas sencilla de organizar tu fiesta!</strong> -->
+            <app-cabecera></app-cabecera>
+        </div>
       <div class="container">
 <div class="row">
     <br>
-    <div class="page-header">
+    <!-- <div class="page-header">
         <h1>Bienvenido al Sistema de gestion de Eventos y Fiestas del Salon Palace Eventual</h1>
         <strong>La manera mas sencilla de organizar tu fiesta!</strong>
-    </div>
+        <app-cabecera></app-cabecera>
+    </div> -->
   <div class="col-sm-5">
       <div class="form-box">
         <div class="form-top">
@@ -55,15 +61,16 @@
                 <br><br>
                   <button mat-raised-button color="warn" class="btn btn-primary" (click)="LoginCliente()">Ingresar</button>
                   <button mat-raised-button color="warn" class="btn btn-success" (click)="TestCliente()">IngresarCliente</button>
+                  <p><a routerLink="/RegistroCliente">Si es tu primera vez aquí - Registrate haciendo click aquí</a></p> 
             </div>
         </div>
       </div>
   </div>
-  <!-- <footer>
-    <p>Diseñado por <a href="https://github.com/ignaciosanabria/">Ignacio Sanabria - Github</a></p> 
-  </footer> -->
 </div>
 </div>
 </div>
 </div>
+<footer>
+        <p><a routerLink="/LoginInvitado">Si sos invitado de un Evento - Hace click aquí</a></p> 
+      </footer>
 </div>

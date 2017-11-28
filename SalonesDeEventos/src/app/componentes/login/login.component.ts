@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EmpleadosService} from '../../servicios/empleados/empleados.service';
 import {ClientesService} from '../../servicios/clientes/clientes.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   public claveCliente : string;
 
 
-  constructor(ServicioEmpleados : EmpleadosService, ServicioClientes : ClientesService) {
+  constructor(ServicioEmpleados : EmpleadosService, ServicioClientes : ClientesService,private route: ActivatedRoute,
+    private router: Router) {
     this.miEmpleadosService = ServicioEmpleados;
     this.miClientesService = ServicioClientes;
     this.miEmpleadosService.TraerEmpleados().then(
@@ -66,6 +68,19 @@ export class LoginComponent implements OnInit {
      data => 
      {
        console.log(data);
+       let respuesta = JSON.parse(data["_body"]);
+       if(respuesta.status == 200)
+         {
+       if(respuesta.token)
+         {
+           localStorage.setItem("token",respuesta.token);
+           this.router.navigate(['/PrincipalCliente']);
+         }
+       }
+       else
+        {
+          alert("Mail o clave incorrecta. Revise sus datos!");
+        }
      },
      error => 
      {
