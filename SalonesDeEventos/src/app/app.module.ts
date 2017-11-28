@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {HttpModule} from '@angular/http';
-
+import { MyDatePickerModule } from 'mydatepicker';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -23,13 +23,24 @@ import {ApiClientesService} from './servicios/clientes/api-clientes.service';
 import {ClientesService} from './servicios/clientes/clientes.service';
 import {ApiInvitadosService} from './servicios/invitados/api-invitados.service';
 import {InvitadosService} from './servicios/invitados/invitados.service';
+import { CrearEventoComponent } from './componentes/crear-evento/crear-evento.component';
+import { MenuClienteComponent } from './componentes/menu-cliente/menu-cliente.component';
+import { InicialClienteComponent } from './componentes/inicial-cliente/inicial-cliente.component';
+import { EventosClientesComponent } from './componentes/eventos-clientes/eventos-clientes.component';
+import { AgregarInvitadosComponent } from './componentes/agregar-invitados/agregar-invitados.component';
 
 const MiRuteo = [
   {path: '' , component: LoginComponent},
   {path: 'LoginInvitado', component : LoginInvitadoComponent},
   {path: 'RegistroCliente', component : RegistroClienteComponent},
   //Estos path necesitan auth - JWT
-  {path: 'PrincipalCliente', component : PrincipalClienteComponent} 
+  {path: 'PrincipalCliente', component : PrincipalClienteComponent,
+  children:
+  [
+    {path : '', component : InicialClienteComponent},
+    {path : 'CrearEvento', component : CrearEventoComponent}
+  ]
+  }
 ]
 
 @NgModule({
@@ -42,14 +53,20 @@ const MiRuteo = [
     PrincipalEncargadoComponent,
     PrincipalAdministradorComponent,
     LoginInvitadoComponent,
-    CabeceraComponent
+    CabeceraComponent,
+    CrearEventoComponent,
+    MenuClienteComponent,
+    InicialClienteComponent,
+    EventosClientesComponent,
+    AgregarInvitadosComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(MiRuteo),
-    HttpModule
+    HttpModule,
+    MyDatePickerModule
   ],
   providers: [
     MiHttpService,

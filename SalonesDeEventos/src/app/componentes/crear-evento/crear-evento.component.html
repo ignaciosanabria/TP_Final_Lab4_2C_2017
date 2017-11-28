@@ -1,0 +1,8 @@
+<p>
+  crear-evento works!
+</p>
+
+<my-date-picker name="mydate" [options]="myDatePickerOptions"
+[(ngModel)]="model" required (dateChanged)="onDateChanged($event)"></my-date-picker>
+
+<button (click)="ver()">Ver</button>
