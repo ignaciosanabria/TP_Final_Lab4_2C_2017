@@ -1,0 +1,27 @@
+<h1>¿Como llegar a Los Salones?</h1>
+<!-- this creates a google map on the page with the given lat/lng from
+the component as the initial center of the map: -->
+<label>Salones:</label>
+<h6>Seleccione El Salon</h6>
+<select [(ngModel)]="salonElegido" (ngModelChange)="updateSelectedValue($event)">
+    <option *ngFor='let salon of salones' [value]="salon | json">
+      {{salon.nombre}}
+    </option>
+</select>
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+  <!-- <agm-marker [latitude]="lat" [longitude]="lng"> -->
+      <agm-map-directions [origin]="origin" [destination]="destination">
+    <!-- <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+    Hi, this is the content of the <strong>info window</strong>
+    </agm-snazzy-info-window> -->
+</agm-map-directions>
+  <!-- </agm-marker> -->
+  
+  </agm-map>
+  <button class="btn btn-success" (click)="VerIndicaciones()">Ver Como Llegar?</button>
+  <button class="btn btn-info" (click)="VerSalon()">Ver Salon Elegido</button>
+  <div [hidden]="ocultarDirections"><!-- Indica la manera de llegar y la distancia, el tiempo -->
+    <div id="directionsPanel">
+      </div>
+    </div>
+    <p>Lala</p>

@@ -17,7 +17,7 @@ export class MenuClienteComponent implements OnInit {
 
   public CerrarSesion()
   {
-   localStorage.removeItem("token");
+    localStorage.removeItem("token");
    this.router.navigate(["/"]);
   }
 
@@ -27,6 +27,9 @@ export class MenuClienteComponent implements OnInit {
     {
       case 'CrearEvento':
       this.router.navigate(['/PrincipalCliente/CrearEvento']);
+      break;
+      case 'EventosCliente':
+      this.router.navigate(['/PrincipalCliente/EventosCliente']);
       break;
     }
   }

@@ -4,7 +4,10 @@
         <div class="page-header">
             <!-- <h1>Bienvenido al Sistema de gestion de Eventos y Fiestas del Salon Palace Eventual</h1>
             <strong>La manera mas sencilla de organizar tu fiesta!</strong> -->
-            <app-cabecera></app-cabecera>
+            <!-- <app-cabecera></app-cabecera> -->
+            <h1>Salones De Eventos</h1>
+            <p>Ignacio Sanabria</p>
+            <a class="enlaces" href="https://github.com/ignaciosanabria"target="_blank">en GitHub <i class="fa fa-github"></i></a>
         </div>
       <div class="container">
 <div class="row">
@@ -58,7 +61,8 @@
                 <input type="text" name="mailCliente" [(ngModel)]="mailCliente" placeholder="Ingrese su mail" class="form-control" id="mailCliente">
                 <label>Clave:</label>
                 <input type="password" name="form-emppassword" [(ngModel)]="claveCliente" placeholder="Ingrese su clave" class="form-control" id="form-emppassword">
-                <br><br>
+                  <br><br>
+                  <h2><p [hidden]="ocultarEsperar" ><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos sus datos...</p></h2>
                   <button mat-raised-button color="warn" class="btn btn-primary" (click)="LoginCliente()">Ingresar</button>
                   <button mat-raised-button color="warn" class="btn btn-success" (click)="TestCliente()">IngresarCliente</button>
                   <p><a routerLink="/RegistroCliente">Si es tu primera vez aquí - Registrate haciendo click aquí</a></p> 
@@ -71,6 +75,25 @@
 </div>
 </div>
 <footer>
-        <p><a routerLink="/LoginInvitado">Si sos invitado de un Evento - Hace click aquí</a></p> 
+        <!-- <p class="invitado"><a routerLink="/LoginInvitado">Si sos invitado de un Evento - Hace click aquí</a></p> -->
+        <p class="invitado"><a (click)=" mostrarFormularioInvitado()">Si sos invitado de un Evento - Hace click aquí</a></p>
+        <div [hidden]="ocultarLoginInvitado">
+          <div class="modal">
+              <button (click)="cerrarFormularioInvitado()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            <form class="modal-content">
+              <h2>Bienvenido Invitado</h2>
+              <strong>Por favor solo ingresa tu correo electronico</strong>
+              <br>
+              <label>Mail:</label>
+              <input type="text" [(ngModel)]="mailInvitado" name="mailInvitado" placeholder="Ingrese su mail" class="form-control">
+              <br>
+              <button type="button" class="btn btn-secondary" (click)="cerrarFormularioInvitado()">Cancelar</button>
+              <button type="button" class="btn btn-info" (click)="LoginInvitado()">Ingresar</button>
+              <button type="button" class="btn btn-success" (click)="TestInvitado()">Test Invitado</button>
+            </form>
+          </div> 
+          </div> 
       </footer>
 </div>

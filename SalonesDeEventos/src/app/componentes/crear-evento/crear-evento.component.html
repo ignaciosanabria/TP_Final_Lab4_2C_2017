@@ -5,4 +5,21 @@
 <my-date-picker name="mydate" [options]="myDatePickerOptions"
 [(ngModel)]="model" required (dateChanged)="onDateChanged($event)"></my-date-picker>
 
-<button (click)="ver()">Ver</button>
+<div [hidden]="ocultarSalones">
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Direccion</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+  <tbody>
+     <tr *ngFor="let salon of salonesDisponibles">
+       <td>{{salon.direccion}}</td>
+       <td>{{salon.nombre}}</td>
+       <td><button (click)="Elegir()">Elegir</button></td>
+     </tr>
+  </tbody>
+  </table>
+</div>
+

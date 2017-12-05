@@ -1,6 +1,11 @@
 .back-color{
-    background-color:lightblue !important;
-    padding-bottom: 20px;
+    /*background-color:lightblue !important;*/
+    background-image: url("/assets/imagenes/inicialCliente.png");
+    padding-bottom: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
 }
 .info {
     overflow: hidden;
@@ -40,6 +45,9 @@ h3 {
     font-weight: 300;
     color: #555;
     line-height: 30px;
+}
+.invitado{
+    color: red;
 }
 
 img { max-width: 100%; }
@@ -198,7 +206,7 @@ img { max-width: 100%; }
 
 footer {
     padding-bottom: 70px;
-    color: red;
+    color: darkblue;
     font-size: 30px;
 }
 
@@ -213,9 +221,9 @@ footer .footer-border {
 footer p { opacity: 0.8; }
 
 footer a {
-    color: #fff;
+    color: darkblue;
 }
-footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
+footer a:hover, footer a:focus { color:darkcyan; border-bottom: 1px dotted #fff; }
 
 
 /***** Media queries *****/
@@ -238,4 +246,29 @@ footer a:hover, footer a:focus { color: #fff; border-bottom: 1px dotted #fff; }
 }
 .page-header{
  background-size: cover;
+}
+
+
+/*Estilos para el Login Invitado*/
+
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 160px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 98%; /* Could be more or less, depending on screen size */
 }
