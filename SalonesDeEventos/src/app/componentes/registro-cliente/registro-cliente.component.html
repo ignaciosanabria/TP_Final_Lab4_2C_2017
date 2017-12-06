@@ -98,20 +98,51 @@
               <div *ngIf="registroApellido.errors.required">
                  El apellido es requerido.
                </div>
-               <div>
+               <div *ngIf="registroApellido.errors.minlength">
                  El apellido debe tener al menos un largo de 4 caracteres.
                </div>
           </div>
 
           <label><b>Nro Documento:</b></label>
-          
-          <label><b>Direccion:</b></label>
+          <input type="text" placeholder="Ingresa tu nro de documento" [formControl] = "registroNroDoc" name="numeroDoc">
+          <div *ngIf="registroNroDoc.valid" class="alert alert-success">
+              El número de documento es válido.
+            </div>
+            <div *ngIf="registroNroDoc.invalid && (registroNroDoc.dirty || registroNroDoc.touched)"
+            class="alert alert-danger">
+              <div *ngIf="registroNroDoc.errors.required">
+                 El nro de documento es requerido.
+               </div>
+               <div *ngIf="registroNroDoc.errors.minlength">
+                 El el nro de documento debe tener al menos un largo de 7 caracteres.
+               </div>
+               <div *ngIf="registroNroDoc.errors.maxlength">
+                  El el nro de documento debe tener un maximo largo de 9 caracteres.
+                </div>
+          </div>
 
-          <label><b>Foto De Perfil:<b></label>
+
+          <label><b>Direccion:</b></label>
+          <input type="text" placeholder="Ingresa tu direccion" [formControl] = "registroDireccion" name="direccion">
+          <div *ngIf="registroDireccion.valid" class="alert alert-success">
+              La dirección es válida.
+            </div>
+            <div *ngIf="registroDireccion.invalid && (registroDireccion.dirty || registroDireccion.touched)"
+            class="alert alert-danger">
+              <div *ngIf="registroDireccion.errors.required">
+                 La dirección es requerida.
+               </div>
+            </div>
+
+
+          <!--Sin validacion ya que te podes registrar sin foto de perfil-->
+          <label><b>Foto De Perfil:</b></label>
+          <input type="file" (change)="onFileChange($event)" name="photo" ng2FileSelect [uploader]="uploader" />
   
           <input type="checkbox" checked="checked">Recordar mis datos
           <p>creando la cuenta aceptando los<a  onclick="document.getElementById('id01').style.display='none'"  >Terminos y condiciones</a>.</p>
           <div class="clearfix">
+            <button (click)="llenarFormulario()">Llenar Formulario</button>
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Me arrepenti</button>
             <button type="submit" [disabled]="!registroForm.valid" class="signupbtn">Registrarme</button>
             <!-- [disabled]="!registroForm.valid" -->

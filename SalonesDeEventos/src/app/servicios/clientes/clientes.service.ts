@@ -27,4 +27,9 @@ export class ClientesService {
      return this.miClientesServicio.ValidarClienteApi(body);
    }
 
+   public RegistrarCliente(body : any)
+   {
+     return this.miClientesServicio.RegistrarClienteApi(body);
+   }
+
 }

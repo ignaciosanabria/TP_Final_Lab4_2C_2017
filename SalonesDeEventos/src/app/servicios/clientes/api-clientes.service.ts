@@ -18,4 +18,9 @@ export class ApiClientesService {
      return this.miHttpServicio.httpPost("clientes/",body);
    }
 
+   public RegistrarClienteApi(body : any)
+   {
+     return this.miHttpServicio.httpPost("Registro/RegistrarClienteSinFoto",body);
+   }
+
 }

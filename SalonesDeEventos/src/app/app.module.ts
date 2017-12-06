@@ -5,8 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {JwtModule} from './jwt/jwt.module';
 import {HttpModule} from '@angular/http';
 import { MyDatePickerModule } from 'mydatepicker';
-
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -57,6 +57,14 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { GoogleMapDirective } from './directivas/google-map.directive';
 import { BotonMesasComponent } from './componentes/boton-mesas/boton-mesas.component';
 import { MiMesaComponent } from './componentes/mi-mesa/mi-mesa.component';
+import { MenuRecepcionistaComponent } from './componentes/menu-recepcionista/menu-recepcionista.component';
+import { MenuEncargadoComponent } from './componentes/menu-encargado/menu-encargado.component';
+import { MenuAdministradorComponent } from './componentes/menu-administrador/menu-administrador.component';
+import { InicialRecepcionistaComponent } from './componentes/inicial-recepcionista/inicial-recepcionista.component';
+import { InicialEncargadoComponent } from './componentes/inicial-encargado/inicial-encargado.component';
+import { InicialAdministradorComponent } from './componentes/inicial-administrador/inicial-administrador.component';
+import { VerEventosRecepcionistaComponent } from './componentes/ver-eventos-recepcionista/ver-eventos-recepcionista.component';
+import { VerClientesComponent } from './componentes/ver-clientes/ver-clientes.component';
 
 const MiRuteo = [
   {path: '' , component: LoginComponent},
@@ -76,6 +84,14 @@ const MiRuteo = [
     children: [
       { path : '', component : InicialInvitadoComponent},
       {path : 'Direcciones', component : DireccionesComponent}
+    ]
+  },
+  {
+    path: 'PrincipalRecepcionista', component : PrincipalRecepcionistaComponent,
+    children : [
+      {path : '', component : InicialRecepcionistaComponent},
+      {path : 'VerEventos', component : VerEventosRecepcionistaComponent},
+      {path : 'VerClientes', component : VerClientesComponent}
     ]
   }
 ]
@@ -106,6 +122,14 @@ const MiRuteo = [
     GoogleMapDirective,
     BotonMesasComponent,
     MiMesaComponent,
+    MenuRecepcionistaComponent,
+    MenuEncargadoComponent,
+    MenuAdministradorComponent,
+    InicialRecepcionistaComponent,
+    InicialEncargadoComponent,
+    InicialAdministradorComponent,
+    VerEventosRecepcionistaComponent,
+    VerClientesComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,7 +141,8 @@ const MiRuteo = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiuFtiKAvJqz4jT503V7P5swXAhtJqu3c'
     }),
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    FileUploadModule
   ],
   providers: [
     MiHttpService,

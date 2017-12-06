@@ -60,6 +60,30 @@ export class LoginComponent implements OnInit {
     this.miEmpleadosService.ValidarEmpleado(JSON.stringify(empleado)).subscribe(
       data =>{
         console.log(data);
+        let respuesta = JSON.parse(data["_body"]);
+        if(respuesta.status == 200)
+          {
+           if(respuesta.token)
+            {
+              localStorage.setItem('token',respuesta.token);
+              switch(respuesta.cargo)
+              {
+              case "Recepcionista":
+                this.router.navigate(['/PrincipalRecepcionista']);
+                break;
+              case "Encargado":
+                this.router.navigate(['/PrincipalEncargado']);
+                break;
+              case "Administrador":
+                this.router.navigate(['/PrincipalAdministrador']);
+                break;
+            }
+          }
+        }
+        else
+          {
+            alert("Error. No existe un invitado con ese mail!");
+          }
       },
       error => {
         console.log(error);
@@ -101,6 +125,12 @@ export class LoginComponent implements OnInit {
   {
     this.mailEmpleado = "administrador@outlook.com";
     this.claveEmpleado = "1234";
+  }
+
+  TestRecepcionista()
+  {
+    this.mailEmpleado = "fernando_g@gmail.com";
+    this.claveEmpleado = "boca1234";
   }
 
   TestCliente()
