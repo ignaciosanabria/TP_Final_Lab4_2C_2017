@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Directive, Input, ContentChild, AfterViewInit} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Directive, Input, ContentChild, AfterViewInit, EventEmitter, Output} from '@angular/core';
 import { AgmCoreModule, MapsAPILoader, GoogleMapsAPIWrapper} from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import {GoogleMapDirective} from '../../directivas/google-map.directive';//Directiva Mia
@@ -24,6 +24,8 @@ export class DireccionesComponent implements OnInit {
 
   origin : any;
   destination : any;
+
+  @Output() enviarSalon: EventEmitter<any>= new EventEmitter<any>();
 
   // origin = {longitude : -46.2884694, latitude :-32.8085753};
   // destination = { longitude: -60.2884694, latitude: -36.8085753 };
@@ -91,12 +93,18 @@ export class DireccionesComponent implements OnInit {
       {
         // this.origin = null;
         // this.destination = null;
-        this.origin = {longitude: this.lng, latitude: this.lat};
-        console.log(this.origin);
-        this.destination = {longitude: Number(salon.longitud), latitude: Number(salon.latitud)};
-        console.log(this.destination);
-        this.gm.updateDirections();
+        // this.origin = {longitude: this.lng, latitude: this.lat};
+        // console.log(this.origin);
+        // this.destination = {longitude: Number(salon.longitud), latitude: Number(salon.latitud)};
+        // console.log(this.destination);
+        // this.gm.updateDirections();
+        //this.enviarSalon.emit(salon);
       }
+  }
+
+  verSalon()
+  {
+
   }
 
 }

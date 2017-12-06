@@ -1,0 +1,24 @@
+<button class="btn btn-warning" (click)="VerMesas()">Ver Mesas</button>
+    <div [hidden]="ocultarMesas">
+        <div class="modal">
+            <button (click)="cerrarVerMesas()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          <form class="modal-content">
+            <h2>Bienvenido Cliente</h2>
+            <strong>Ingresa los invitados que vos quieras!</strong>
+            <br>
+            <label>Mesas:</label>
+            <select name="mesaElegida"[(ngModel)]="mesaElegida" (ngModelChange)="ElegirMesa($event)">
+                <option [selected] [value]="0">
+                <option *ngFor="let mesa of mesas" [value]="mesa | json">
+                {{mesa.nro_mesa}}
+                </option>
+            </select>
+            <br><br>
+            <button class="btn btn-default" (click)="cerrarVerMesas()">Cancelar</button>
+            <br><br><br>
+            <app-mi-mesa *ngIf="mesaElegida != null" [mesa]="mesaElegida"></app-mi-mesa>
+          </form>
+        </div> 
+        </div> 

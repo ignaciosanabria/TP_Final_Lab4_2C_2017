@@ -6,6 +6,8 @@ import {JwtModule} from './jwt/jwt.module';
 import {HttpModule} from '@angular/http';
 import { MyDatePickerModule } from 'mydatepicker';
 
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 //Componentes
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/login/login.component';
@@ -37,6 +39,8 @@ import {ApiSalonesService} from './servicios/salones/api-salones.service';
 import {SalonesService} from './servicios/salones/salones.service';
 import {AutService} from './servicios/aut.service';
 import {VerificarJWTService} from './servicios/verificar-jwt.service';
+import {ApiMesasService} from './servicios/mesas/api-mesas.service';
+import {MesasService} from './servicios/mesas/mesas.service';
 
 //PIPES
 import { EstadoPipe } from './pipes/estado.pipe';
@@ -51,6 +55,8 @@ import { DireccionesComponent } from './componentes/direcciones/direcciones.comp
 import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { GoogleMapDirective } from './directivas/google-map.directive';
+import { BotonMesasComponent } from './componentes/boton-mesas/boton-mesas.component';
+import { MiMesaComponent } from './componentes/mi-mesa/mi-mesa.component';
 
 const MiRuteo = [
   {path: '' , component: LoginComponent},
@@ -98,6 +104,8 @@ const MiRuteo = [
     MenuInvitadoComponent,
     DireccionesComponent,
     GoogleMapDirective,
+    BotonMesasComponent,
+    MiMesaComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,7 +116,8 @@ const MiRuteo = [
     MyDatePickerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiuFtiKAvJqz4jT503V7P5swXAhtJqu3c'
-    })
+    }),
+    Ng2SmartTableModule
   ],
   providers: [
     MiHttpService,
@@ -123,7 +132,9 @@ const MiRuteo = [
     AutService,
     VerificarJWTService,
     SalonesService,
-    ApiSalonesService
+    ApiSalonesService,
+    ApiMesasService,
+    MesasService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,4 @@
-<p>
-  crear-evento works!
-</p>
+<h1>Selecciona El Salon</h1>
 
 <my-date-picker name="mydate" [options]="myDatePickerOptions"
 [(ngModel)]="model" required (dateChanged)="onDateChanged($event)"></my-date-picker>
@@ -17,7 +15,7 @@
      <tr *ngFor="let salon of salonesDisponibles">
        <td>{{salon.direccion}}</td>
        <td>{{salon.nombre}}</td>
-       <td><button (click)="Elegir()">Elegir</button></td>
+       <td><button (click)="Elegir(salon)">Elegir</button></td>
      </tr>
   </tbody>
   </table>

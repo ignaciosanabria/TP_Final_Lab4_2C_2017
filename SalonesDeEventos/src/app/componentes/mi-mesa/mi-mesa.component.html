@@ -1,0 +1,27 @@
+<button class="btn btn-lg btn-info"(click)="verInvitados()">Ver Invitados</button>
+<div [hidden]="ocultarInvitados">
+    <div class="modal">
+        <div class="modal-content">
+            <button class="btn btn-info" (click)="cerrarLista()">Cerrar Lista</button>
+<ng2-smart-table class="estilosSmartTable" 
+    (createConfirm)="onCreateConfirm($event)" 
+    (deleteConfirm)="onDeleteConfirm($event)"
+    (editConfirm)="onEditConfirm($event)"
+[settings]="settings" [source]="source"></ng2-smart-table>
+<br><br>
+<!-- Revisar Logica para agregar al Smart Table -->
+<h5>Tu Invitado ya habia venido a uno de nuestros eventos?</h5>
+<small>Mira los invitados y seleccionalo!</small>
+<select name="invitadoElegido" [(ngModel)]="invitadoElegido" (ngModelChange)="ElegirInvitado($event)">
+        <option [value]="0">Seleccionar</option>
+        <option *ngFor="let invitado of invitadosRegistrados" [value]="invitado | json">
+        {{invitado.nombre}} , {{invitado.apellido}} - DNI: {{invitado.nro_doc}}
+        </option>
+    </select>
+</div>
+    </div>
+</div>
+
+<!-- (createConfirm)="onCreateConfirm($event)" 
+(deleteConfirm)="onDeleteConfirm($event)"
+(editConfirm)="onEditConfirm($event)" -->

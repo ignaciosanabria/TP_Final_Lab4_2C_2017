@@ -9,9 +9,22 @@ export class InvitadosService {
      this.miApiInvitadosServicio = ServicioApiInvitado;
    }
 
+   
+
    public ValidarInvitado(mail : any)
    {
      return this.miApiInvitadosServicio.ValidarInvitadoApi(mail);
+   }
+
+
+   public TraerInvitadosPorEventoMesa(eventoIdMesa : any)
+   {
+     return this.miApiInvitadosServicio.TraerInvitadosPorEventoMesaApi(eventoIdMesa);
+   }
+
+   public TraerNoInvitadosPorEvento(id_evento : any)
+   {
+     return this.miApiInvitadosServicio.TraerNoInvitadosPorEventoApi(id_evento);
    }
 
 }

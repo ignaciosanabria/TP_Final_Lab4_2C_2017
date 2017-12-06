@@ -61,9 +61,9 @@ public model: any; //= { date: { year: 2017, month: 11, day: 29 } };
     console.log(this.model);
   }
 
-  public Elegir()
+  public Elegir(salon : any)
   {
-    
+    console.log(salon);
   }
 
 }

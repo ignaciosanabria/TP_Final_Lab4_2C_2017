@@ -9,10 +9,40 @@ export class ApiInvitadosService {
     this.miHttpServicio = httpServicio;
    }
 
+   public TraerTodosLosInvitadosApi()
+   {
+     return this.miHttpServicio.httpGetPromise('invitados/').then(data =>
+    {
+      return data;
+    }).catch(
+      error => {
+        console.log(error);
+      }
+    );
+   }
+
    public ValidarInvitadoApi(mail : any)
    {
      return this.miHttpServicio.httpPost("invitados/",mail);
    }
+
+
+   public TraerInvitadosPorEventoMesaApi(eventoIdMesa : any)
+   {
+     return this.miHttpServicio.httpPost("invitados/TraerInvitadosPorEventoMesa",eventoIdMesa);
+   }
+
+
+   public TraerNoInvitadosPorEventoApi(id_evento : any)
+   {
+     return this.miHttpServicio.httpPost("invitados/TraerNoInvitadosPorEvento",id_evento);
+   }
+
+
+  //  public BorrarInvitadoEventoApi(id_invitado : any)
+  //  {
+
+  //  }
     
 
 }
