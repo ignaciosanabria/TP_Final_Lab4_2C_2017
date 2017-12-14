@@ -17,8 +17,12 @@ export class MenuClienteComponent implements OnInit {
 
   public CerrarSesion()
   {
-    localStorage.removeItem("token");
-   this.router.navigate(["/"]);
+    let confirmar = confirm("Desea cerrar su sesion?");
+    if(confirmar == true)
+      {
+        localStorage.removeItem("token");
+        this.router.navigate(["/"]);
+      }
   }
 
   public Ir(url : string)

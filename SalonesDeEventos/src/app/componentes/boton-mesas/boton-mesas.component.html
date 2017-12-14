@@ -1,10 +1,9 @@
-<button class="btn btn-warning" (click)="VerMesas()">Ver Mesas</button>
+<div class="fondo">
     <div [hidden]="ocultarMesas">
-        <div class="modal">
-            <button (click)="cerrarVerMesas()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-          <form class="modal-content">
+      <ng-container *ngFor="let mesa of mesas">
+        <app-mi-mesa [mesa]="mesa"></app-mi-mesa>
+      </ng-container>
+          <!-- <form>
             <h2>Bienvenido Cliente</h2>
             <strong>Ingresa los invitados que vos quieras!</strong>
             <br>
@@ -19,6 +18,6 @@
             <button class="btn btn-default" (click)="cerrarVerMesas()">Cancelar</button>
             <br><br><br>
             <app-mi-mesa *ngIf="mesaElegida != null" [mesa]="mesaElegida"></app-mi-mesa>
-          </form>
+          </form> -->
         </div> 
         </div> 

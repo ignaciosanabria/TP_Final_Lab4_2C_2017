@@ -1,6 +1,6 @@
 <div class="fondo">
-  <h1>Sus Eventos</h1>
-<table border="1">
+  <h1>Proximos Eventos Del Salon</h1>
+<table class="table">
   <thead>
       <tr>
           <th>Salon</th>
@@ -14,11 +14,12 @@
       <tr *ngFor="let evento of eventos">
        <td>{{evento.nombre}}</td>
        <td>{{evento.direccion}}</td>
-       <td>{{evento.fecha}}</td>
+       <td>{{evento.fecha_inicio}}</td>
        <td>{{evento.haFinalizado | estado}}</td>
        <td>{{evento.estaReservado | reservado}}</td>
-       <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td>
-      </tr>
+       <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td> -->
+       <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesa-recepcionista [evento]="evento"></app-boton-mesa-recepcionista></td> -->
+    </tr>
   </tbody>
 </table>
 </div>

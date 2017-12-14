@@ -2,6 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import {EventosService} from '../../servicios/eventos/eventos.service';
 import {EmpleadosService} from '../../servicios/empleados/empleados.service';
 import {AutService} from '../../servicios/aut.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-eventos-clientes',
   templateUrl: './eventos-clientes.component.html',
@@ -17,9 +18,14 @@ export class EventosClientesComponent implements OnInit {
   miServicioEventos : EventosService;
   miServicioEmpleados : EmpleadosService;
   miAutServicio : AutService;
-  constructor(ServicioEventos : EventosService, ServicioAut : AutService, ServicioEmpleados : EmpleadosService) {
+
+  today = new Date();
+
+  constructor(ServicioEventos : EventosService, ServicioAut : AutService, ServicioEmpleados : EmpleadosService, private route: ActivatedRoute,
+    private router: Router) {
     this.miServicioEventos = ServicioEventos;
     this.miAutServicio = ServicioAut;
+    console.log(this.today.getDate()+"/"+(this.today.getMonth()+1)+"/"+this.today.getFullYear());
     console.log(this.miAutServicio.getToken());
     let token = this.miAutServicio.getToken();
     console.log(token["data"].id_cliente);
@@ -38,6 +44,11 @@ export class EventosClientesComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  verMesas(evento : any){
+    console.log(evento);
+    this.router.navigate(['/PrincipalCliente/VerMesas',evento.id_evento]);
   }
 
 }

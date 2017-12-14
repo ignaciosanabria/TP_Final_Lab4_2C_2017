@@ -39,10 +39,39 @@ export class ApiInvitadosService {
    }
 
 
-  //  public BorrarInvitadoEventoApi(id_invitado : any)
-  //  {
+   public BorrarInvitadoEventoApi(id_invitado : any, id_evento : any, id_mesa : any)
+   {
+     return this.miHttpServicio.httpDelete("invitados/BorrarInvitadoEvento/"+id_invitado+"/"+id_evento+"/"+id_mesa);
+   }
 
-  //  }
-    
+   public InsertarInvitadoApi(body : any)
+   {
+     return this.miHttpServicio.httpPost("invitados/InsertarInvitado",body);
+   }
+
+   public ModificarInvitadoApi(body : any)
+   {
+     return this.miHttpServicio.httpPut("invitados/ModificarInvitado",body);
+   }
+
+   public TraerCantidadDeInvitadosPorMesaApi(body : any)
+   {
+     return this.miHttpServicio.httpPost("invitados/TraerCantidadDeInvitadosPorMesa",body);
+   }
+   
+   public InsertarInvitadoRegistradoApi(body : any)
+   {
+     return this.miHttpServicio.httpPost("invitados/InsertarInvitadoRegistrado",body);
+   }
+
+   public TraerLaConfirmacionDeTodosLosInvitadosPorEventoMesaApi(body : any)
+   {
+     return this.miHttpServicio.httpPost("invitados/TraerLaConfirmacionDeTodosLosInvitadosPorEventoMesa",body);
+   }
+
+   public CambiarConfirmacionInvitadoApi(body : any)
+   {
+     return this.miHttpServicio.httpPut("invitados/CambiarConfirmacionInvitado",body);
+   }
 
 }

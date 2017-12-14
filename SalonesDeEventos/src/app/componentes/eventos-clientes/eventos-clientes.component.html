@@ -1,13 +1,13 @@
 <div class="fondo">
     <h1>Sus Eventos</h1>
-<table border="1">
+<table class="table table-bordered table-responsive-lg">
     <thead>
         <tr>
-            <th>Salon</th>
-            <th>Direccion</th>
-            <th>Fecha</th>
-            <th>Estado</th>
-            <th>Reservado</th>
+            <th scope="col">Salon</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Reservado</th>
         </tr>
     </thead>
     <tbody>
@@ -17,7 +17,9 @@
          <td>{{evento.fecha}}</td>
          <td>{{evento.haFinalizado | estado}}</td>
          <td>{{evento.estaReservado | reservado}}</td>
-         <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td>
+         <!-- Tratar de Cambiar por Router Link-->
+         <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><button class="btn btn-warning" (click)="verMesas(evento)">Ver Mesas</button></td>
+         <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td> -->
         </tr>
     </tbody>
 </table>

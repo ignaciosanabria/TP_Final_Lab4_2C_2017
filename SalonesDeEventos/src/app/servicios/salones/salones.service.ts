@@ -26,4 +26,9 @@ export class SalonesService {
      );
    }
 
+   public TraerLosDatosDelSalonYLaMesa(body : any)
+   {
+     return this.miServicioSalones.TraerLosDatosDelSalonYLaMesaApi(body);
+   }
+
 }

@@ -28,6 +28,7 @@ export class RegistroClienteComponent implements OnInit {
 
   public registroNroDoc : FormControl = new FormControl("",[Validators.required,Validators.minLength(7),Validators.maxLength(9)]);
   public registroDireccion : FormControl = new FormControl("",[Validators.required]);
+  public registroCaptcha : FormControl = new FormControl("",[Validators.required]);
  
   public Imagen : any;
 
@@ -53,7 +54,8 @@ export class RegistroClienteComponent implements OnInit {
    'registroNombre' : this.registroNombre,
    'registroApellido' : this.registroApellido,
    'registroNroDoc' : this.registroNroDoc,
-   'registroDireccion' : this.registroDireccion
+   'registroDireccion' : this.registroDireccion,
+   'registroCaptcha' : this.registroCaptcha
  },{validator : this.areEqual});
  
 }
@@ -147,14 +149,8 @@ ngOnInit() {
 };
 }
 
-llenarFormulario()
-{
-  this.registroNombre.setValue("Agustin");
-  this.registroApellido.setValue("Lobo");
-  this.registroMail.setValue("aguslobo@gmail.com");
-  this.registroClave.setValue("lobo12");
-  this.registroRepetirClave.setValue("lobo12");
-  this.registroNroDoc.setValue("31242123");
-  this.registroDireccion.setValue("Venezuela 2141");
+public resolved(captchaResponse: string) {
+  console.log(`Resolved captcha with response ${captchaResponse}:`);
 }
+
 }

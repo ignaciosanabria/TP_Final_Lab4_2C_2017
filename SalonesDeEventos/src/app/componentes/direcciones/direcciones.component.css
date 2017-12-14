@@ -1,5 +1,11 @@
 agm-map {
     height: 350px;
+    width: 900px;
+  }
+
+  .container{
+    text-align: center;
+    color: orange;
   }
 
   #directionsPanel {

@@ -1,15 +1,22 @@
-<button class="btn btn-lg btn-info"(click)="verInvitados()">Ver Invitados</button>
+<button class="btnMesa"(click)="verInvitados()"><h5>Mesa Nro:{{mesa.nro_mesa}}</h5><img src="../../../assets/imagenes/mesas.jpg" class="img-circle" width="250px" height="250px"></button>
 <div [hidden]="ocultarInvitados">
     <div class="modal">
         <div class="modal-content">
-            <button class="btn btn-info" (click)="cerrarLista()">Cerrar Lista</button>
+            <h3>Esta mesa ya tiene {{cantidadInvitados}} invitados.</h3>
+            <button class="cerrar btn btn-info" (click)="cerrarLista()">Cerrar Lista</button>
+<div [hidden]="!ocultarProceso">
 <ng2-smart-table class="estilosSmartTable" 
     (createConfirm)="onCreateConfirm($event)" 
     (deleteConfirm)="onDeleteConfirm($event)"
     (editConfirm)="onEditConfirm($event)"
-[settings]="settings" [source]="source"></ng2-smart-table>
+[settings]="settings" [source]="source">
+</ng2-smart-table>
+<input type="checkbox" (change)="addprop1($event)" value="lala">
+</div>
 <br><br>
 <!-- Revisar Logica para agregar al Smart Table -->
+<h2><p [hidden]="ocultarProceso" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos el ingreso...</p></h2>
+<div [hidden]="!ocultarProceso">
 <h5>Tu Invitado ya habia venido a uno de nuestros eventos?</h5>
 <small>Mira los invitados y seleccionalo!</small>
 <select name="invitadoElegido" [(ngModel)]="invitadoElegido" (ngModelChange)="ElegirInvitado($event)">
@@ -18,6 +25,8 @@
         {{invitado.nombre}} , {{invitado.apellido}} - DNI: {{invitado.nro_doc}}
         </option>
     </select>
+</div><!-- cierre div select -->
+ 
 </div>
     </div>
 </div>

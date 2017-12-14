@@ -49,7 +49,7 @@ export class AutService {
   {
     try {
       localStorage.setItem('token', null);
-      this.router.navigate(['/Login']);
+      this.router.navigate(['/']);
     } catch (error) {
       return false;
     }

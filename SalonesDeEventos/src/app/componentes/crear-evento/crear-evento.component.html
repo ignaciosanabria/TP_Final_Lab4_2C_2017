@@ -1,10 +1,13 @@
-<h1>Selecciona El Salon</h1>
-
+<div class="container">
+  <h1>Bienvenida/o {{nombreCliente}}</h1>
+  <h3>Aqui selecciona el salon disponible para la fecha deseada!</h3>
+<h4>Selecciona La Fecha</h4>
+<re-captcha (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
 <my-date-picker name="mydate" [options]="myDatePickerOptions"
 [(ngModel)]="model" required (dateChanged)="onDateChanged($event)"></my-date-picker>
-
+<h1 [hidden]="ocultarSalones">Selecciona Los Salones</h1>
 <div [hidden]="ocultarSalones">
-  <table border="1">
+  <table border="1" class="table">
     <thead>
       <tr>
         <th>Direccion</th>
@@ -15,9 +18,10 @@
      <tr *ngFor="let salon of salonesDisponibles">
        <td>{{salon.direccion}}</td>
        <td>{{salon.nombre}}</td>
-       <td><button (click)="Elegir(salon)">Elegir</button></td>
+       <td><button class="btn btn-success" (click)="Elegir(salon)">Elegir</button></td>
      </tr>
   </tbody>
   </table>
+</div>
 </div>
 

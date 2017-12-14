@@ -18,4 +18,9 @@ export class ApiSalonesService {
      return this.miHttpServicio.httpGetPromise("salones/coordenadas").then(datos => {return datos;}).catch(error => {console.info(error)});
    }
 
+   public TraerLosDatosDelSalonYLaMesaApi(body : any)
+   {
+     return this.miHttpServicio.httpPost("salones/TraerLosDatosDelSalonYLaMesa",body);
+   }
+
 }

@@ -27,4 +27,53 @@ export class InvitadosService {
      return this.miApiInvitadosServicio.TraerNoInvitadosPorEventoApi(id_evento);
    }
 
+   public TraerTodosLosInvitados()
+   {
+     return this.miApiInvitadosServicio.TraerTodosLosInvitadosApi().then(
+       data =>
+       {
+         return data;
+       },
+     ).catch(
+       error => {
+         console.log(error);
+       }
+     );
+   }
+
+   public BorrarInvitadoEvento(id_invitado : any, id_evento : any, id_mesa : any)
+   {
+     return this.miApiInvitadosServicio.BorrarInvitadoEventoApi(id_invitado,id_evento,id_mesa);
+   }
+
+   public InsertarInvitado(body : any)
+   {
+     return this.miApiInvitadosServicio.InsertarInvitadoApi(body);
+   }
+
+   public ModificarInvitado(body : any)
+   {
+     return this.miApiInvitadosServicio.ModificarInvitadoApi(body);
+   }
+
+   public TraerCantidadDeInvitadosPorMesa(body : any)
+   {
+     return this.miApiInvitadosServicio.TraerCantidadDeInvitadosPorMesaApi(body);
+   }
+
+   public InsertarInvitadoRegistrado(body : any)
+   {
+     return this.miApiInvitadosServicio.InsertarInvitadoRegistradoApi(body);
+   }
+
+   public TraerLaConfirmacionDeTodosLosInvitadosPorEventoMesa(body : any)
+   {
+     return this.miApiInvitadosServicio.TraerLaConfirmacionDeTodosLosInvitadosPorEventoMesaApi(body);
+   }
+
+   public CambiarConfirmacionInvitado(body : any)
+   {
+     return this.miApiInvitadosServicio.CambiarConfirmacionInvitadoApi(body);
+   }
+
 }

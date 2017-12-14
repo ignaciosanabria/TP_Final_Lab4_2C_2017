@@ -19,7 +19,7 @@ div {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
-    color: #888;
+    color: white;
     line-height: 30px;
     text-align: center;
 }
@@ -27,7 +27,7 @@ div {
 strong { font-weight: 500; }
 
 a, a:hover, a:focus {
-    color: red;
+    color: chartreuse;
     text-decoration: none;
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
@@ -271,4 +271,13 @@ footer a:hover, footer a:focus { color:darkcyan; border-bottom: 1px dotted #fff;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 98%; /* Could be more or less, depending on screen size */
+}
+
+.spinner{
+    color: white;
+}
+
+.enlaces
+{
+    color : red;
 }

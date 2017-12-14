@@ -25,3 +25,19 @@
     width: 100%; /* Could be more or less, depending on screen size */
     height: 125%;
 }
+
+.btnMesa{
+    color: white;
+    background-color: red;
+    padding: 14px 15px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 42px;
+    text-align: center;
+    }
+
+.cerrar{
+    float: right !important;
+}

@@ -1,0 +1,9 @@
+thead tr th{
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+tbody tr td{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}

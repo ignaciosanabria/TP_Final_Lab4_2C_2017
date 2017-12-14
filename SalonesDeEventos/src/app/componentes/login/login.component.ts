@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   public mailCliente : string;
   public claveCliente : string;
   ocultarEsperar : boolean;
+  ocultarEsperarEmpleado : boolean;
   //Invitado
   mailInvitado : string;
   ocultarLoginInvitado : boolean;
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
     );
     this.ocultarEsperar = true;
     this.ocultarLoginInvitado = true;
+    this.ocultarEsperarEmpleado = true;
    }
 
   ngOnInit() {
@@ -56,6 +58,7 @@ export class LoginComponent implements OnInit {
 
   LoginEmpleado()
   {
+    this.ocultarEsperarEmpleado = false;
     let empleado = {"mail" : this.mailEmpleado , "clave" : this.claveEmpleado};
     this.miEmpleadosService.ValidarEmpleado(JSON.stringify(empleado)).subscribe(
       data =>{
@@ -83,6 +86,7 @@ export class LoginComponent implements OnInit {
         else
           {
             alert("Error. No existe un invitado con ese mail!");
+            this.ocultarEsperarEmpleado = true;
           }
       },
       error => {
@@ -112,6 +116,7 @@ export class LoginComponent implements OnInit {
        else
         {
           alert("Mail o clave incorrecta. Revise sus datos!");
+          this.ocultarEsperar = true;
         }
      },
      error => 
@@ -131,6 +136,10 @@ export class LoginComponent implements OnInit {
   {
     this.mailEmpleado = "fernando_g@gmail.com";
     this.claveEmpleado = "boca1234";
+  }
+  TestEncargado(){
+   this.mailEmpleado = "matiasrodriguez@hotmail.com";
+   this.claveEmpleado = "holasoymati12";
   }
 
   TestCliente()

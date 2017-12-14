@@ -1,0 +1,19 @@
+<h1>Lista de Invitados Registrados en El Sistema</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Nro Documento</th>
+        <th>Mail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invitado of invitados">
+        <td>{{invitado.nombre}}</td>
+        <td>{{invitado.apellido}}</td>
+        <td>{{invitado.nro_doc}}</td>
+        <td>{{invitado.mail}}</td>
+      </tr>
+    </tbody>
+</table>

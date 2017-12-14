@@ -36,12 +36,16 @@ export class MiHttpService {
    return this.http.post(this.apiRuta+url,body,options);
   }
 
+  public httpPut(url : string, body : any)
+  {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });   
+    return this.http.put(this.apiRuta+url,body,options);
+  }
 
-  // public httpPostFormData(url : string, body : any)
-  // {
-  
-  //   let options = new RequestOptions({ headers: headers });   
-  //   return this.http.post(this.apiRuta+url,body,options);
-  // }
+  public httpDelete(url : string)
+  {
+    return this.http.delete(this.apiRuta+url);
+  }
 
 }

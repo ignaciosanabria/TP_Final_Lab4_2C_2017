@@ -7,6 +7,11 @@ import {HttpModule} from '@angular/http';
 import { MyDatePickerModule } from 'mydatepicker';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
+import { ChartModule } from 'angular2-highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import {RuteandoModule} from './ruteando/ruteando.module';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -16,13 +21,10 @@ import { PrincipalClienteComponent } from './componentes/principal-cliente/princ
 import { PrincipalRecepcionistaComponent } from './componentes/principal-recepcionista/principal-recepcionista.component';
 import { PrincipalEncargadoComponent } from './componentes/principal-encargado/principal-encargado.component';
 import { PrincipalAdministradorComponent } from './componentes/principal-administrador/principal-administrador.component';
-import { LoginInvitadoComponent } from './componentes/login-invitado/login-invitado.component';
-import { CabeceraComponent } from './componentes/cabecera/cabecera.component';
 import { CrearEventoComponent } from './componentes/crear-evento/crear-evento.component';
 import { MenuClienteComponent } from './componentes/menu-cliente/menu-cliente.component';
 import { InicialClienteComponent } from './componentes/inicial-cliente/inicial-cliente.component';
 import { EventosClientesComponent } from './componentes/eventos-clientes/eventos-clientes.component';
-import { AgregarInvitadosComponent } from './componentes/agregar-invitados/agregar-invitados.component';
 import { ErrorComponent } from './componentes/error/error.component';
 
 //Importacion de Servicios Necesarios para la Aplicacion
@@ -65,36 +67,70 @@ import { InicialEncargadoComponent } from './componentes/inicial-encargado/inici
 import { InicialAdministradorComponent } from './componentes/inicial-administrador/inicial-administrador.component';
 import { VerEventosRecepcionistaComponent } from './componentes/ver-eventos-recepcionista/ver-eventos-recepcionista.component';
 import { VerClientesComponent } from './componentes/ver-clientes/ver-clientes.component';
+import { VerEstadisticasComponent } from './componentes/ver-estadisticas/ver-estadisticas.component';
+import { VerEventosEncargadoComponent } from './componentes/ver-eventos-encargado/ver-eventos-encargado.component';
+import { VerInvitadosRegistradosComponent } from './componentes/ver-invitados-registrados/ver-invitados-registrados.component';
+import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
+import { VerEventoHoyEmpleadoComponent } from './componentes/ver-evento-hoy-empleado/ver-evento-hoy-empleado.component';
+import { MiMesaEmpleadoComponent } from './componentes/mi-mesa-empleado/mi-mesa-empleado.component';
 
-const MiRuteo = [
-  {path: '' , component: LoginComponent},
-  {path: 'LoginInvitado', component : LoginInvitadoComponent},
-  {path: 'RegistroCliente', component : RegistroClienteComponent},
-  //Estos path necesitan auth - JWT
-  {path: 'PrincipalCliente', component : PrincipalClienteComponent,
-  children:
-  [
-    {path : '', component : InicialClienteComponent},
-    {path : 'CrearEvento', component : CrearEventoComponent},
-    {path : 'EventosCliente', component : EventosClientesComponent}
-  ]
-  },
-  {
-    path: 'PrincipalInvitado', component : PrincipalInvitadoComponent,
-    children: [
-      { path : '', component : InicialInvitadoComponent},
-      {path : 'Direcciones', component : DireccionesComponent}
-    ]
-  },
-  {
-    path: 'PrincipalRecepcionista', component : PrincipalRecepcionistaComponent,
-    children : [
-      {path : '', component : InicialRecepcionistaComponent},
-      {path : 'VerEventos', component : VerEventosRecepcionistaComponent},
-      {path : 'VerClientes', component : VerClientesComponent}
-    ]
-  }
-]
+// const MiRuteo = [
+//   {path: '' , component: LoginComponent},
+//   {path: 'LoginInvitado', component : LoginInvitadoComponent},
+//   {path: 'RegistroCliente', component : RegistroClienteComponent},
+//   {path: 'Error', component : ErrorComponent},
+//   //Estos path necesitan auth - JWT
+//   {path: 'PrincipalCliente', component : PrincipalClienteComponent,
+//   canActivate: [VerificarJWTService],
+//   children:
+//   [
+//     {path : '', component : InicialClienteComponent},
+//     {path : 'CrearEvento', component : CrearEventoComponent},
+//     {path : 'EventosCliente', component : EventosClientesComponent}
+//   ]
+//   },
+//   {
+//     path: 'PrincipalInvitado', component : PrincipalInvitadoComponent,
+//     canActivate: [VerificarJWTService],
+//     children: [
+//       { path : '', component : InicialInvitadoComponent},
+//       {path : 'Direcciones', component : DireccionesComponent}
+//     ]
+//   },
+//   {
+//     path: 'PrincipalRecepcionista', component : PrincipalRecepcionistaComponent,
+//     canActivate: [VerificarJWTService],
+//     children : [
+//       {path : '', component : InicialRecepcionistaComponent},
+//       {path : 'VerEventos', component : VerEventosRecepcionistaComponent},
+//       {path : 'VerClientes', component : VerClientesComponent}
+//     ]
+//   },
+//   {path: 'PrincipalEncargado', component : PrincipalEncargadoComponent,
+//   canActivate: [VerificarJWTService],
+//   children : [
+//     {path : '', component : InicialEncargadoComponent},
+//     {path : 'VerEventos', component : VerEventosEncargadoComponent},
+//     {path : 'VerClientes', component : VerClientesComponent},
+//     {path : 'VerEstadisticas', component : VerEstadisticasComponent}
+//   ]
+//    },
+//    {path: 'PrincipalAdministrador', component : PrincipalAdministradorComponent,
+//    canActivate : [VerificarJWTService],
+//    children : [
+//      {path: '', component : InicialAdministradorComponent},
+//      {path : 'VerEventos', component : VerEventosEncargadoComponent},
+//      {path : 'VerClientes', component : VerClientesComponent},
+//      {path : 'VerEstadisticas', component : VerEstadisticasComponent},
+//      {path: 'VerInvitados', component : VerInvitadosRegistradosComponent}
+//    ]
+//    }
+// ]
+
+declare var require: any;
+export function highchartsFactory() {
+  return require('highcharts');
+}
 
 @NgModule({
   declarations: [
@@ -105,13 +141,10 @@ const MiRuteo = [
     PrincipalRecepcionistaComponent,
     PrincipalEncargadoComponent,
     PrincipalAdministradorComponent,
-    LoginInvitadoComponent,
-    CabeceraComponent,
     CrearEventoComponent,
     MenuClienteComponent,
     InicialClienteComponent,
     EventosClientesComponent,
-    AgregarInvitadosComponent,
     EstadoPipe,
     ReservadoPipe,
     ErrorComponent,
@@ -130,19 +163,28 @@ const MiRuteo = [
     InicialAdministradorComponent,
     VerEventosRecepcionistaComponent,
     VerClientesComponent,
+    VerEstadisticasComponent,
+    VerEventosEncargadoComponent,
+    VerInvitadosRegistradosComponent,
+    EncuestaComponent,
+    VerEventoHoyEmpleadoComponent,
+    MiMesaEmpleadoComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(MiRuteo),
     HttpModule,
     MyDatePickerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCiuFtiKAvJqz4jT503V7P5swXAhtJqu3c'
     }),
     Ng2SmartTableModule,
-    FileUploadModule
+    FileUploadModule,
+    ChartModule,
+    RuteandoModule,
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule
   ],
   providers: [
     MiHttpService,
@@ -159,7 +201,11 @@ const MiRuteo = [
     SalonesService,
     ApiSalonesService,
     ApiMesasService,
-    MesasService
+    MesasService,
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+    }
   ],
   bootstrap: [AppComponent]
 })

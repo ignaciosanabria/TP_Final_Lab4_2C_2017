@@ -1,0 +1,8 @@
+<div class="fondo">
+    <div [hidden]="ocultarMesas">
+      <ng-container *ngFor="let mesa of mesas">
+        <!-- <app-mi-mesa [mesa]="mesa"></app-mi-mesa> -->
+       <app-mi-mesa-empleado [mesa]="mesa"></app-mi-mesa-empleado>
+      </ng-container>
+    </div>
+</div>

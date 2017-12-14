@@ -1,0 +1,33 @@
+<div class="fondo">
+  <h1>Registro de todos los eventos del Salon</h1>
+<table class="table">
+  <thead>
+      <tr>
+          <th>Salon</th>
+          <th>Direccion</th>
+          <th>Nombre Cliente</th>
+          <th>Apellido Cliente</th>
+          <th>Nro Doc Cliente</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>Reservado</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let evento of eventos">
+       <td>{{evento.salon_nombre}}</td>
+       <td>{{evento.salon_direccion}}</td>
+       <td>{{evento.nombre_cliente}}</td>
+       <td>{{evento.apellido_cliente}}</td>
+       <td>{{evento.documento_cliente}}</td>
+       <td>{{evento.fecha_inicio}}</td>
+       <td>{{evento.haFinalizado | estado}}</td>
+       <td>{{evento.estaReservado | reservado}}</td>
+       <td><button *ngIf="evento.haFinalizado == 1 && evento.estaReservado == 0" class="btn btn-danger" (click)="BorrarEvento(evento)">Borrar Evento</button></td>
+       <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td> -->
+       <!-- Falta Boton de Finalizar Evento y Borrar Evento -->
+       <td><button *ngIf="evento.fecha_fin == fechaActual"(click)="FinalizarEvento(evento)" class="btn btn-warning">Finalizar Evento</button></td>
+  </tbody>
+</table>
+<button class="btn btn-success" (click)="descargarEventos()">Descargar Excel</button>
+</div>

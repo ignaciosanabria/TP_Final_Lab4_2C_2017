@@ -1,0 +1,67 @@
+<button class="btnMesa"(click)="verInvitados()"><h5>Mesa Nro:{{mesa.nro_mesa}}</h5><img src="../../../assets/imagenes/mesas.jpg" class="img-circle" width="250px" height="250px"></button>
+<div [hidden]="ocultarInvitados">
+    <div class="modal">
+        <div class="modal-content">
+            <h2>Hola Recepcionista - Aquí podes confirmar la asistencia de los invitados</h2>
+            <h3>Esta mesa ya tiene {{cantidadInvitados}} invitados.</h3>
+            <button class="cerrar btn btn-info" (click)="cerrarLista()">Cerrar Lista</button>
+            <br>
+            <br>
+            <p>Si necesitas cambiar informacion sobre la mesa esta, no dudes en entrar al link previamente marcado abajo</p>
+            <a (click)="verLista()">Si deseas modificar algo sobre los invitados de esta mesa, hace click aquí</a>
+
+<div [hidden]="!ocultarProceso">
+    <div [hidden]="ocultarLista">
+        <button [hidden]="ocultarLista" (click)="cerrarListaModificacion()">Cerrar Lista Invitado</button>
+<ng2-smart-table class="estilosSmartTable" 
+    (createConfirm)="onCreateConfirm($event)" 
+    (deleteConfirm)="onDeleteConfirm($event)"
+    (editConfirm)="onEditConfirm($event)"
+[settings]="settings" [source]="source">
+</ng2-smart-table>
+<br><br>
+<!-- Revisar Logica para agregar al Smart Table -->
+<h2><p [hidden]="ocultarProceso" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos el ingreso...</p></h2>
+<div [hidden]="!ocultarProceso">
+<h5>Si hay que agregar un invitado que ya habia venido anteriormente a nuestros eventos!</h5>
+<p>Seleccionalo de aqui</p>
+<select name="invitadoElegido" [(ngModel)]="invitadoElegido" (ngModelChange)="ElegirInvitado($event)">
+        <option [value]="0">Seleccionar</option>
+        <option *ngFor="let invitado of invitadosRegistrados" [value]="invitado | json">
+        {{invitado.nombre}} , {{invitado.apellido}} - DNI: {{invitado.nro_doc}}
+        </option>
+    </select>
+</div><!-- cierre div select -->
+</div><!-- cierre div listaModificar -->
+<h2><p [hidden]="ocultarSpinnerConfirmacion" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos la confirmacion...</p></h2>
+<div [hidden]="ocultarConfirmacion">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Nro Documento</th>
+            <th>Mail</th>
+            <th>Ha Asistido?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let invitado of invitadosConfirmados">
+           <td>{{invitado.nombre}}</td>
+           <td>{{invitado.apellido}}</td>
+           <td>{{invitado.nro_doc}}</td>
+           <td>{{invitado.mail}}</td>
+           <!-- <td *ngIf="invitado.haAsistido == 1"><p>Ha Venido</p></td> -->
+           <!-- <td *ngIf="invitado.haAsistido == 0"><p>No Ha Venido</p></td> -->
+           <!-- <td *ngIf="invitado.haAsistido == 0"><input type="checkbox" (change)="addprop1(invitado)"></td> -->
+           <!-- <td><input type="checkbox" (change)="addprop1($event)" [(ngModel)]="invitado.haAsitido"></td> -->
+           <td><input type="checkbox" (change)="addprop1($event,invitado)" [checked]="invitado.haAsistido == 1"></td>
+        </tr>
+    </tbody>
+</table>           
+</div><!-- cierre div Confirmacion --> 
+</div>
+
+</div>
+    </div>
+</div>

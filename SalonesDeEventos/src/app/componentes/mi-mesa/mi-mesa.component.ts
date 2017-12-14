@@ -22,8 +22,13 @@ export class MiMesaComponent implements OnInit {
 
   invitadosRegistrados : Array<any>;
 
+  cantidadInvitados : number;
+
+  ocultarProceso : boolean;
+
   constructor(servicioInvitados : InvitadosService) {
     this.miServicioInvitados = servicioInvitados;
+    this.ocultarProceso = true;
     // this.miServicioInvitados.TraerInvitadosPorMesa()
     this.ocultarInvitados = true;
   }
@@ -62,14 +67,38 @@ export class MiMesaComponent implements OnInit {
     // console.log(this.mesa);
     // let mesa = JSON.parse(this.mesa);
     // let json = {"id_mesa" : mesa.id_mesa};
+    let json = {"id_mesa" : this.mesa.id_mesa, "id_evento" : this.mesa.id_evento};
+    this.miServicioInvitados.TraerCantidadDeInvitadosPorMesa(JSON.stringify(json)).subscribe(
+      data =>{
+        console.log(data);
+        let respuesta3 = JSON.parse(data["_body"]);
+        this.cantidadInvitados = respuesta3.cantidad;
+        console.log(this.cantidadInvitados);
+      },
+      error =>{
+        console.log(error);
+      }
+    );
   }
 
   public verInvitados()
   {
     console.log(this.mesa);
-    let mesa = JSON.parse(this.mesa);
-    let json = {"id_mesa" : mesa.id_mesa, "id_evento" : mesa.id_evento};
-    let json2 = {"id_evento" : mesa.id_evento};
+    // let mesa = JSON.parse(this.mesa);
+    let json = {"id_mesa" : this.mesa.id_mesa, "id_evento" : this.mesa.id_evento};
+    let json2 = {"id_evento" : this.mesa.id_evento};
+    this.miServicioInvitados.TraerCantidadDeInvitadosPorMesa(JSON.stringify(json)).subscribe(
+      data =>{
+        console.log(data);
+        let respuesta3 = JSON.parse(data["_body"]);
+        this.cantidadInvitados = respuesta3.cantidad;
+        console.log(this.cantidadInvitados);
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+    //Traigo los invitados que estan en la mesa
     this.miServicioInvitados.TraerInvitadosPorEventoMesa(JSON.stringify(json)).subscribe(
       data=> {
         console.log(data);
@@ -80,6 +109,7 @@ export class MiMesaComponent implements OnInit {
         console.log(error);
       }
     );
+    //Traigo los invitados que no estan en el evento pero que estan registrados en la BD;
     this.miServicioInvitados.TraerNoInvitadosPorEvento(JSON.stringify(json2)).subscribe(
       data => {
         console.log(data);
@@ -90,7 +120,7 @@ export class MiMesaComponent implements OnInit {
       {
         console.log(error);
       }
-    )
+    );
     this.ocultarInvitados = false;
   }
 
@@ -101,12 +131,37 @@ export class MiMesaComponent implements OnInit {
 
   onCreateConfirm(event)
   {
+    if(this.cantidadInvitados < 10)
+      {
     if (window.confirm('Estas seguro que queres agregar el invitado?')) {
       event.confirm.resolve(event.newData);
-      console.log(event)
-    } else {
-      event.confirm.reject();
-    }
+      event.newData["id_mesa"] = this.mesa.id_mesa;//Insercion de la mesa
+      event.newData["id_evento"] = this.mesa.id_evento;//Insercion de evento 
+      //console.log(event.newData);
+      this.miServicioInvitados.InsertarInvitado(JSON.stringify(event.newData)).subscribe(
+        data =>{
+          console.log(data);
+          let respuesta = JSON.parse(data["_body"]);
+          if(respuesta.status == 200)
+          {
+            alert("Usted ha ingresado correctamente a la mesa!!");
+            this.cantidadInvitados += 1; //Incremento en 1 la cantidad de invitados!!
+
+          }
+        },
+        error =>
+        {
+          console.log(error);
+        }
+      );
+      }  else {
+        event.confirm.reject();
+       }
+     }
+     else
+      {
+        alert("Ya superaste la cantidad maxima de invitados por mesa!!");
+      }
   }
 
   onDeleteConfirm(event : any)
@@ -114,10 +169,30 @@ export class MiMesaComponent implements OnInit {
     if (window.confirm('Estas seguro que queres borrar el invitado?')) {
       event.confirm.resolve();
       console.log(event);
+      let json = {"id_invitado":event.data.id_invitado, "id_evento": this.mesa.id_evento, "id_mesa":this.mesa.id_mesa};
+      this.miServicioInvitados.BorrarInvitadoEvento(json.id_invitado,json.id_evento,json.id_mesa).subscribe(
+        data =>{
+          console.log(data);
+          let respuesta = JSON.parse(data["_body"]);
+          if(respuesta.status == 200)
+            {
+              //alert("Usted ha borrado correctamente a un invitado de la mesa!!");
+              this.ocultarProceso = false;
+
+            }
+            else
+              {
+                alert("Ocurrio algo inesperado!!");
+              }
+        },
+        error =>{
+          console.log(error);
+        }
+      )
     }
     else
       {
-
+        event.confirm.reject();
       }
   }
 
@@ -126,18 +201,71 @@ export class MiMesaComponent implements OnInit {
     if (window.confirm('Estas seguro que queres modificar el invitado?')) {
       event.confirm.resolve();
       console.log(event);
+      this.miServicioInvitados.ModificarInvitado(JSON.stringify(event.newData)).subscribe(
+        data =>
+        {
+          let respuesta = JSON.parse(data["_body"]);
+          if(respuesta.status == 200)
+            {
+              alert("Modificaste los datos de un usuario!");
+            }
+            else
+              {
+                alert("ocurrio algo inesperado!");
+              }
+        },
+        error =>
+        {
+        console.log(error);
+        }
+      )
     }
     else
       {
-        
+        event.confirm.reject();
       }
   }
 
-  ElegirInvitado(invitado : any)
+  public addprop1(event)
   {
-    console.log(invitado);
-    console.info(this.source);
-    this.onCreateConfirm(invitado);
+    console.log(event);
+    console.log(event.target.checked);
+    console.log(event.target.value);
+  }
+
+  ElegirInvitado(invitadoParametro : any)
+  {
+   let invitado = JSON.parse(invitadoParametro);
+   let json = {"id_invitado": invitado.id_invitado, "id_evento": this.mesa.id_evento, "id_mesa": this.mesa.id_mesa};
+   this.miServicioInvitados.InsertarInvitadoRegistrado(JSON.stringify(json)).subscribe(
+     data =>{
+       console.log(data);
+       let respuesta = JSON.parse(data["_body"]);
+       if(respuesta.status == 200)
+        {
+           this.ocultarProceso = false;
+           var modelo=this;
+           setTimeout(function(){
+            let json2 = {"id_evento": modelo.mesa.id_evento, "id_mesa": modelo.mesa.id_mesa};
+            modelo.miServicioInvitados.TraerInvitadosPorEventoMesa(JSON.stringify(json)).subscribe(
+              data=> {
+                console.log(data);
+                modelo.cantidadInvitados += 1;
+                let respuesta2 = JSON.parse(data["_body"]);
+                modelo.source = respuesta2;
+              },
+              error => {
+                console.log(error);
+              }
+            );
+            modelo.ocultarProceso = true;
+            }, 3000)
+        }
+     },
+     error =>{
+       console.log(error);
+     }
+   );
   }
 
 }

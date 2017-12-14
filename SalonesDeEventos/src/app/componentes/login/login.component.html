@@ -7,7 +7,8 @@
             <!-- <app-cabecera></app-cabecera> -->
             <h1>Salones De Eventos</h1>
             <p>Ignacio Sanabria</p>
-            <a class="enlaces" href="https://github.com/ignaciosanabria"target="_blank">en GitHub <i class="fa fa-github"></i></a>
+            <button class="btn btn-info">
+            <a class="enlaces" href="https://github.com/ignaciosanabria"target="_blank">en GitHub <i class="fa fa-github"></i></a></button>
         </div>
       <div class="container">
 <div class="row">
@@ -34,10 +35,13 @@
                   <input type="text" name="mailEmpleado" [(ngModel)]="mailEmpleado" placeholder="Ingrese su mail" class="form-control" id="mailEmpleado">
                   <label>Clave:</label>
                   <input type="password" name="form-emppassword" [(ngModel)]="claveEmpleado" placeholder="Ingrese su clave" class="form-control" id="form-emppassword">
-                  <br><br>
+                  <h2><p [hidden]="ocultarEsperarEmpleado" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos sus datos...</p></h2>
+                  <br>
                   <button mat-raised-button color="warn" class="btn btn-primary"(click)="LoginEmpleado()">Ingresar</button>
                   <br>
                   <button mat-raised-button color="warn" class="btn btn-success" (click)="TestAdmin()">Ingresar Admin</button>
+                  <br>
+                  <button mat-raised-button color="wanr" class="btn btn-success" (click)="TestEncargado()">Ingresar Encargado</button>
                   <br>
                   <button mat-raised-button color="warn" class="btn btn-success" (click)="TestRecepcionista()">Ingresar Recepcionista</button>
             </div>
@@ -62,10 +66,10 @@
                 <input type="text" name="mailCliente" [(ngModel)]="mailCliente" placeholder="Ingrese su mail" class="form-control" id="mailCliente">
                 <label>Clave:</label>
                 <input type="password" name="form-emppassword" [(ngModel)]="claveCliente" placeholder="Ingrese su clave" class="form-control" id="form-emppassword">
-                  <br><br>
-                  <h2><p [hidden]="ocultarEsperar" ><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos sus datos...</p></h2>
+                  <h2><p [hidden]="ocultarEsperar" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos sus datos...</p></h2>
                   <button mat-raised-button color="warn" class="btn btn-primary" (click)="LoginCliente()">Ingresar</button>
                   <button mat-raised-button color="warn" class="btn btn-success" (click)="TestCliente()">IngresarCliente</button>
+                  <br><br>
                   <p><a routerLink="/RegistroCliente">Si es tu primera vez aquí - Registrate haciendo click aquí</a></p> 
             </div>
         </div>
@@ -93,6 +97,7 @@
               <button type="button" class="btn btn-secondary" (click)="cerrarFormularioInvitado()">Cancelar</button>
               <button type="button" class="btn btn-info" (click)="LoginInvitado()">Ingresar</button>
               <button type="button" class="btn btn-success" (click)="TestInvitado()">Test Invitado</button>
+              <br><br>
             </form>
           </div> 
           </div> 

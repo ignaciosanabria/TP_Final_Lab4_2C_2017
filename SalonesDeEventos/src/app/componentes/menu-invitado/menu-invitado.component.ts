@@ -14,8 +14,12 @@ export class MenuInvitadoComponent implements OnInit {
 
      public CerrarSesion()
      {
-      localStorage.removeItem("token");
-      this.router.navigate(["/"]);
+      let confirmar = confirm("Desea cerrar su sesion?");
+      if(confirmar == true)
+        {
+          localStorage.removeItem("token");
+          this.router.navigate(["/"]);
+        }
      }
 
   ngOnInit() {

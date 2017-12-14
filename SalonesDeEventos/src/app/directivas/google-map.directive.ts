@@ -28,6 +28,8 @@ export class GoogleMapDirective {
 
 
               console.log(directionsService);
+              console.log(this.origin);
+              console.log(this.destination);
               directionsService.route({
                       origin: {lat: this.origin.latitude, lng: this.origin.longitude},
                       destination: {lat: this.destination.latitude, lng: this.destination.longitude},

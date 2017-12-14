@@ -1,3 +1,25 @@
-<p>
-  ver-clientes works!
-</p>
+<div class="fondo">
+  <h1>Listado de Clientes</h1>
+<table class="table table-responsive-lg">
+  <thead>
+      <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Nro Documento</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Mail</th>
+          <th scope="col">Foto</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let cliente of clientes">
+       <td>{{cliente.nombre}}</td>
+       <td>{{cliente.apellido}}</td>
+       <td>{{cliente.nro_doc}}</td>
+       <td>{{cliente.direccion}}</td>
+       <td>{{cliente.mail}}</td>
+       <td><img class="img-circle" src="../../../assets/imagenes/clientes/{{cliente.path_foto}}" width="100px" height="100px"></td>
+      </tr>
+  </tbody>
+</table>
+</div>
