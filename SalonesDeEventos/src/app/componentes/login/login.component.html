@@ -6,84 +6,120 @@
             <strong>La manera mas sencilla de organizar tu fiesta!</strong> -->
             <!-- <app-cabecera></app-cabecera> -->
             <h1>Salones De Eventos</h1>
-            <p>Ignacio Sanabria</p>
+            <h4 class="miNombre">Ignacio Sanabria</h4>
             <button class="btn btn-info">
             <a class="enlaces" href="https://github.com/ignaciosanabria"target="_blank">en GitHub <i class="fa fa-github"></i></a></button>
         </div>
       <div class="container">
 <div class="row">
-    <br>
-    <!-- <div class="page-header">
-        <h1>Bienvenido al Sistema de gestion de Eventos y Fiestas del Salon Palace Eventual</h1>
-        <strong>La manera mas sencilla de organizar tu fiesta!</strong>
-        <app-cabecera></app-cabecera>
-    </div> -->
-  <div class="col-sm-5">
-      <div class="form-box">
-        <div class="form-top">
-            <div class="form-top-left">
-              <h3>Si sos empleado ingresa acá!</h3>
-              <p>Rellena los campos con tu usuario y contraseña para ingresar</p>
-            </div>
-            <div class="form-top-right">
-              <i class="fa fa-lock"></i>
-            </div>
-        </div>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-7">
+      <!-- <div class="form-box">
         <div class="form-bottom">
-            <div class="login-form">
-                  <label>Mail:</label>
-                  <input type="text" name="mailEmpleado" [(ngModel)]="mailEmpleado" placeholder="Ingrese su mail" class="form-control" id="mailEmpleado">
-                  <label>Clave:</label>
-                  <input type="password" name="form-emppassword" [(ngModel)]="claveEmpleado" placeholder="Ingrese su clave" class="form-control" id="form-emppassword">
-                  <h2><p [hidden]="ocultarEsperarEmpleado" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos sus datos...</p></h2>
-                  <br>
-                  <button mat-raised-button color="warn" class="btn btn-primary"(click)="LoginEmpleado()">Ingresar</button>
-                  <br>
-                  <button mat-raised-button color="warn" class="btn btn-success" (click)="TestAdmin()">Ingresar Admin</button>
-                  <br>
-                  <button mat-raised-button color="wanr" class="btn btn-success" (click)="TestEncargado()">Ingresar Encargado</button>
-                  <br>
-                  <button mat-raised-button color="warn" class="btn btn-success" (click)="TestRecepcionista()">Ingresar Recepcionista</button>
+          <h2>Aqui iría el título</h2>
+            <div class="jumbotron jumbotronStyle">
+              <form action="return true;">
+                <div class="imgcontainer">
+                  <img src="../assets/imagenes/login.png" alt="Avatar" class="avatar" max-width="104" >
+                </div>
+
+                <label><b>Usuario</b></label>
+                <input type="text" placeholder="Usuario"  class="form-control" [(ngModel)]="mailCliente"  name="uname" required>
+        
+                <label><b>Clave</b></label>
+                <input type="password" placeholder="Clave" class="form-control" [(ngModel)]="claveCliente" name="psw" required>
+                    
+                <button  class="btn cancelbtn" (click)="LoginCliente()">Ingresar</button>
+                <button  class="btn aceptbtn" (click)="TestCliente()">IngresarCliente</button>
+               
+                <input name="recordar" type="checkbox" [(ngModel)]="recordar"> Recordar mis datos
+        
+              <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="aceptbtn" routerLink="/RegistroCliente" >Registrarse</button>
+                <button type="button" class="btn btn-default" routerLink="/LoginEmpleado">Empleado</button>
+              </div>
+             
+            </form>
+          </div>
+
+
+
+        </div>
+      </div> -->
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="well">
+                    <form id="loginForm">
+                        <div class="imgcontainer">
+                            <img src="../assets/imagenes/login.png" alt="Avatar" class="avatar" height="125px" width="125px">
+                          </div>
+                        <div class="form-group">
+                            <label for="username" class="control-label">Tu Email</label>
+                            <!-- <input type="text" class="form-control" id="username" name="username" value="" required="" title="Please enter you username" placeholder="example@gmail.com"> -->
+                            <input type="text" placeholder="Ingrese su email"  class="form-control" [(ngModel)]="mailCliente"  name="uname" required>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">Contraseña</label>
+                            <!-- <input type="password" class="form-control" id="password" name="password" value="" required="" title="Please enter your password"> -->
+                            <input type="password" placeholder="Ingrese clave" class="form-control" [(ngModel)]="claveCliente" name="psw" required>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" (change)="addprop1($event)" name="remember" id="remember"> Remember login
+                            </label>
+                        </div>
+                        <div class="spinner">
+                          <h3><p [hidden]="ocultarEsperar" class="ocultarEsperar"><i class="fa fa-spinner fa-spin"></i>Esperando que mientras procesamos sus datos...</p></h3>
+                        </div>
+                        <button  class="btn btn-success btn-block" (click)="LoginCliente()">Ingresar</button>
+                        <button  class="btn btn-primary btn-block" (click)="TestCliente()">IngresarCliente</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="well">
+              <form id="Register">
+                <p class="lead">Registrate ahora! <span class="text-success">GRATIS</span></p>
+                <ul class="list-unstyled" style="line-height: 2">
+                    <li><span class="fa fa-check text-success"></span> Organiza tu evento.</li>
+                    <li><span class="fa fa-check text-success"></span> Invita a tu familia y a tus mejores amigos.</li>
+                    <li><span class="fa fa-check text-success"></span> Disfruta de una noche inolvidable.</li>
+                    <li><span class="fa fa-check text-success"></span> Administra tu celebración de la manera más facil.</li>
+                    <li><span class="fa fa-check text-success"></span> Obtene un regalo gratis <small>(solo nuevos clientes)</small></li>
+                    <li><a routerLink="/RegistroCliente"><u>Read more</u></a></li>
+                </ul>
+                <p><a routerLink="/RegistroCliente" class="btn btn-primary btn-block">Si por favor, quiero <br>registrarme ahora!</a></p>
+              </form>
+                </div>
             </div>
         </div>
-      </div>
-  </div>
-  <div class="col-sm-1 middle-border"></div>
-  <div class="col-sm-1"></div>
-  <div class="col-sm-5">
-      <div class="form-box">
-        <div class="form-top">
-            <div class="form-top-left">
-              <h3>Si sos cliente ingresa acá!</h3>
-              <p>Rellena los campos de abajo</p>
-            </div>
-            <div class="form-top-right">
-              <i class="fa fa-pencil"></i>
-            </div>
-        </div>
-        <div class="form-bottom">
-            <div class="registration-form"><label>Mail:</label>
-                <input type="text" name="mailCliente" [(ngModel)]="mailCliente" placeholder="Ingrese su mail" class="form-control" id="mailCliente">
-                <label>Clave:</label>
-                <input type="password" name="form-emppassword" [(ngModel)]="claveCliente" placeholder="Ingrese su clave" class="form-control" id="form-emppassword">
-                  <h2><p [hidden]="ocultarEsperar" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos sus datos...</p></h2>
-                  <button mat-raised-button color="warn" class="btn btn-primary" (click)="LoginCliente()">Ingresar</button>
-                  <button mat-raised-button color="warn" class="btn btn-success" (click)="TestCliente()">IngresarCliente</button>
-                  <br><br>
-                  <p><a routerLink="/RegistroCliente">Si es tu primera vez aquí - Registrate haciendo click aquí</a></p> 
-            </div>
-        </div>
-      </div>
-  </div>
-</div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
 </div>
 </div>
 </div>
 <footer>
         <!-- <p class="invitado"><a routerLink="/LoginInvitado">Si sos invitado de un Evento - Hace click aquí</a></p> -->
-        <p class="invitado"><a (click)=" mostrarFormularioInvitado()">Si sos invitado de un Evento - Hace click aquí</a></p>
+        <!-- <p class="invitado"><a (click)=" mostrarFormularioInvitado()">Si sos invitado de un Evento - Hace click aquí</a></p> -->
+        <button class="btn btn-lg btn-success"(click)=" mostrarFormularioInvitado()"><i class="fa fa-list-alt" aria-hidden="true"></i> Si sos invitado de un Evento - Hace click aquí</button>
+        <button class="btn btn-lg btn-info" routerLink="/LoginEmpleado"><i class="fa fa-users" fa-users>Sección Empleados - Click Aquí</i></button>
+       
         <div [hidden]="ocultarLoginInvitado">
-          <div class="modal">
+         <div class="row">
+            <div class="modal">
               <button (click)="cerrarFormularioInvitado()" type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -91,15 +127,20 @@
               <h2>Bienvenido Invitado</h2>
               <strong>Por favor solo ingresa tu correo electronico</strong>
               <br>
+              <img src="../assets/imagenes/imageninvitados.jpg" width="300px" height="300px" class="img-thumbnail">
+              <div class="form-group">
               <label>Mail:</label>
-              <input type="text" [(ngModel)]="mailInvitado" name="mailInvitado" placeholder="Ingrese su mail" class="form-control">
+              <input type="text" [(ngModel)]="mailInvitado" name="mailInvitado" placeholder="Ingrese su mail" class="form-control inputInvitado">
               <br>
               <button type="button" class="btn btn-secondary" (click)="cerrarFormularioInvitado()">Cancelar</button>
               <button type="button" class="btn btn-info" (click)="LoginInvitado()">Ingresar</button>
+              <br>
               <button type="button" class="btn btn-success" (click)="TestInvitado()">Test Invitado</button>
+            </div>
               <br><br>
             </form>
           </div> 
           </div> 
+        </div>
       </footer>
 </div>

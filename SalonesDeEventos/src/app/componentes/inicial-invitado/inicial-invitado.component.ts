@@ -25,7 +25,7 @@ export class InicialInvitadoComponent implements OnInit {
     this.nombreInvitado = token["data"].nombre;
     console.log(this.nombreInvitado);
     this.espacios = new Array<any>();
-    this.espacios.length = 14;
+    this.espacios.length = 19;
    }
 
   ngOnInit() {

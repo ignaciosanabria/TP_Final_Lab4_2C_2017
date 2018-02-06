@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {EmpleadosService} from '../../servicios/empleados/empleados.service';
 import {ClientesService} from '../../servicios/clientes/clientes.service';
 import {InvitadosService} from '../../servicios/invitados/invitados.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -11,32 +10,24 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   
-  public miEmpleadosService : EmpleadosService;
   public miClientesService : ClientesService;
   public miInvitadosService : InvitadosService;
   //Modificar Esto por Clases de TS
-  public mailEmpleado : string;
-  public claveEmpleado : string;
   public mailCliente : string;
   public claveCliente : string;
   ocultarEsperar : boolean;
-  ocultarEsperarEmpleado : boolean;
   //Invitado
   mailInvitado : string;
   ocultarLoginInvitado : boolean;
-  constructor(ServicioEmpleados : EmpleadosService, ServicioClientes : ClientesService,private route: ActivatedRoute,
+
+
+  constructor(ServicioClientes : ClientesService,private route: ActivatedRoute,
     private router: Router, ServicioInvitados : InvitadosService) {
-    this.miEmpleadosService = ServicioEmpleados;
     this.miClientesService = ServicioClientes;
     this.miInvitadosService = ServicioInvitados;
-    this.miEmpleadosService.TraerEmpleados().then(
-      data =>{
-        console.log(data);
-      }
-    ).catch(
-      error =>{
-      console.log(error);
-    });
+    this.mailCliente = "";
+    this.claveCliente = "";
+    this.mailInvitado = "";
     this.miClientesService.TraerClientes().then(
       data=>
       {
@@ -50,50 +41,12 @@ export class LoginComponent implements OnInit {
     );
     this.ocultarEsperar = true;
     this.ocultarLoginInvitado = true;
-    this.ocultarEsperarEmpleado = true;
    }
 
   ngOnInit() {
   }
 
-  LoginEmpleado()
-  {
-    this.ocultarEsperarEmpleado = false;
-    let empleado = {"mail" : this.mailEmpleado , "clave" : this.claveEmpleado};
-    this.miEmpleadosService.ValidarEmpleado(JSON.stringify(empleado)).subscribe(
-      data =>{
-        console.log(data);
-        let respuesta = JSON.parse(data["_body"]);
-        if(respuesta.status == 200)
-          {
-           if(respuesta.token)
-            {
-              localStorage.setItem('token',respuesta.token);
-              switch(respuesta.cargo)
-              {
-              case "Recepcionista":
-                this.router.navigate(['/PrincipalRecepcionista']);
-                break;
-              case "Encargado":
-                this.router.navigate(['/PrincipalEncargado']);
-                break;
-              case "Administrador":
-                this.router.navigate(['/PrincipalAdministrador']);
-                break;
-            }
-          }
-        }
-        else
-          {
-            alert("Error. No existe un invitado con ese mail!");
-            this.ocultarEsperarEmpleado = true;
-          }
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
+  //La parte del Cliente
 
   LoginCliente()
   {
@@ -126,27 +79,14 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  TestAdmin()
-  {
-    this.mailEmpleado = "administrador@outlook.com";
-    this.claveEmpleado = "1234";
-  }
-
-  TestRecepcionista()
-  {
-    this.mailEmpleado = "fernando_g@gmail.com";
-    this.claveEmpleado = "boca1234";
-  }
-  TestEncargado(){
-   this.mailEmpleado = "matiasrodriguez@hotmail.com";
-   this.claveEmpleado = "holasoymati12";
-  }
 
   TestCliente()
   {
    this.mailCliente = "maria_navarro@gmail.com";
    this.claveCliente = "maria1234";
   }
+
+  //La parte del Invitado!
 
   cerrarFormularioInvitado()
   {
@@ -187,6 +127,22 @@ export class LoginComponent implements OnInit {
   TestInvitado()
   {
     this.mailInvitado = "john_aguirre@outlook.com";
+  }
+
+  addprop1(event : any)
+  {
+    if(event.target.checked == true)
+    {
+    console.log(event);
+    localStorage.setItem("recordar",event.target.checked.toString());
+    localStorage.setItem("usuario",this.mailCliente);
+    }
+    else
+      {
+        console.log("Desmarco!");
+        localStorage.removeItem("usuario");
+        localStorage.setItem("recordar",event.target.checked.toString());
+      }
   }
 
 }

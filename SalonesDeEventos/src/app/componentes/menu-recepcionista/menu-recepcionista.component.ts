@@ -26,8 +26,7 @@ export class MenuRecepcionistaComponent implements OnInit {
      let token = this.miServicioAut.getToken();
      console.log(token);
      //let json = {"id_salon": token["data"].id_salon, "fecha_inicio": this.fechaActual, "fecha_fin": this.fechaMañana};
-     this.fechaActual = "23/12/2017";
-     this.fechaMañana = "23/12/2017";
+     this.fechaMañana = this.fechaActual;
      let json = {"id_salon": token["data"].id_salon, "fecha_inicio": this.fechaActual, "fecha_fin": this.fechaMañana};
      console.log(json);
      this.miServicioEventos.TraerEventoPorFechaActual(JSON.stringify(json)).subscribe(
@@ -48,7 +47,7 @@ export class MenuRecepcionistaComponent implements OnInit {
     if(confirmar == true)
       {
         localStorage.removeItem("token");
-        this.router.navigate(["/"]);
+        this.router.navigate(["/LoginEmpleado"]);
       }
   }
    

@@ -12,6 +12,11 @@ import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import {RuteandoModule} from './ruteando/ruteando.module';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import {CaptchaModule} from 'primeng/captcha';
+import {GrowlModule} from 'primeng/components/growl/growl';
+import {TabMenuModule} from 'primeng/tabmenu';
+import {MenuItem} from 'primeng/api';
+import {MatTableModule} from '@angular/material/table';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -73,6 +78,7 @@ import { VerInvitadosRegistradosComponent } from './componentes/ver-invitados-re
 import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 import { VerEventoHoyEmpleadoComponent } from './componentes/ver-evento-hoy-empleado/ver-evento-hoy-empleado.component';
 import { MiMesaEmpleadoComponent } from './componentes/mi-mesa-empleado/mi-mesa-empleado.component';
+import { LoginEmpleadoComponent } from './componentes/login-empleado/login-empleado.component';
 
 // const MiRuteo = [
 //   {path: '' , component: LoginComponent},
@@ -169,6 +175,7 @@ export function highchartsFactory() {
     EncuestaComponent,
     VerEventoHoyEmpleadoComponent,
     MiMesaEmpleadoComponent,
+    LoginEmpleadoComponent,
   ],
   imports: [
     BrowserModule,
@@ -184,7 +191,11 @@ export function highchartsFactory() {
     ChartModule,
     RuteandoModule,
     RecaptchaModule.forRoot(),
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    CaptchaModule,
+    GrowlModule,
+    TabMenuModule,
+    MatTableModule
   ],
   providers: [
     MiHttpService,

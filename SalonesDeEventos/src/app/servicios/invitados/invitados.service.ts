@@ -76,4 +76,17 @@ export class InvitadosService {
      return this.miApiInvitadosServicio.CambiarConfirmacionInvitadoApi(body);
    }
 
+   public TraerCantidadDeInvitadosTraidosPorCliente()
+   {
+     return this.miApiInvitadosServicio.TraerCantidadDeInvitadosTraidosPorClienteApi().then(
+       data =>{
+         return data;
+       }
+     ).catch(
+       error =>{
+         console.log(error);
+       }
+     );
+   }
+
 }

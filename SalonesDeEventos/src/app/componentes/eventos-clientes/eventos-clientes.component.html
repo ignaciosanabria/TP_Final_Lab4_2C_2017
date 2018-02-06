@@ -1,6 +1,10 @@
-<div class="fondo">
-    <h1>Sus Eventos</h1>
-<table class="table table-bordered table-responsive-lg">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-sm-2">
+        </div>
+        <div class="col-lg-8 col-sm-8">
+    <h1 class="titulo">Sus Eventos</h1>
+<!-- <table class="table table-bordered table-responsive-lg">
     <thead>
         <tr>
             <th scope="col">Salon</th>
@@ -14,14 +18,43 @@
         <tr *ngFor="let evento of eventos">
          <td>{{evento.nombre}}</td>
          <td>{{evento.direccion}}</td>
-         <td>{{evento.fecha}}</td>
+         <td>{{evento.fecha_inicio}}</td>
          <td>{{evento.haFinalizado | estado}}</td>
          <td>{{evento.estaReservado | reservado}}</td>
-         <!-- Tratar de Cambiar por Router Link-->
+         Tratar de Cambiar por Router Link
          <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><button class="btn btn-warning" (click)="verMesas(evento)">Ver Mesas</button></td>
-         <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td> -->
+         <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td>
         </tr>
     </tbody>
-</table>
+</table> -->
+<div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Eventos</h3>
+        </div>
+        <table class="table" id="dev-table">
+                <thead>
+                    <tr>
+                            <th scope="col">Salon</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Reservado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let evento of eventos">
+                                <td>{{evento.nombre}}</td>
+                                <td>{{evento.direccion}}</td>
+                                <td>{{evento.fecha_inicio}}</td>
+                                <td>{{evento.haFinalizado | estado}}</td>
+                                <td>{{evento.estaReservado | reservado}}</td>
+                                <!-- Tratar de Cambiar por Router Link -->
+                                <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><button class="btn btn-warning" (click)="verMesas(evento)">Ver Mesas</button></td>
+                                <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td> -->
+                        </tr>
+                </tbody>
+            </table>
 </div>
+        </div>
+    </div>
 

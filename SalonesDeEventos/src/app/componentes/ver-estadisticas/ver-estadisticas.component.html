@@ -1,3 +1,11 @@
+<div class="fondo">
 <h1>Estadisticas de Cantidad de Eventos por Cliente</h1>
-
 <chart [options]="options"></chart>
+<button *ngIf="ocultarOtraEstadistica == true" class="btn btn-success" (click)="verOtraEstadistica()">Ver Cantidad </button>
+<button *ngIf="ocultarOtraEstadistica == false" class="btn btn-warning" (click)="cerrarOtraEstadistica()">Cerrar Estadistica</button>
+<div [hidden]="ocultarOtraEstadistica">
+        <h2>Estadisticas De Cantidad De Invitados Traidos Por Cliente</h2>
+        <chart [options]="options2"></chart>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+</div>

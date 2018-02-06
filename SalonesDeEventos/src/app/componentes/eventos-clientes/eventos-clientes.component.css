@@ -1,21 +1,23 @@
-.fondo{
-    background-color: lightblue;
-    background-position: center 20%;
-    background-repeat: no-repeat;
-    position: relative;
-    -webkit-background-size : cover;
-    -moz-background-size : cover;
-    -moz-background-size : cover;
-    background-size: cover;
-    margin:1;
-    padding:0;
-    background-size: 100%;
-    text-align: center;
-}
+
 
 .table{
     overflow-x: auto;
 }
 tr th{
   text-align: center;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.tabla{
+  background-color: chocolate;
+}
+
+.titulo{
+  color: white;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 }

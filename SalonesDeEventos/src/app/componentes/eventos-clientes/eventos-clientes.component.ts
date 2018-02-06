@@ -3,6 +3,7 @@ import {EventosService} from '../../servicios/eventos/eventos.service';
 import {EmpleadosService} from '../../servicios/empleados/empleados.service';
 import {AutService} from '../../servicios/aut.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 @Component({
   selector: 'app-eventos-clientes',
   templateUrl: './eventos-clientes.component.html',

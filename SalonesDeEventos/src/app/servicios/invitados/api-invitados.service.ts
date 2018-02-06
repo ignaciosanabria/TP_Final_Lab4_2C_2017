@@ -74,4 +74,18 @@ export class ApiInvitadosService {
      return this.miHttpServicio.httpPut("invitados/CambiarConfirmacionInvitado",body);
    }
 
+   public TraerCantidadDeInvitadosTraidosPorClienteApi()
+   {
+     return this.miHttpServicio.httpGetPromise("invitados/TraerCantidadDeInvitadosTraidosPorCliente").then(
+       data =>
+       {
+         return data;
+       }
+     ).catch(
+       error =>{
+         console.log(error);
+       }
+     );
+   }
+
 }

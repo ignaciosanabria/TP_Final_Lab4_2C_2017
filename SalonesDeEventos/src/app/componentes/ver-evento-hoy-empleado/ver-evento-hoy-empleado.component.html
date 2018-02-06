@@ -1,8 +1,10 @@
 <div class="fondo">
     <div [hidden]="ocultarMesas">
+      <h1>Buenas Noches - Las Mesas se encuentran en este momento así</h1>
       <ng-container *ngFor="let mesa of mesas">
         <!-- <app-mi-mesa [mesa]="mesa"></app-mi-mesa> -->
        <app-mi-mesa-empleado [mesa]="mesa"></app-mi-mesa-empleado>
       </ng-container>
     </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>

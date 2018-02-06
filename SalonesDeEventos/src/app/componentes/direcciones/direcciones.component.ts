@@ -90,7 +90,7 @@ export class DireccionesComponent implements OnInit {
               //Si viene con un evento programado, hago una peticion para saber el salon y la mesa donde tiene que ir.
               //console.log(respuesta);
               //console.log(respuesta.eventos[0]);
-              this.fechaEvento = respuesta.eventos[0].fecha;
+              this.fechaEvento = respuesta.eventos[0].fecha_inicio;
               console.log(respuesta.eventos[0].id_salon);
               let json2 = {"id_mesa": respuesta.eventos[0].id_mesa};
               this.miSalonesServicio.TraerLosDatosDelSalonYLaMesa(JSON.stringify(json2)).subscribe(

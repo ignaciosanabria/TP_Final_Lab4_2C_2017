@@ -17,7 +17,7 @@ export class MenuAdministradorComponent implements OnInit {
       if(confirmar == true)
         {
           localStorage.removeItem("token");
-          this.router.navigate(["/"]);
+          this.router.navigate(["/LoginEmpleado"]);
         }
     }
 

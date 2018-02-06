@@ -1,14 +1,12 @@
-.fondo{background-color: lightblue;
-background-position: center;
-background-repeat: no-repeat;
-position: relative;
--webkit-background-size : cover;
--moz-background-size : cover;
--moz-background-size : cover;
-background-size: cover;
-margin:0;
-padding:0;
-background-size: 200%;
-width: 100%;
-height: 200%;
+.fondo{background-image: url("/assets/imagenes/fondocliente.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 1080px;
+    margin: auto;
+}
+
+.padding{
+    padding: 145px;
 }

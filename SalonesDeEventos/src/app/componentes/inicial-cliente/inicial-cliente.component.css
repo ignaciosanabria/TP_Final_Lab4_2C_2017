@@ -1,5 +1,4 @@
-.estilosContainer{
-    background-color: lightblue;
+/* .estilosContainer{
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
@@ -9,4 +8,7 @@
     background-size: cover;
     margin:1;
     padding:6%;
+} */
+.container{
+    padding: 20px;
 }

@@ -68,4 +68,27 @@ export class EventosApiService {
    {
      return this.miHttpServicio.httpPost("eventos/TraerEventoPorFechaActual",body);
    }
+   public FinalizarEventoApi(body : any)
+   {
+     return this.miHttpServicio.httpPut("eventos/FinalizarEvento",body);
+   }
+
+   public BorrarEventoApi(id_evento : any)
+   {
+     return this.miHttpServicio.httpDelete("eventos/BorrarEvento/"+id_evento);
+   }
+
+   public TraerDatosExcelApi()
+   {
+     return this.miHttpServicio.httpGetPromise("eventos/TraerDatosExcel").then(
+       data =>
+       {
+         return data;
+       }
+     ).catch(
+       error =>{
+         console.log(error);
+       }
+     )
+   }
 }

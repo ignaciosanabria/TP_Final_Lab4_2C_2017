@@ -1,4 +1,5 @@
-<nav class="navbar navbar-inverse">
+<!-- <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-inverse"> -->
+<nav class="navbar navbar-expand-lg navbar-expand-sm">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -9,8 +10,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a (click)="Ir('EventosCliente')">Mis Eventos</a></li>
-           <li><a (click)="Ir('CrearEvento')">Crear Evento</a></li>
+          <li><a (click)="Ir('EventosCliente')"><i class="fa fa-list-alt"></i> Mis Eventos</a></li>
+           <li><a (click)="Ir('CrearEvento')"><i class="fa fa-calendar"></i> Crear Evento</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <!-- <li><a routerLink="/QuienSoy"><span class="glyphicon glyphicon-user"></span> Mis Datos</a></li> -->
@@ -19,3 +20,4 @@
     </div>
   </div>
 </nav>
+<!-- <p-tabMenu [model]="items" [style]="{border:'1px solid black; background-color: red;'}"></p-tabMenu> -->

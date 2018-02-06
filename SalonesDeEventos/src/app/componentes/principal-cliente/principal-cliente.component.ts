@@ -8,11 +8,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class PrincipalClienteComponent implements OnInit {
 
-  espacios : Array<any>;
   constructor() 
     { 
-      this.espacios = new Array<any>();
-      this.espacios.length = 22;
 
     }
 

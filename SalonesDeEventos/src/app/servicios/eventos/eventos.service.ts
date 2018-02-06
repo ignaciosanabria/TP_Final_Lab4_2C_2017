@@ -68,7 +68,29 @@ export class EventosService {
    {
      return this.miServicioEventos.TraerEventoPorFechaActualApi(body);
    }
+    
 
+   public FinalizarEvento(body : any)
+   {
+     return this.miServicioEventos.FinalizarEventoApi(body);
+   }
+
+   public BorrarEvento(id_evento : any)
+   {
+     return this.miServicioEventos.BorrarEventoApi(id_evento);
+   }
    
-
+   public TraerDatosExcel()
+   {
+     return this.miServicioEventos.TraerDatosExcelApi().then(
+       data =>
+       {
+         return data;
+       },
+       error =>
+       {
+         console.log(error);
+       }
+     )
+   }
 }

@@ -1,12 +1,12 @@
-.fondo{background-color: lightblue;
+.fondo{background-image: url("/assets/imagenes/fondoempleado.gif");
     background-position: center;
     background-repeat: no-repeat;
-    position: relative;
-    -webkit-background-size : cover;
-    -moz-background-size : cover;
-    -moz-background-size : cover;
     background-size: cover;
-    margin:0;
-    padding:0;
-    background-size: 200%;
-    }
+    position: relative;
+    width: 1080px;
+    margin: auto;
+}
+
+.padding{
+    padding: 145px;
+}

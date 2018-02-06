@@ -1,13 +1,26 @@
 <div class="container">
+  <div class="row">
+    <div class="col-sm-2 col-lg-2"></div>
+    <div class="col-sm-8 col-lg-8">
   <h1>Bienvenida/o {{nombreCliente}}</h1>
   <h3>Aqui selecciona el salon disponible para la fecha deseada!</h3>
 <h4>Selecciona La Fecha</h4>
-<re-captcha (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></re-captcha>
 <my-date-picker name="mydate" [options]="myDatePickerOptions"
 [(ngModel)]="model" required (dateChanged)="onDateChanged($event)"></my-date-picker>
 <h1 [hidden]="ocultarSalones">Selecciona Los Salones</h1>
 <div [hidden]="ocultarSalones">
-  <table border="1" class="table">
+    <form [formGroup] = "registroForm">
+        <p-growl [value]="msgs" sticky="sticky"></p-growl>
+    <re-captcha (resolved)=" showResponse($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" [formControl]="registroCaptcha"></re-captcha>
+    <div *ngIf="registroCaptcha.valid" class="alert alert-success">
+        El Captcha es válido.
+      </div>
+      <div *ngIf="registroCaptcha.invalid" class="alert alert-danger">
+          <div *ngIf="registroCaptcha.errors.required">
+              El captcha es requerido.
+            </div>
+      </div> 
+    <!-- <table class="table">
     <thead>
       <tr>
         <th>Direccion</th>
@@ -18,10 +31,107 @@
      <tr *ngFor="let salon of salonesDisponibles">
        <td>{{salon.direccion}}</td>
        <td>{{salon.nombre}}</td>
-       <td><button class="btn btn-success" (click)="Elegir(salon)">Elegir</button></td>
+       <td><button class="btn btn-success" [disabled]="!registroForm.valid" (click)="Elegir(salon)">Elegir</button></td>
      </tr>
   </tbody>
-  </table>
+  </table> -->
+  <div class="span12">
+      <ul *ngFor="let salon of salonesDisponibles" class="thumbnails">
+              <li class="span5 clearfix">
+                <div class="thumbnail clearfix">
+                  <img src="../../../assets/imagenes/salonmelody.png" alt="ALT NAME" height="120px" width="120px" class="pull-left span2 clearfix" style='margin-right:10px'>
+                  <div class="caption" class="pull-left">
+                    <a href="http://bootsnipp.com/"class="btn btn-primary icon  pull-right">Seleccionar</a>
+                    <h4>      
+                    <a>Salon</a>
+                    </h4>
+                    <small><b>RG: </b>99384877</small>  
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+    </form>
 </div>
+
+
+<!-- <div class="span12">
+    <ul class="thumbnails">
+            <li class="span5 clearfix">
+              <div class="thumbnail clearfix">
+                <img src="http://placehold.it/320x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                <div class="caption" class="pull-left">
+                  <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
+                  <h4>      
+                  <a href="#" >Luis Felipe Kaufmann</a>
+                  </h4>
+                  <small><b>RG: </b>99384877</small>  
+                </div>
+              </div>
+            </li>
+              <li class="span5 clearfix">
+              <div class="thumbnail clearfix">
+                <img src="http://placehold.it/320x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                <div class="caption" class="pull-left">
+                  <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
+                  <h4>      
+                  <a href="#" >Luis Felipe Kaufmann</a>
+                  </h4>
+                  <small><b>RG: </b>99384877</small>  
+                </div>
+              </div>
+            </li>
+              <li class="span5 clearfix">
+              <div class="thumbnail clearfix">
+                <img src="http://placehold.it/320x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                <div class="caption" class="pull-left">
+                  <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
+                  <h4>      
+                  <a href="#" >Luis Felipe Kaufmann</a>
+                  </h4>
+                  <small><b>RG: </b>99384877</small>  
+                </div>
+              </div>
+            </li>
+              <li class="span5 clearfix">
+              <div class="thumbnail clearfix">
+                <img src="http://placehold.it/320x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                <div class="caption" class="pull-left">
+                  <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
+                  <h4>      
+                  <a href="#" >Luis Felipe Kaufmann</a>
+                  </h4>
+                  <small><b>RG: </b>99384877</small>     
+                </div>
+              </div>
+            </li>
+              <li class="span5 clearfix">
+              <div class="thumbnail clearfix">
+                <img src="http://placehold.it/320x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                <div class="caption" class="pull-left">
+                  <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
+                  <h4>      
+                  <a href="#" >Luis Felipe Kaufmann</a>
+                  </h4>
+                  <small><b>RG: </b>99384877</small>
+                </div>
+              </div>
+            </li>
+              <li class="span5 clearfix">
+              <div class="thumbnail clearfix">
+                <img src="http://placehold.it/320x200" alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px'>
+                <div class="caption" class="pull-left">
+                  <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
+                  <h4>      
+                  <a href="#" >Luis Felipe Kaufmann</a>
+                  </h4>
+                  <small><b>RG: </b>99384877</small>
+                </div>
+              </div>
+            </li>
+        </ul>
+    </div> -->
+  </div>
+  </div>
 </div>
 

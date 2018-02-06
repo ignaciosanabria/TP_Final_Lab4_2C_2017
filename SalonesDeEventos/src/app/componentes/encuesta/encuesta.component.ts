@@ -8,7 +8,7 @@ import {AutService} from '../../servicios/aut.service';
 export class EncuestaComponent implements OnInit {
   
 
-  
+ 
   constructor() { }
 
   ngOnInit() {

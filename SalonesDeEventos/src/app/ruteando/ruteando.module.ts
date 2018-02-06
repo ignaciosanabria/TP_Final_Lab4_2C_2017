@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {VerificarJWTService} from '../servicios/verificar-jwt.service';
 import { AppComponent } from '../app.component';
 import { LoginComponent } from '../componentes/login/login.component';
+import { LoginEmpleadoComponent } from '../componentes/login-empleado/login-empleado.component';
 import { RegistroClienteComponent } from '../componentes/registro-cliente/registro-cliente.component';
 import { PrincipalClienteComponent } from '../componentes/principal-cliente/principal-cliente.component';
 import { PrincipalRecepcionistaComponent } from '../componentes/principal-recepcionista/principal-recepcionista.component';
@@ -34,8 +35,10 @@ import { VerEventosEncargadoComponent } from '../componentes/ver-eventos-encarga
 import { VerInvitadosRegistradosComponent } from '../componentes/ver-invitados-registrados/ver-invitados-registrados.component';
 import { EncuestaComponent } from '../componentes/encuesta/encuesta.component';
 import { VerEventoHoyEmpleadoComponent } from '../componentes/ver-evento-hoy-empleado/ver-evento-hoy-empleado.component';
+
 const MiRuteo = [
   {path: '' , component: LoginComponent},
+  {path: 'LoginEmpleado', component: LoginEmpleadoComponent},
   {path: 'RegistroCliente', component : RegistroClienteComponent},
   {path: 'Error', component : ErrorComponent},
   //Estos path necesitan auth - JWT
@@ -71,6 +74,7 @@ const MiRuteo = [
   canActivate: [VerificarJWTService],
   children : [
     {path : '', component : InicialEncargadoComponent},
+    {path : 'VerEventoHoyEmpleado/:idEvento', component: VerEventoHoyEmpleadoComponent},
     {path : 'VerEventos', component : VerEventosEncargadoComponent},
     {path : 'VerClientes', component : VerClientesComponent},
     {path : 'VerEstadisticas', component : VerEstadisticasComponent}
