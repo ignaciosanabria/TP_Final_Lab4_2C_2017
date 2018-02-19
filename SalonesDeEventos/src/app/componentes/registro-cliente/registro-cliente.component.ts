@@ -3,10 +3,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {Validators, FormBuilder, FormControl, FormGroup, EmailValidator} from '@angular/forms';
 import {Cliente} from '../../clases/cliente';
 import {ClientesService} from '../../servicios/clientes/clientes.service';
-import { FileUploader } from 'ng2-file-upload';
-import { FileUploadModule, FileItem} from "ng2-file-upload";
+// import { FileUploader } from 'ng2-file-upload';
+// import { FileUploadModule, FileItem} from "ng2-file-upload";
 //Cambiar URL por el de la API FINAL
-const URL = "http://localhost/API_Final/Registro/RegistrarClienteConFoto"
+// const URL = "http://localhost/API_Final/Registro/RegistrarClienteConFoto"
 @Component({
   selector: 'app-registro-cliente',
   templateUrl: './registro-cliente.component.html',
@@ -15,8 +15,8 @@ const URL = "http://localhost/API_Final/Registro/RegistrarClienteConFoto"
 export class RegistroClienteComponent implements OnInit {
 
 
-  public uploader:FileUploader = new FileUploader({url: URL ,itemAlias: 'foto'
-});
+//   public uploader:FileUploader = new FileUploader({url: URL ,itemAlias: 'foto'
+// });
 
   public fb : FormBuilder;
   public claves : FormGroup;
@@ -75,12 +75,12 @@ let confirmPassword = control.get('registroRepetirClave').value; // to get value
  }
 }
 
-//Para el manejo de Imagenes
-onFileChange(event) {
-  let file = event.target.files[0]; // <--- File Object for future use.
-  console.log(file);
-  this.Imagen = file;
-}
+//Para el manejo de Imagenes -- Cambiado por Registro de Imagenes
+// onFileChange(event) {
+//   let file = event.target.files[0]; // <--- File Object for future use.
+//   console.log(file);
+//   this.Imagen = file;
+// }
 
 
 
@@ -94,14 +94,15 @@ onFileChange(event) {
   if(this.Imagen == undefined)
   {
     this.clienteNuevo = new Cliente(nombre,apellido,Number(nro_doc),mail,clave,direccion,"undefined");
+    console.log(this.clienteNuevo);
     this.miServicioClientes.RegistrarCliente(JSON.stringify(this.clienteNuevo)).subscribe(
       data => {
         console.log(data);
     let respuesta = JSON.parse(data["_body"]);
     if(respuesta.status = 200)
       {
-        alert("Usted se ha registrado!");
-        this.router.navigate(['/']);
+        // alert("Usted se ha registrado!");
+        this.router.navigate(['/SubirFotosCliente']);
       }
       else
       {
@@ -116,37 +117,48 @@ onFileChange(event) {
   }
   else
     {
-      this.uploader.onBuildItemForm = (item, form) => {
-        form.append("nombre",nombre);
-        form.append("apellido", apellido);
-        form.append("nro_doc",nro_doc);
-        form.append("mail",mail);
-        form.append("clave",clave);
-        form.append("direccion",direccion);
-       }
-       this.uploader.queue[this.uploader.queue.length -1].upload();
+      // this.uploader.onBuildItemForm = (item, form) => {
+      //   form.append("nombre",nombre);
+      //   form.append("apellido", apellido);
+      //   form.append("nro_doc",nro_doc);
+      //   form.append("mail",mail);
+      //   form.append("clave",clave);
+      //   form.append("direccion",direccion);
+      //  }
+      //  this.uploader.queue[this.uploader.queue.length -1].upload();
     }
  }
 
 ngOnInit() {
-  this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-  this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-    console.log("ImageUpload:uploaded:", item, status, response);
-    console.log("Viene el Response!");
-    console.log(response);
-    let respuesta = JSON.parse(response);
-    console.log(respuesta);
-    if(respuesta.status = 200)
-    {
-      alert("Usted se ha registrado!");
-      this.router.navigate(['/']);
-    }
-    else
-    {
-      alert("Ocurrio un error!");
-      location.reload();
-    }
-};
+//   this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+//   this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+//     console.log("ImageUpload:uploaded:", item, status, response);
+//     console.log("Viene el Response!");
+//     console.log(response);
+//     let respuesta = JSON.parse(response);
+//     console.log(respuesta);
+//     if(respuesta.status = 200)
+//     {
+//       alert("Usted se ha registrado!");
+//       this.router.navigate(['/']);
+//     }
+//     else
+//     {
+//       alert("Ocurrio un error!");
+//       location.reload();
+//     }
+// };
+}
+
+public simulacion()
+{
+  this.registroNombre.setValue("Nicolas");
+  this.registroApellido.setValue("Arsamendi");
+  this.registroMail.setValue("nico_arsamendi@gmail.com");
+  this.registroClave.setValue("nicobostero12");
+  this.registroRepetirClave.setValue("nicobostero12");
+  this.registroNroDoc.setValue("29012950");
+  this.registroDireccion.setValue("Serrito 149");
 }
 
 public resolved(captchaResponse: string) {

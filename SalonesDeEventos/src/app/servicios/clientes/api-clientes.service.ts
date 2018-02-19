@@ -8,6 +8,11 @@ export class ApiClientesService {
     this.miHttpServicio = httpServicio;
    }
 
+   public TraerClientePorIdApi(idCliente : number)
+   {
+     return this.miHttpServicio.httpGetPromise("clientes/"+idCliente).then(datos => {return datos;}).catch(error => {console.info(error)});
+   }
+
    public TraerClientesApi()
    {
     return this.miHttpServicio.httpGetPromise("clientes/").then(datos => {return datos;}).catch(error => {console.info(error)});

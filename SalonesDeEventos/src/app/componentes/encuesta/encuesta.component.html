@@ -1,1 +1,44 @@
-<p>No hice Encuesta</p>
+<div class="container">
+  <div class="row encuesta">
+      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+        <div class="panel">
+                <div class="panel-heading">
+                        <h2 class="panel-title">Encuesta de Satisfacción
+                        </h2>
+                </div>
+            <form>
+            <div class="panel-body">
+            <p>1 - ¿Del 1 al 10 como encontras de útil la plataforma virtual de los Salones de Eventos?</p>
+            <!-- Revisar por que no se muestran las opciones -->
+            <p-dropdown name="pregunta1" [options]="numeros" [(ngModel)]="numeroSeleccionado" placeholder="Seleccione un numero" optionLabel="numero">
+            </p-dropdown>
+            <p>Selected City: {{numeroSeleccionado ? numeroSeleccionado.value : 'none'}}</p>
+           <br><br>
+           <p>2 - Le recomendarías la página a un amigo o familiar?</p>
+           <p-radioButton name="groupname" value="si" label="Si" [(ngModel)]="respuesta2"></p-radioButton>
+           <p-radioButton name="groupname" value="no" label="No" [(ngModel)]="respuesta2"></p-radioButton>
+           <br><br>
+           <p>3 - ¿Volverías a reservar un evento con nosotros?</p>
+           <br><br>
+           <p-radioButton name="groupname2" value="si" label="Si" [(ngModel)]="respuesta3"></p-radioButton>
+           <p-radioButton name="groupname2" value="no" label="No" [(ngModel)]="respuesta3"></p-radioButton>
+           <p>4 - ¿Como te parece las vistas y estilos de la plataforma virtual?</p>
+           <br><br>
+           <!-- Agregar una pregunta mas -->
+           <p-selectButton name="selectButton" [options]="types" [(ngModel)]="selectedType"></p-selectButton>
+           
+           <p>Selected Type: {{selectedType}}</p>
+            </div>
+               <span class="pull-right">
+                    <button (click)="VolverAtras()" class="btn btn-danger">Cancelar y Volver</button>
+                            <button (click)="EnviarRespuestas" class="btn btn-success">Enviar mis Respuestas</button>
+                    </span>
+                    <br><br>
+        </form>
+        </div>
+      </div>
+  </div>
+  <div class="row padding">
+
+  </div>
+</div>

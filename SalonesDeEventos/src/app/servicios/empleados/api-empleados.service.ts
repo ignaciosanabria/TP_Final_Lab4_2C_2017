@@ -18,4 +18,9 @@ export class ApiEmpleadosService {
      return this.miHttpServicio.httpPost("empleados/",body);
    }
 
+   public TraerEmpledoApi(body : any)
+   {
+     return this.miHttpServicio.httpGetPromise("empleados/TraerEmpleado/"+body).then(datos => {return datos;}).catch(error => {console.info(error)});
+   }
+
 }

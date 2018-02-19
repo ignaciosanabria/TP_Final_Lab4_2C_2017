@@ -1,8 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-2 col-lg-2">
-    </div>
-    <div class="col-sm-8 col-lg-8">
+    <div class="col-sm-11 col-lg-11 col-xs-11 col-md-11 col-sm-offset-1 col-lg-offset-1 col-xs-offset-1 col-md-offset-1">
 <h1>Lista de Invitados Registrados en El Sistema</h1>
 <!-- <table class="table">
     <thead>
@@ -22,38 +20,55 @@
       </tr>
     </tbody>
 </table> -->
-<mat-table #table [dataSource]="dataSource">
-    
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-    
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-        </ng-container>
-    
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-        </ng-container>
-    
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-        </ng-container>
-    
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-        </ng-container>
-    
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
+
+<!-- <p-dataList [value]="invitados" [paginator]="true" [rows]="5">
+  <p-header>
+      Listado de Invitados
+  </p-header>
+  <ng-template let-invitado pTemplate="item">
+      <div class="ui-g ui-fluid invitado-item"> -->
+          <!-- <div class="ui-g-12 ui-md-3" style="text-align:center">
+              <img src="assets/showcase/images/demo/invitado/{{invitado.brand}}.png">
+          </div> -->
+          <!-- <div class="ui-g-12 ui-md-9 invitado-details">
+              <div class="ui-g">
+                  <div class="ui-g-2 ui-sm-6">Nombre: </div>
+                  <div class="ui-g-10 ui-sm-6">{{invitado.nombre}}</div>
+                  
+                  <div class="ui-g-2 ui-sm-6">Apellido: </div>
+                  <div class="ui-g-10 ui-sm-6">{{invitado.apellido}}</div>
+                  
+                  <div class="ui-g-2 ui-sm-6">Nro de Documento: </div>
+                  <div class="ui-g-10 ui-sm-6">{{invitado.nro_doc}}</div>
+                  
+                  <div class="ui-g-2 ui-sm-6">Correo Electronico: </div>
+                  <div class="ui-g-10 ui-sm-6">{{invitado.mail}}</div>
+              </div>
+          </div>
+      </div>
+  </ng-template>
+</p-dataList> -->
+
+<p-table [value]="invitados" [style]="{'font-size':'16px','color':'red'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre: </th>
+                <th>Apellido: </th>
+                <th>Nro Documento: </th>
+                <th>Mail: </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-invitado>
+            <tr>
+                <td>{{invitado.nombre}}</td>
+                <td>{{invitado.apellido}}</td>
+                <td>{{invitado.nro_doc}}</td>
+                <td>{{invitado.mail}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <div class="padding">
+    </div>
     </div>
   </div>
 </div>

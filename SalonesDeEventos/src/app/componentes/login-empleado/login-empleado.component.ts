@@ -37,6 +37,7 @@ export class LoginEmpleadoComponent implements OnInit {
   {
     this.ocultarEsperarEmpleado = false;
     let empleado = {"mail" : this.mailEmpleado , "clave" : this.claveEmpleado};
+    console.log("Empleado login: "+empleado);
     this.miEmpleadosService.ValidarEmpleado(JSON.stringify(empleado)).subscribe(
       data =>{
         console.log(data);
@@ -62,7 +63,7 @@ export class LoginEmpleadoComponent implements OnInit {
         }
         else
           {
-            alert("Error. No existe un invitado con ese mail!");
+            alert("Error. No existe el empleado con ese mail!");
             this.ocultarEsperarEmpleado = true;
           }
       },

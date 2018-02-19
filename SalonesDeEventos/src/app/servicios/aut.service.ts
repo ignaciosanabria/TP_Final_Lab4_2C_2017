@@ -34,6 +34,17 @@ export class AutService {
     }
   }
 
+  //Metodo para decodificar Token por parametro
+  public getTokenParam(token : string)
+  {
+    try {
+      //console.log('getToekn', this.jwtHelper.decodeToken(this._token));
+      return this.jwtHelper.decodeToken(token);
+    } catch (error) {
+      return undefined;
+    }
+  }
+
   public getExpirationDate()
   {
     

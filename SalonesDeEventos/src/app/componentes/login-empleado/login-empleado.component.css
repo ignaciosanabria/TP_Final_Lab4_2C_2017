@@ -1,15 +1,26 @@
 .form-group{
 	margin-bottom: 15px;
 }
+.padding{
+    padding: 10%;
+}
 
 .container{
-    background-image: url("/assets/imagenes/fondoempleados.png");
+    /* background-image: url("/assets/imagenes/fondoempleados.png"); */
     /* padding-bottom: 15px; */
-    background-position: center;
+    /* background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    width: 1080px;
+    width: 1080px; */
+
+    background: url("/assets/imagenes/fondoempleados.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    padding: 5%;
     /* padding: 100px;
     padding-bottom: 200px;
     margin: 0px;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {AutService} from '../../servicios/aut.service';
 import {EventosService} from '../../servicios/eventos/eventos.service';
+import {DialogModule} from 'primeng/dialog';
 @Component({
   selector: 'app-menu-encargado',
   templateUrl: './menu-encargado.component.html',
@@ -16,6 +17,7 @@ export class MenuEncargadoComponent implements OnInit {
   currentDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
   fechaMañana = this.currentDate.getDate() + '/' + (this.currentDate.getMonth()+1) + '/' + this.currentDate.getFullYear();
   eventoHoy : any;
+  display : boolean;
   constructor(private route: ActivatedRoute,
     private router: Router, servicioAut : AutService, miServicioEventos : EventosService) 
     { 
@@ -26,7 +28,10 @@ export class MenuEncargadoComponent implements OnInit {
   ngOnInit() {
      let token = this.miServicioAut.getToken();
      console.log(token);
-     //let json = {"id_salon": token["data"].id_salon, "fecha_inicio": this.fechaActual, "fecha_fin": this.fechaMañana};
+     let tokenString = localStorage.getItem("token");
+     let tokenBien = this.miServicioAut.getTokenParam(tokenString);
+     console.log("este es el token que viene bien: ");
+     console.log(tokenBien);
      this.fechaMañana = this.fechaActual;
      let json = {"id_salon": token["data"].id_salon, "fecha_inicio": this.fechaActual, "fecha_fin": this.fechaMañana};
      console.log(json);
@@ -47,7 +52,14 @@ export class MenuEncargadoComponent implements OnInit {
       switch(url)
       {
         case 'VerEventoDeHoy':
+        if(this.eventoHoy != undefined)
+          {
         this.router.navigate(['/PrincipalEncargado/VerEventoHoyEmpleado',this.eventoHoy.id_evento]);
+          }
+          else
+          {
+            this.display = true;
+          }
         break;
         case 'VerEventos':
         this.router.navigate(['/PrincipalEncargado/VerEventos']);

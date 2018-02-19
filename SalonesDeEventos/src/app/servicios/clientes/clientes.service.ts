@@ -8,6 +8,20 @@ export class ClientesService {
     this.miClientesServicio = ServicioClientes;
    }
 
+   public TraerClientePorId(idCliente : number)
+   {
+     return this.miClientesServicio.TraerClientePorIdApi(idCliente).then(
+       data =>{
+         return data;
+       }
+     ).catch(
+       error =>
+       {
+         console.info(error);
+       }
+     );
+   }
+
    public TraerClientes()
    {
      return this.miClientesServicio.TraerClientesApi().catch(

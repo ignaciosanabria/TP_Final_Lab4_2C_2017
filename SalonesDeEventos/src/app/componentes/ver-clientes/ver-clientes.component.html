@@ -1,6 +1,7 @@
-<div class="fondo">
-  <h1>Listado de Clientes</h1>
-<table class="table table-responsive-lg">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 col-lg-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-offset-2">
+<!-- <table class="table table-responsive-lg">
   <thead>
       <tr>
           <th scope="col">Nombre</th>
@@ -21,6 +22,41 @@
        <td><img class="img-circle" src="../../../assets/imagenes/clientes/{{cliente.path_foto}}" width="100px" height="100px"></td>
       </tr>
   </tbody>
-</table>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</table> -->
+
+<!-- [style]="{'text-align':'center','color':'red'}" -->
+<p-dataList [value]="clientes" [style]="{'font-size':'16px','font-family':'Franklin Gothic Medium, Arial Narrow, Arial, sans-serif','text-align':'center'}" [paginator]="true" [rows]="5">
+        <p-header>
+            Listado de clientes
+        </p-header>
+        <ng-template let-cliente pTemplate="item">
+            <div class="ui-g ui-fluid cliente-item">
+                <div class="ui-g-12 ui-md-3" style="text-align:center">
+                    <img src="../../../assets/imagenes/clientes/{{cliente.path_foto}}" class="img-rounded img-responsive" width="125px" height="125px">
+                </div>
+                <div class="ui-g-12 ui-md-9 cliente-details">
+                    <div class="ui-g">
+                        <div class="ui-g-2 ui-sm-6">Nombre: </div>
+                        <div class="ui-g-10 ui-sm-6">{{cliente.nombre}}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6">Apellido: </div>
+                        <div class="ui-g-10 ui-sm-6">{{cliente.apellido}}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6">Nro de Documento: </div>
+                        <div class="ui-g-10 ui-sm-6">{{cliente.nro_doc}}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6">Correo Electronico: </div>
+                        <div class="ui-g-10 ui-sm-6">{{cliente.mail}}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6">Direccion</div>
+                        <div class="ui-g-10 ui-sm-6">{{cliente.direccion}}</div>
+
+
+                        </div>
+                </div>
+            </div>
+        </ng-template>
+      </p-dataList>
+        </div>
+    </div>
 </div>

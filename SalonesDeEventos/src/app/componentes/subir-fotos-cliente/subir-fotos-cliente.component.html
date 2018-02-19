@@ -1,0 +1,39 @@
+<div class="container">
+<div class="row">
+     <div class="col-lg-2 col-sm-2 col-md-2 col-xl-2">
+     </div>
+     <div class="col-lg-8 col-sm-8 col-md-8 col-xl-8">
+
+      <h2> Bienvenido al ultimo paso del Registro! </h2>
+      <h3> Aqui selecciona las imagenes que mas te guste </h3>
+        <p-growl [value]="msgs"></p-growl>
+        
+    <h3 class="first"></h3>
+    <!-- <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"  -->
+      <p-fileUpload name="demo[]" url="http://localhost/API_Final/Registro/RegistrarClienteConFoto" method="POST" (onUpload)="onUpload($event)" 
+            multiple="multiple" accept="image/*" maxFileSize="1000000">
+        <ng-template pTemplate="content">
+            <ul *ngIf="uploadedFiles.length">
+                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes  <button class="btn btn-primary"><i class="fa fa-user"></i> Perfil</button><br></li>
+                <!-- <br><br> -->
+              </ul>
+        </ng-template>        
+    </p-fileUpload>
+    <br><br>
+     <h2><p [hidden]="ocultarSpinner"><i class="fa fa-spinner fa-spin"></i>Esperando que mientras procesamos sus imagenes...</p></h2>
+        <!-- <div [hidden]="ocultarGaleria"> -->
+            <div *ngIf="ocultarGaleria == false">
+       <!--   <div [hidden]="ocultarGaleria" class="row">   
+             <div class="col-lg-2 col-sm-2 col-md-2 col-xl-2">
+            </div>
+            <div class="col-lg-8 col-sm-8 col-md-8 col-xl-8"> -->
+       
+    <p-galleria [images]="images" (onImageClicked)="onImageClicked($event)"panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
+            <!-- </div>
+          </div> -->
+        </div>
+
+    <div class="padding"></div>
+     </div>
+</div>
+</div>

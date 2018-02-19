@@ -27,4 +27,18 @@ export class EmpleadosService {
      return this.miApiEmpleado.ValidarEmpleadoApi(body);
    }
 
+   public TraerEmpleado(body : any)
+   {
+     return this.miApiEmpleado.TraerEmpledoApi(body).then(
+       data =>{
+         return data;
+       }
+     ).catch(
+       error =>
+       {
+         console.info(error);
+       }
+     );
+   }
+
 }

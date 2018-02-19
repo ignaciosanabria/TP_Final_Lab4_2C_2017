@@ -1,4 +1,7 @@
-<div class="fondo">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-sm-2"></div>
+        <div class="col-lg-8 col-sm-8">
   <h1>Registro de todos los eventos del Salon</h1>
 <table class="table">
   <thead>
@@ -29,5 +32,12 @@
        <td><button *ngIf="evento.fecha_fin == fechaActual"(click)="FinalizarEvento(evento)" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Finalizar Evento</button></td>
   </tbody>
 </table>
-<button class="btn btn-success" (click)="descargarEventos()"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Descargar Excel</button>
+<button class="btn btn-success" (click)="descargarEventos()"><i class="fa fa-file-excel" aria-hidden="true"></i> Descargar Excel</button>
+<!-- <form action="http://localhost/API_Final/clases/descargarPDF.php" method="POST">
+<button class="btn btn-danger" (click)="descargarEventosPDF()"><i class="fa fa-file-pdf"></i> Descargar PDF</button>
+</form> -->
+<a class="btn btn-danger" href="http://localhost/API_Final/clases/descargarPDF.php" target="_blank"><i class="fa fa-file-pdf"></i> Descargar PDF</a>
+<!-- Cierre Form -->
+        </div>
+    </div>
 </div>

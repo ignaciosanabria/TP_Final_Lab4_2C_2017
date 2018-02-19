@@ -20,7 +20,8 @@ export class VerEventosEncargadoComponent implements OnInit {
     this.miServicioAut = servicioAut;
   }
   ngOnInit() {
-    let token = this.miServicioAut.getToken();
+    let tokenString = localStorage.getItem("token");
+    let token = this.miServicioAut.getTokenParam(tokenString);
     console.log(token);
     console.log(token["data"].id_salon);
     if(token["data"].cargo == "Encargado")
@@ -75,6 +76,28 @@ export class VerEventosEncargadoComponent implements OnInit {
      else
        console.log('no: ', data);
   }
+
+  // descargarEventosPDF()
+  // {
+  // this.miServicioEventos.TraerDatosPDF().then(
+  //   data =>
+  //   {
+  //     //console.log(data);
+  //     this.downloadFile(data);
+  //   }
+  // ).catch(
+  //   error =>
+  //   {
+  //     console.info(error);
+  //   }
+  // );
+  // }
+
+  // downloadFile(data: Response){
+  //   var blob = new Blob([data], { type: 'text/pdf' });
+  //   var url= window.URL.createObjectURL(blob);
+  //   window.open(url);
+  // }
 
 
   FinalizarEvento(evento : any)

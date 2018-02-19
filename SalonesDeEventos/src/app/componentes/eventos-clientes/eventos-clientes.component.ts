@@ -3,6 +3,7 @@ import {EventosService} from '../../servicios/eventos/eventos.service';
 import {EmpleadosService} from '../../servicios/empleados/empleados.service';
 import {AutService} from '../../servicios/aut.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {CalendarModule} from 'primeng/calendar';
 
 @Component({
   selector: 'app-eventos-clientes',
@@ -28,7 +29,9 @@ export class EventosClientesComponent implements OnInit {
     this.miAutServicio = ServicioAut;
     console.log(this.today.getDate()+"/"+(this.today.getMonth()+1)+"/"+this.today.getFullYear());
     console.log(this.miAutServicio.getToken());
-    let token = this.miAutServicio.getToken();
+    // let token = this.miAutServicio.getToken();
+    let tokenString = localStorage.getItem("token");
+    let token = this.miAutServicio.getTokenParam(tokenString);
     console.log(token["data"].id_cliente);
     let json = {"idCliente" : token["data"].id_cliente};
     console.log(JSON.stringify(json));

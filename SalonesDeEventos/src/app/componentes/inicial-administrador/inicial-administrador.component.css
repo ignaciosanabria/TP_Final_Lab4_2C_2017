@@ -1,4 +1,4 @@
-.fondo{
+/* .fondo{
     background-color: lightblue;
     background-position: center 20%;
     background-repeat: no-repeat;
@@ -11,4 +11,8 @@
     padding:0;
     background-size: 100%;
     text-align: center;
+} */
+
+.container{
+    padding: 22%;
 }

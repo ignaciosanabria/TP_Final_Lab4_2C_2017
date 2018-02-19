@@ -136,8 +136,8 @@
 
 
           <!--Sin validacion ya que te podes registrar sin foto de perfil-->
-          <label><b>Foto De Perfil:</b></label>
-          <input type="file" (change)="onFileChange($event)" name="photo" ng2FileSelect [uploader]="uploader" />
+          <!-- <label><b>Foto De Perfil:</b></label>
+          <input type="file" (change)="onFileChange($event)" name="photo" ng2FileSelect [uploader]="uploader" /> -->
         
           <re-captcha (resolved)="resolved($event)" siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" name="registroCaptcha"
           [formControl]="registroCaptcha"
@@ -173,6 +173,7 @@
           <input type="checkbox" checked="checked">Recordar mis datos
           <p>creando la cuenta aceptando los<a  onclick="document.getElementById('id01').style.display='none'"  >Terminos y condiciones</a>.</p>
           <div class="clearfix">
+            <button (click)="simulacion()">simulacion</button>
             <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Me arrepenti</button>
             <button type="submit" [disabled]="!registroForm.valid" class="signupbtn">Registrarme</button>
             <!-- [disabled]="!registroForm.valid" -->

@@ -5,13 +5,22 @@ agm-map {
 
   .container{
     text-align: center;
-    color: orange;
+    color: white;
   }
 
   #directionsPanel {
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
     padding-left: 10px;
+    text-align: center;
+    font-size: 12px;
+    background-color: orange;
+  }
+
+  .cartaInvitacion{
+    background-color: orange;
+    border: 10px white solid;
+    border-radius: 10px;
   }
 
   /* #map {

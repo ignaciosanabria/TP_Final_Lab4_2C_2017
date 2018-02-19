@@ -9,6 +9,12 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
+            <p-dialog header="Advertencia" [(visible)]="display" modal="modal" width="400" [responsive]="true">
+                <p>Lamentablemente hoy no se encuentra disponible ningun evento.</p>
+                    <p-footer>
+                        <button type="button" pButton icon="fa-check" (click)="display=false" label="Ok"></button>
+                    </p-footer>
+            </p-dialog>
           <li><a (click)="Ir('VerEventoDeHoy')">Ver Evento De Hoy</a></li>
           <li><a (click)="Ir('VerEventos')">Ver Eventos Proximos</a></li>
            <li><a (click)="Ir('VerClientes')">Ver Clientes</a></li>

@@ -9,13 +9,13 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li><a (click)="Ir('VerEventos')">Ver Eventos</a></li>
-             <li><a (click)="Ir('VerClientes')">Ver Clientes</a></li>
-             <li><a (click)="Ir('VerInvitados')">Ver Invitados Registrados</a></li>
-             <li><a (click)="Ir('VerEstadisticas')">Ver Estadisticas</a></li>
+            <li><a (click)="Ir('VerEventos')"><i class="fa fa-list-alt"></i> Ver Eventos</a></li>
+             <li><a (click)="Ir('VerClientes')"><i class="fa fa-list-alt"></i> Ver Clientes</a></li>
+             <li><a (click)="Ir('VerInvitados')"><i class="fa fa-list-alt"></i> Ver Invitados Registrados</a></li>
+             <li><a (click)="Ir('VerEstadisticas')"><i class="fa fa-percent"></i> Ver Estadisticas</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <!-- <li><a routerLink="/QuienSoy"><span class="glyphicon glyphicon-user"></span> Mis Datos</a></li> -->
+                <li><a (click)="Ir('MisDatosEmpleado')"><i class="fa fa-user"></i> Mis Datos</a></li>
                 <li><a (click)="CerrarSesion()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
               </ul>
       </div>

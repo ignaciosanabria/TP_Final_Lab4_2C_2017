@@ -1,12 +1,15 @@
 <!-- <h1>¿Como llegar a Los Salones?</h1> -->
 <div class="container">
-<h1>Bienvenido otra vez {{nombreInvitado}}</h1>
+<form class="cartaInvitacion">
+<h3>Bienvenido otra vez {{nombreInvitado}}</h3>
 <!-- this creates a google map on the page with the given lat/lng from
 the component as the initial center of the map: -->
-<h2>Tenes un evento para el día {{fechaEvento}}</h2>
-<h2>El Evento Empieza a las 22 hs.</h2>
-<h2>En El {{salonNombre}}</h2>
+<h4>Tenes un evento para el día {{fechaEvento}}</h4>
+<h4>El Evento Empieza a las 22 hs.</h4>
+<h4>En El {{salonNombre}}</h4>
 <p>Aquí te indicamos como llegar el salón en el caso de que no sepas como llegar</p>
+</form>
+<br><br>
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
   <!-- <agm-marker [latitude]="lat" [longitude]="lng"> -->
       <agm-map-directions [origin]="origin" [destination]="destination">

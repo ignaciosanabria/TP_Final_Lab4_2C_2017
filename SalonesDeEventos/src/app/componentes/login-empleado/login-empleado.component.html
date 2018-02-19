@@ -32,6 +32,8 @@
           </div>
         </div>
 
+        <h4><p [hidden]="ocultarEsperarEmpleado" class="ocultarEsperar"><i class="fa fa-spinner fa-spin"></i>Esperando que mientras <br>procesamos sus datos...</p></h4>
+
   <div class="form-group">
       <a type="button" id="cancelar" class="btn btn-danger btn-lg" routerLink="/"><i class="fa fa-times"></i> Cancelar</a>
           <a type="button" id="button" class="btn btn-success btn-lg" style="float: right" (click)="LoginEmpleado()"><i class="fa fa-check-circle"></i> Ingresar</a>
@@ -45,4 +47,8 @@
     </div>
       </div>
   </div>
-</div>
+  <div class="row">
+    <div class="padding">
+    </div>
+  </div>
+</div>|

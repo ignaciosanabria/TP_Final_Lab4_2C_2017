@@ -89,7 +89,7 @@
                     <li><span class="fa fa-check text-success"></span> Disfruta de una noche inolvidable.</li>
                     <li><span class="fa fa-check text-success"></span> Administra tu celebración de la manera más facil.</li>
                     <li><span class="fa fa-check text-success"></span> Obtene un regalo gratis <small>(solo nuevos clientes)</small></li>
-                    <li><a routerLink="/RegistroCliente"><u>Read more</u></a></li>
+                    <li><a routerLink="/RegistroCliente"><u>Leer mas!</u></a></li>
                 </ul>
                 <p><a routerLink="/RegistroCliente" class="btn btn-primary btn-block">Si por favor, quiero <br>registrarme ahora!</a></p>
               </form>
@@ -116,8 +116,27 @@
         <!-- <p class="invitado"><a (click)=" mostrarFormularioInvitado()">Si sos invitado de un Evento - Hace click aquí</a></p> -->
         <button class="btn btn-lg btn-success"(click)=" mostrarFormularioInvitado()"><i class="fa fa-list-alt" aria-hidden="true"></i> Si sos invitado de un Evento - Hace click aquí</button>
         <button class="btn btn-lg btn-info" routerLink="/LoginEmpleado"><i class="fa fa-users" fa-users>Sección Empleados - Click Aquí</i></button>
-       
-        <div [hidden]="ocultarLoginInvitado">
+        <p-dialog header="Ingreso Invitado" [(visible)]="display" modal="modal" width="600" [responsive]="true">
+          <h3>Bienvenido Invitado - Solo ingresa tu mail</h3>
+            <img src="../assets/imagenes/imageninvitados.jpg" width="150px" height="150px" class="img-thumbnail">
+            <br><br>  
+          <form>
+                <label>Mail:</label>
+                <br>
+                <input type="text" [(ngModel)]="mailInvitado" name="mailInvitado" placeholder="Ingrese su mail" class="form-control">
+              </form>
+                <p-footer>
+                    <button type="button" pButton icon="fa-check" (click)="LoginInvitado()" label="Ingresar"></button>
+                    <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancelar"></button>
+                    <br><br>
+                    <button type="button" class="btn btn-success btn-block" (click)="TestInvitado()">Test Invitado</button>
+                </p-footer>
+        </p-dialog>
+        
+        <!-- <button type="button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button> -->
+        
+        
+        <!-- <div [hidden]="ocultarLoginInvitado">
          <div class="row">
             <div class="modal">
               <button (click)="cerrarFormularioInvitado()" type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -141,6 +160,6 @@
             </form>
           </div> 
           </div> 
-        </div>
+        </div> -->
       </footer>
 </div>

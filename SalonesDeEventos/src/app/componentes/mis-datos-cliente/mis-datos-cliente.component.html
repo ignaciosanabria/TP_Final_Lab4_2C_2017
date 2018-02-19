@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+  <!-- <div class="col-md-5  toppad  pull-right col-md-offset-3 "> -->
+    <div class="col-md-5 col-md-offset-3">
+       <!-- <A href="edit.html" >Edit Profile</A>
+
+    <A href="edit.html" >Logout</A> -->
+   <br>
+<!-- <p class=" text-info">{{fechaFormateada}} -->
+<!-- </p> -->
+  </div>
+    <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" > -->
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{cliente?.nombre}}, {{cliente?.apellido}}
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class=" col-md-2 col-lg-2 col-xs-2 "> 
+              <table class="table table-user-information">
+                <tbody>
+                  <!-- <tr>
+                    <td>Departamento: </td>
+                    <td>Sistemas</td>
+                  </tr>
+                  <tr>
+                    <td>Fecha de Contratacion: </td>
+                    <td>06/23/2013</td>
+                  </tr> -->
+                  <!-- <tr>
+                    <td>Legajo:</td>
+                    <td>{{cliente?.legajo}} </td>
+                  </tr> -->
+               
+                     <tr>
+                         <tr>
+                    <td>Nombre:</td>
+                    <td>{{cliente?.nombre}} </td>
+                  </tr>
+                    <tr>
+                    <td>Apellido:</td>
+                    <td>{{cliente?.apellido}} </td>
+                  </tr>
+                  <tr>
+                    <td>Mail: </td>
+                    <td>{{cliente?.mail}} </td>
+                  </tr>
+                   <tr>
+                     <td>Nro Documento: </td>
+                     <td>{{cliente?.nro_doc}}</td>
+                   </tr>
+                   <tr>
+                     <td>Direccion: </td>
+                     <td>{{cliente?.direccion}}</td>
+                   </tr>
+                   <tr>
+                      <td>Imagenes: </td>
+                   </tr>
+                   <div class="col-xs-offset-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+                   <!-- <p-galleria [images]="images" (onImageClicked)="onImageClicked($event)"panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria> -->
+                   <p-galleria [images]="images" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
+                  </div>
+                  </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+             <div class="panel-footer">
+                    <span class="pull-right">
+                        <p-dialog header="Advertencia" [(visible)]="display" modal="modal" width="300" [responsive]="true">
+                            <p>Si usted accede a eliminar su cuenta, todo registro proveniente con información suya será
+                              completamente eliminada (Incluyendo información, sus imagenes e información relacionada
+                              con eventos), recuerde asimismo que no podrá ingresar a la plataforma para administrar
+                              eventos, lo cual deberá hacerse una cuenta nueva en el caso de que quiera volver a entrar.</p>
+                                <p-footer>
+                                    <button type="button" pButton icon="fa-check" (click)="ConfirmarEliminacion(cliente.id_cliente)" label="Si, quiero"></button>
+                                    <button type="button" pButton icon="fa-close" (click)="display=false" label="No,no quiero"></button>
+                                </p-footer>
+                        </p-dialog>
+                        <!-- (click)="editarCliente(cliente.id_cliente) -->
+                        <a data-original-title="Delete this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger" (click)="borrarCliente()"><i class="fa fa-trash-alt"></i> Eliminar mi cuenta</a>
+                        <a data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning" (click)="editarCliente(cliente.id_cliente)"><i class="glyphicon glyphicon-edit"></i> Editar </a>
+                    </span>
+                    <br><br>
+                </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

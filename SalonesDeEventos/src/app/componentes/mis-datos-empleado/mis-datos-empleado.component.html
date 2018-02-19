@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+  <!-- <div class="col-md-5  toppad  pull-right col-md-offset-3 "> -->
+    <div class="col-md-5 col-md-offset-3">
+       <!-- <A href="edit.html" >Edit Profile</A>
+
+    <A href="edit.html" >Logout</A> -->
+   <br>
+<!-- <p class=" text-info">{{fechaFormateada}} -->
+<!-- </p> -->
+  </div>
+    <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" > -->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3">
+
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{empleado?.nombre}}, {{empleado?.apellido}}
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../../../assets/imagenes/empleados/{{empleado?.path_foto}}"class="img-circle" width="100px" height="150px"> </div>
+            
+            <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+              <dl>
+                <dt>DEPARTMENT:</dt>
+                <dd>Administrator</dd>
+                <dt>HIRE DATE</dt>
+                <dd>11/12/2013</dd>
+                <dt>DATE OF BIRTH</dt>
+                   <dd>11/12/2013</dd>
+                <dt>GENDER</dt>
+                <dd>Male</dd>
+              </dl>
+            </div>-->
+            <div class=" col-md-9 col-lg-9 "> 
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>Departamento:</td>
+                    <td>Sistemas</td>
+                  </tr>
+                  <tr>
+                    <td>Fecha de Contratacion:</td>
+                    <td>06/23/2013</td>
+                  </tr>
+                  <tr>
+                    <td>Legajo:</td>
+                    <td>{{empleado?.legajo}} </td>
+                  </tr>
+               
+                     <tr>
+                         <tr>
+                    <td>Nombre:</td>
+                    <td>{{empleado?.nombre}} </td>
+                  </tr>
+                    <tr>
+                    <td>Apellido:</td>
+                    <td>{{empleado?.apellido}} </td>
+                  </tr>
+                  <tr>
+                    <td>Mail</td>
+                    <td>{{empleado?.mail}} </td>
+                  </tr>
+                     <tr>
+                    <td>Phone Number</td>
+                    <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+                    </td>
+                       
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+             <div class="panel-footer">
+                    <span class="pull-right">
+                        <a data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Editar </a>
+                    </span>
+                    <br><br>
+                </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

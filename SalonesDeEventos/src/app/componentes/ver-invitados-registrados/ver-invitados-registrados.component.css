@@ -27,3 +27,7 @@ tbody tr td{
     overflow: auto;
     max-height: 500px;
   }
+
+.padding{
+    padding: 16%;
+}

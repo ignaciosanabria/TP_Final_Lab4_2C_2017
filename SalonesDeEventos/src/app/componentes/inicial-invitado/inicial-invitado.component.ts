@@ -29,10 +29,10 @@ export class InicialInvitadoComponent implements OnInit {
    }
 
   ngOnInit() {
-    var modelo=this;
-    setTimeout(function(){ 
-      modelo.router.navigate(['/PrincipalInvitado/Direcciones']);
-     }, 3000);
+    // var modelo=this;
+    // setTimeout(function(){ 
+    //   modelo.router.navigate(['/PrincipalInvitado/Direcciones']);
+    //  }, 3000);
   }
 
 }

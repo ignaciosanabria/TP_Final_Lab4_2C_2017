@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+            <div class="panel panel-info">  
+          <div class="panel-body">
+                <form>
+                        <h4>Editar Datos</h4>
+                        <br>
+                        <div *ngIf="cliente">
+                        <label>Nombre: </label>
+                        <!-- <input type="text" class="form-control" [(ngModel)]="cliente.nombre"> -->
+                        <!-- <input type="text" name="nombre" class="form-control" [ngModel]="cliente?.nombre" >  -->
+                        <input type="text" name="nombre" class="form-control" [(ngModel)]="cliente.nombre" > 
+                        <br>
+                        <label>Apellido: </label>
+                        <input type="text" name="apellido" class="form-control" [(ngModel)]="cliente.apellido">
+                        <br>
+                        <label>Nro Documento: </label>
+                        <input type="text" name="documento" class="form-control" [(ngModel)]="cliente.nro_doc">
+                        <br>
+                        <label>Direccion: </label>
+                        <input type="text" name="direccion" class="form-control" [(ngModel)]="cliente.direccion">
+                        <br>
+                        <label>Mail: </label>
+                        <input type="text" name="mail" class="form-control" [(ngModel)]="cliente.mail">
+                        <br>
+                        <label>Clave: </label>
+                        <input type="password" name="clave" class="form-control" [(ngModel)]="cliente.clave">
+                        <br><br>
+                        </div>
+                        <button class="btn btn-success" (click)="ModificarCliente()"> Editar</button>
+                        <button class="btn btn-danger"  (click)="CancelarModificacion()"> Cancelar</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>

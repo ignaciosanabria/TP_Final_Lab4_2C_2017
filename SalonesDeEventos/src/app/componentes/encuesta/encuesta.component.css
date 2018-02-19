@@ -1,0 +1,28 @@
+.container{
+    background: url('/assets/imagenes/fondoencuesta.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+}
+.padding{
+    padding: 100%;
+}
+
+.encuesta{
+    padding: 20px;
+}
+
+.panel-title{
+   font-family: 'Times New Roman', Times, serif;
+   text-align: center;
+   font-size: 60px;
+}
+.panel{
+    background-color: orange;
+}
+p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}

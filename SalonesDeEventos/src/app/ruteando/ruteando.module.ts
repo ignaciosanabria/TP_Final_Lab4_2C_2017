@@ -35,12 +35,20 @@ import { VerEventosEncargadoComponent } from '../componentes/ver-eventos-encarga
 import { VerInvitadosRegistradosComponent } from '../componentes/ver-invitados-registrados/ver-invitados-registrados.component';
 import { EncuestaComponent } from '../componentes/encuesta/encuesta.component';
 import { VerEventoHoyEmpleadoComponent } from '../componentes/ver-evento-hoy-empleado/ver-evento-hoy-empleado.component';
+import { MisDatosEmpleadoComponent } from '../componentes/mis-datos-empleado/mis-datos-empleado.component';
+import { MisDatosClienteComponent } from '../componentes/mis-datos-cliente/mis-datos-cliente.component';
+import { SubirFotosClienteComponent } from '../componentes/subir-fotos-cliente/subir-fotos-cliente.component';
+import { EditarDatosClienteComponent } from '../componentes/editar-datos-cliente/editar-datos-cliente.component';
+import { EditarDatosEmpleadoComponent } from '../componentes/editar-datos-empleado/editar-datos-empleado.component';
 
 const MiRuteo = [
   {path: '' , component: LoginComponent},
   {path: 'LoginEmpleado', component: LoginEmpleadoComponent},
   {path: 'RegistroCliente', component : RegistroClienteComponent},
   {path: 'Error', component : ErrorComponent},
+  //Falta modificar Api -- Para recibir y que guarde imagenes
+  {path: 'SubirFotosCliente', component : SubirFotosClienteComponent},
+  {path: 'EncuestaCliente', component: EncuestaComponent},
   //Estos path necesitan auth - JWT
   {path: 'PrincipalCliente', component : PrincipalClienteComponent,
   canActivate: [VerificarJWTService],
@@ -49,15 +57,17 @@ const MiRuteo = [
     {path : '', component : InicialClienteComponent},
     {path : 'CrearEvento', component : CrearEventoComponent},
     {path : 'EventosCliente', component : EventosClientesComponent},
-    {path : 'VerMesas/:idEvento', component : BotonMesasComponent}
+    {path : 'VerMesas/:idEvento', component : BotonMesasComponent},
+    {path: 'MisDatosCliente/:idCliente', component: MisDatosClienteComponent},
+    {path: 'EditarDatosCliente/:idCliente', component: EditarDatosClienteComponent}
   ]
   },
   {
     path: 'PrincipalInvitado', component : PrincipalInvitadoComponent,
     canActivate: [VerificarJWTService],
     children: [
-      { path : '', component : InicialInvitadoComponent},
-      {path : 'Direcciones', component : DireccionesComponent}
+      { path : '', component : DireccionesComponent}
+      // {path : 'Direcciones', component : DireccionesComponent}
     ]
   },
   {
@@ -87,7 +97,8 @@ const MiRuteo = [
      {path : 'VerEventos', component : VerEventosEncargadoComponent},
      {path : 'VerClientes', component : VerClientesComponent},
      {path : 'VerEstadisticas', component : VerEstadisticasComponent},
-     {path: 'VerInvitados', component : VerInvitadosRegistradosComponent}
+     {path: 'VerInvitados', component : VerInvitadosRegistradosComponent},
+     {path: 'MisDatosEmpleado/:idEmpleado', component: MisDatosEmpleadoComponent}
    ]
    }
 ]

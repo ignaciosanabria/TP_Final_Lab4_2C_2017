@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {AutService} from '../../servicios/aut.service';
 @Component({
   selector: 'app-menu-administrador',
   templateUrl: './menu-administrador.component.html',
   styleUrls: ['./menu-administrador.component.css']
 })
 export class MenuAdministradorComponent implements OnInit {
+  miServicioAut : AutService;
+  id_empleado : number;
 
   constructor(private route: ActivatedRoute,
-    private router: Router) 
-    { }
+    private router: Router,servicioAut : AutService) 
+    { 
+      this.miServicioAut = servicioAut;
+    }
 
     public CerrarSesion()
     {
@@ -37,11 +42,17 @@ export class MenuAdministradorComponent implements OnInit {
         case 'VerEstadisticas':
         this.router.navigate(['/PrincipalAdministrador/VerEstadisticas']);
         break;
+        case 'MisDatosEmpleado':
+        this.router.navigate(['/PrincipalAdministrador/MisDatosEmpleado',this.id_empleado]);
+        break;
       }
     }
 
     public ngOnInit()
     {
+      let token = this.miServicioAut.getToken();
+      this.id_empleado = token.data.id_empleado;
+      // console.log(token.data.id_empleado);
     }
 
 

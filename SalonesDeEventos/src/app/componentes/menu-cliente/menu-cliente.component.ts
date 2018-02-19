@@ -2,31 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {MenuModule} from 'primeng/menu';
 import {MenuItem} from 'primeng/api';
-
+import {AutService} from '../../servicios/aut.service';
 @Component({
   selector: 'app-menu-cliente',
   templateUrl: './menu-cliente.component.html',
   styleUrls: ['./menu-cliente.component.css']
 })
 export class MenuClienteComponent implements OnInit {
-  private items: MenuItem[];
-  activeItem: MenuItem;
+  miServicioAut : AutService;
+  id_cliente : number;
+
   constructor(private route: ActivatedRoute,
-    private router: Router) 
-    { }
+    private router: Router,servicioAut : AutService) 
+    { 
+      this.miServicioAut = servicioAut;
+    }
+
 
   ngOnInit() {
-    this.items = [
-      // {label: 'New', icon: 'fa-plus', url: 'http://www.primefaces.org/primeng'},
-      // {label: 'Open', icon: 'fa-download', routerLink: ['/pagename']}
-      // {label: 'Recent Files', icon: 'fa-download', routerLink: ['/pagename'], queryParams: {'recent': 'true'}}
-  {label: 'Stats', icon: 'fa-bar-chart'},
-  {label: 'Calendar', icon: 'fa-calendar'},
-  {label: 'Documentation', icon: 'fa-book',url: 'http://www.primefaces.org/primeng'},
-  {label: 'Support', icon: 'fa-support'},
-  {label: 'Social', icon: 'fa-twitter'},
-  {label: 'Salir', icon: 'fa-times-circle'}
-  ];
+    let token = this.miServicioAut.getToken();
+    let tokenString = localStorage.getItem("token");
+    let tokenBien = this.miServicioAut.getTokenParam(tokenString);
+    console.log("este es el token que viene bien: ");
+    console.log(tokenBien);
+    this.id_cliente = token.data.id_cliente;
 }
 
   public CerrarSesion()
@@ -52,6 +51,9 @@ export class MenuClienteComponent implements OnInit {
       // case 'Soporte':
       // this.router.navigate(['/PrincipalCliente/Soporte']);
       // break;
+      case 'MisDatosCliente':
+      this.router.navigate(['/PrincipalCliente/MisDatosCliente',this.id_cliente]);
+      break;
     }
   }
 }

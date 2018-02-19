@@ -93,4 +93,20 @@ export class EventosService {
        }
      )
    }
+
+   //Para el PDF 
+
+   public TraerDatosPDF()
+   {
+    return this.miServicioEventos.TraerDatosPDFApi().then(
+      data =>
+      {
+        return data;
+      },
+      error =>
+      {
+        console.log(error);
+      }
+    )
+   }
 }

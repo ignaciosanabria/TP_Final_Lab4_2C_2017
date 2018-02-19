@@ -1,12 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
+//Modulos
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {JwtModule} from './jwt/jwt.module';
 import {HttpModule} from '@angular/http';
 import { MyDatePickerModule } from 'mydatepicker';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
+// import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import {RuteandoModule} from './ruteando/ruteando.module';
@@ -17,6 +18,19 @@ import {GrowlModule} from 'primeng/components/growl/growl';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {MenuItem} from 'primeng/api';
 import {MatTableModule} from '@angular/material/table';
+import {CalendarModule} from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DataListModule} from 'primeng/datalist';
+import {FileUploadModule} from 'primeng/fileupload';
+import {GalleriaModule} from 'primeng/galleria';
+import {DialogModule} from 'primeng/dialog';
+import {TableModule} from 'primeng/table';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';//Servicio de Confirm
+import {DropdownModule} from 'primeng/dropdown';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {SelectButtonModule} from 'primeng/selectbutton';
+
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -79,6 +93,11 @@ import { EncuestaComponent } from './componentes/encuesta/encuesta.component';
 import { VerEventoHoyEmpleadoComponent } from './componentes/ver-evento-hoy-empleado/ver-evento-hoy-empleado.component';
 import { MiMesaEmpleadoComponent } from './componentes/mi-mesa-empleado/mi-mesa-empleado.component';
 import { LoginEmpleadoComponent } from './componentes/login-empleado/login-empleado.component';
+import { MisDatosEmpleadoComponent } from './componentes/mis-datos-empleado/mis-datos-empleado.component';
+import { MisDatosClienteComponent } from './componentes/mis-datos-cliente/mis-datos-cliente.component';
+import { SubirFotosClienteComponent } from './componentes/subir-fotos-cliente/subir-fotos-cliente.component';
+import { EditarDatosClienteComponent } from './componentes/editar-datos-cliente/editar-datos-cliente.component';
+import { EditarDatosEmpleadoComponent } from './componentes/editar-datos-empleado/editar-datos-empleado.component';
 
 // const MiRuteo = [
 //   {path: '' , component: LoginComponent},
@@ -176,6 +195,11 @@ export function highchartsFactory() {
     VerEventoHoyEmpleadoComponent,
     MiMesaEmpleadoComponent,
     LoginEmpleadoComponent,
+    MisDatosEmpleadoComponent,
+    MisDatosClienteComponent,
+    SubirFotosClienteComponent,
+    EditarDatosClienteComponent,
+    EditarDatosEmpleadoComponent,
   ],
   imports: [
     BrowserModule,
@@ -195,7 +219,18 @@ export function highchartsFactory() {
     CaptchaModule,
     GrowlModule,
     TabMenuModule,
-    MatTableModule
+    MatTableModule,
+    CalendarModule,
+    BrowserAnimationsModule,
+    DataListModule,
+    FileUploadModule,
+    GalleriaModule,
+    DialogModule,
+    TableModule,
+    ConfirmDialogModule,
+    DropdownModule,
+    RadioButtonModule,
+    SelectButtonModule
   ],
   providers: [
     MiHttpService,
@@ -216,7 +251,8 @@ export function highchartsFactory() {
     {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
-    }
+    },
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

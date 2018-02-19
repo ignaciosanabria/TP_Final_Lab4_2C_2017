@@ -91,4 +91,18 @@ export class EventosApiService {
        }
      )
    }
+
+   public TraerDatosPDFApi()
+   {
+    return this.miHttpServicio.httpGetPromise("eventos/TraerDatosPDF").then(
+      data =>
+      {
+        return data;
+      }
+    ).catch(
+      error =>{
+        console.log(error);
+      }
+    )
+   }
 }

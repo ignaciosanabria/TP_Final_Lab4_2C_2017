@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ClientesService} from '../../servicios/clientes/clientes.service';
 import {InvitadosService} from '../../servicios/invitados/invitados.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {DialogModule} from 'primeng/dialog';
+
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,8 @@ export class LoginComponent implements OnInit {
   mailInvitado : string;
   ocultarLoginInvitado : boolean;
 
+  //Dialog Login para el Invitado 
+  display : boolean;
 
   constructor(ServicioClientes : ClientesService,private route: ActivatedRoute,
     private router: Router, ServicioInvitados : InvitadosService) {
@@ -82,20 +86,24 @@ export class LoginComponent implements OnInit {
 
   TestCliente()
   {
+   this.mailCliente = "";
+   this.claveCliente = "";
    this.mailCliente = "maria_navarro@gmail.com";
    this.claveCliente = "maria1234";
   }
 
   //La parte del Invitado!
 
-  cerrarFormularioInvitado()
-  {
-    this.ocultarLoginInvitado = true;
-  }
+  // cerrarFormularioInvitado()
+  // {
+    // this.ocultarLoginInvitado = true;
+    // this.display = true;
+  // }
 
   mostrarFormularioInvitado()
   {
-    this.ocultarLoginInvitado = false;
+    // this.ocultarLoginInvitado = false;
+    this.display = true;
   }
 
   LoginInvitado()
