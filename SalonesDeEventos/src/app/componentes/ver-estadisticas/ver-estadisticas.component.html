@@ -1,11 +1,29 @@
-<div class="fondo">
-<h1>Estadisticas de Cantidad de Eventos por Cliente</h1>
+<div class="container">
+        <div class="row">
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                        <div class="form-group">
+                                        <label style="text-align:center; color:red; font-size:20px;">Tipo de Encuesta</label>
+                                        <select class="form-control" placeholder="Elegir Encuesta" [(ngModel)]="encuestaElegida" (ngModelChange)="ElegirEncuesta($event)">
+                                          <option>1</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                          <option>5</option>
+                                        </select>
+                                      </div>
+                <!-- <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2"> -->
+                                <p-chart type="doughnut" [data]="data" width="700px" height="500px" ></p-chart>
+                </div>
+        </div>
+        <div class="row row2">
+        </div>
+</div>
+<!-- <h1>Estadistica de Cantidad de Eventos por Cliente</h1>
 <chart [options]="options"></chart>
 <button *ngIf="ocultarOtraEstadistica == true" class="btn btn-success" (click)="verOtraEstadistica()">Ver Cantidad </button>
 <button *ngIf="ocultarOtraEstadistica == false" class="btn btn-warning" (click)="cerrarOtraEstadistica()">Cerrar Estadistica</button>
 <div [hidden]="ocultarOtraEstadistica">
         <h2>Estadisticas De Cantidad De Invitados Traidos Por Cliente</h2>
         <chart [options]="options2"></chart>
-</div>
-<br><br><br><br><br><br><br><br><br><br><br><br>
-</div>
+</div> -->
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br> -->

@@ -53,51 +53,8 @@ export class VerEventosEncargadoComponent implements OnInit {
           }
         )
     }
-    //Para el Excel
-    this.miServicioEventos.TraerDatosExcel().then(
-      data =>
-      {
-        this.eventosExcel = data.eventos;
-      }
-    ).catch(
-      error =>
-      {
-        console.log(error);
-      }
-    )
   }
 
-  descargarEventos()
-  {
-    var data = JSON.stringify(this.eventosExcel);
-    var head = ['ID_Evento','ID_Salon','Direccion','Nombre_Salon','Fecha_Inicio','Fecha_Fin','Ha_Finalizado','Esta_Reservado','Nombre_Cliente','Apellido_Cliene','NroDoc_Cliente']; 
-     if(data)
-       new Angular2Csv(data, 'Lista_Info_Eventos',  {headers: (head)});
-     else
-       console.log('no: ', data);
-  }
-
-  // descargarEventosPDF()
-  // {
-  // this.miServicioEventos.TraerDatosPDF().then(
-  //   data =>
-  //   {
-  //     //console.log(data);
-  //     this.downloadFile(data);
-  //   }
-  // ).catch(
-  //   error =>
-  //   {
-  //     console.info(error);
-  //   }
-  // );
-  // }
-
-  // downloadFile(data: Response){
-  //   var blob = new Blob([data], { type: 'text/pdf' });
-  //   var url= window.URL.createObjectURL(blob);
-  //   window.open(url);
-  // }
 
 
   FinalizarEvento(evento : any)

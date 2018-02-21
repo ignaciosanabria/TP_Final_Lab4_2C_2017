@@ -1,8 +1,12 @@
-<div class="fondo">
+<div class="container">
+  <div class="row">
     <div [hidden]="ocultarMesas">
+      <div *ngIf="mesas"><!-- Div para validacion de que se carguen las mesas -->
       <ng-container *ngFor="let mesa of mesas">
-        <app-mi-mesa [mesa]="mesa"></app-mi-mesa>
+        <!-- <app-mi-mesa [mesa]="mesa"></app-mi-mesa> -->
+        <button class="btnMesa" (click)="AbrirMesa(mesa.id_mesa)"><p>Mesa Nro: {{mesa.nro_mesa}}</p><img src="../../../assets/imagenes/mesas.jpg" class="img-circle" width="250px" height="250px"></button>
       </ng-container>
+      </div>
           <!-- <form>
             <h2>Bienvenido Cliente</h2>
             <strong>Ingresa los invitados que vos quieras!</strong>
@@ -20,4 +24,5 @@
             <app-mi-mesa *ngIf="mesaElegida != null" [mesa]="mesaElegida"></app-mi-mesa>
           </form> -->
         </div> 
+  </div>
         </div> 

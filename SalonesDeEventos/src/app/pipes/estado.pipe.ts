@@ -6,14 +6,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class EstadoPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    if(value == "1")
+    if(value == "si")
       {
         return "Finalizado";
       }
-     else
-      {
-        return "En Proceso";
-      }
+      else if(value = "cancelado")
+        {
+          return "Cancelado";
+        }
   }
 
 }

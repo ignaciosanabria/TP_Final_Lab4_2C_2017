@@ -26,7 +26,7 @@ export class DireccionesComponent implements OnInit {
   today = new Date();
   salonNombre : string = "";
   fechaEvento : string = "";
-  fechaActual : string = this.today.getDate() + '/' + (this.today.getMonth()+1)+ '/' + this.today.getFullYear();
+  fechaActual : string = this.today.getDate()+'/'+(this.today.getMonth()+1)+'/'+this.today.getFullYear();
 
   @ViewChild(GoogleMapDirective) gm: GoogleMapDirective;
 
@@ -49,7 +49,9 @@ export class DireccionesComponent implements OnInit {
     this.miSalonesServicio = SalonesServicio;
     this.miEventosServicio = eventosServicio;
     this.miAutServicio = servicioAut;
-    let token = this.miAutServicio.getToken();
+    //let token = this.miAutServicio.getToken();
+    let tokenString = localStorage.getItem("token");
+    let token = this.miAutServicio.getTokenParam(tokenString);
     this.ocultarDirections = true;
 
     // console.log(this.gm);

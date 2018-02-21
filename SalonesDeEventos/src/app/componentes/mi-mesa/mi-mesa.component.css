@@ -1,6 +1,7 @@
 .estilosSmartTable{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
+    background-color: white;
 }
 
 .modal {
@@ -33,11 +34,38 @@
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 30%;
+    width: 31%;
     border-radius: 42px;
     text-align: center;
-    }
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
 .cerrar{
     float: right !important;
 }
+
+/* :host /deep/ ng2-smart-table thead > tr > th { background-color: white; 
+ color: red;
+} */
+
+:host /deep/ ng2-smart-table thead { background-color: white; 
+ color: red;
+} 
+tr p{
+    text-align: center;
+    font-size: 18px;
+}
+
+h2{
+    color: white;
+}
+tr th{
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
+tr td{
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;   
+    font-size: 16px; 
+}
+
+

@@ -78,6 +78,11 @@ export class EventosApiService {
      return this.miHttpServicio.httpDelete("eventos/BorrarEvento/"+id_evento);
    }
 
+   public CancelarEventoApi(body : any)
+   {
+     return this.miHttpServicio.httpPut("eventos/CancelarEvento",body);
+   }
+
    public TraerDatosExcelApi()
    {
      return this.miHttpServicio.httpGetPromise("eventos/TraerDatosExcel").then(

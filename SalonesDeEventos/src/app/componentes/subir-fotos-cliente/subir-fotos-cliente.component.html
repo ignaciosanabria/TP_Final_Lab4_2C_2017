@@ -10,7 +10,7 @@
         
     <h3 class="first"></h3>
     <!-- <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"  -->
-      <p-fileUpload name="demo[]" url="http://localhost/API_Final/Registro/RegistrarClienteConFoto" method="POST" (onUpload)="onUpload($event)" 
+      <p-fileUpload name="demo[]" url="http://localhost/API_Final/Registro/RegistrarClienteConFoto/{{idCliente}}" method="POST" (onUpload)="onUpload($event)" 
             multiple="multiple" accept="image/*" maxFileSize="1000000">
         <ng-template pTemplate="content">
             <ul *ngIf="uploadedFiles.length">

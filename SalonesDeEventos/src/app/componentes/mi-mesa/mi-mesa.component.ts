@@ -1,12 +1,18 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, OnDestroy} from '@angular/core';
 import {InvitadosService} from '../../servicios/invitados/invitados.service';
 import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {DialogModule} from 'primeng/dialog';
+import {Validators, FormBuilder, FormControl, FormGroup, EmailValidator} from '@angular/forms';
+import {Message} from 'primeng/components/common/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 @Component({
   selector: 'app-mi-mesa',
   templateUrl: './mi-mesa.component.html',
   styleUrls: ['./mi-mesa.component.css']
 })
-export class MiMesaComponent implements OnInit {
+export class MiMesaComponent implements OnInit, OnDestroy {
   
   @Input() mesa : any;
 
@@ -24,69 +30,56 @@ export class MiMesaComponent implements OnInit {
 
   cantidadInvitados : number;
 
+  //Este es el cambio de ruteo de Ver Eventos -- Mi Mesa
+  idEvento: number;
+  private sub: any;
+  idMesa : number;
+  invitados : Array<any>;
+  display : boolean;
+  ocultarTabla : boolean;
+  msgs: Message[] = [];
   ocultarProceso : boolean;
+  invitadoModificar : any; //invitado a ser modificado en el caso que sea necesario
+  display2 : boolean; //2do Dialog de Modificar Form
+   //Este es el cambio por el formulario de Ingresar Nuevo Invitado
+  public registroNombre : FormControl = new FormControl("",[Validators.required, Validators.minLength(4)]);
+  public registroMail : FormControl = new FormControl("",[Validators.required, Validators.minLength(10), Validators.maxLength(80), Validators.email]); //(?=.*\d)(?=.*[a-zA-Z])
+  public registroApellido : FormControl = new FormControl("",[Validators.required, Validators.minLength(4)]);
+  public registroNroDoc : FormControl = new FormControl("",[Validators.required,Validators.minLength(7),Validators.maxLength(9)]);
+  public registroForm : FormGroup;
 
-  constructor(servicioInvitados : InvitadosService) {
+
+
+  constructor(servicioInvitados : InvitadosService, private route: ActivatedRoute,
+    private router: Router, private builder : FormBuilder,private confirmationService: ConfirmationService) {
     this.miServicioInvitados = servicioInvitados;
     this.ocultarProceso = true;
     // this.miServicioInvitados.TraerInvitadosPorMesa()
     this.ocultarInvitados = true;
+    this.ocultarTabla = false;
+    this.CreateForm();
   }
-
-  settings = { 
-    columns: {
-    nombre : {
-      title: 'NOMBRE',
-      filter: false
-    },
-    apellido: {
-     title : 'APELLIDO',
-     filter : false
-    },
-    nro_doc: {
-      title: "NRO_DOCUMENTO",
-      filter: false
-    },
-    mail :{
-      title: "MAIL",
-      filter : false
-    }
-  },
-      edit: {
-        confirmSave: true,
-      },
-      add: {
-        confirmCreate: true,
-      },
-      delete: {
-        confirmDelete: true,
-      }
-  };
+  public CreateForm() : void
+  {
+  this.registroForm = this.builder.group({
+    'registroMail' : this.registroMail,
+    'registroNombre' : this.registroNombre,
+    'registroApellido' : this.registroApellido,
+    'registroNroDoc' : this.registroNroDoc,
+  });
+  }
+//Cambios para la lista de invitados de mi cliente de la mesa donde pidio la mesa
 
   ngOnInit() {
-    // console.log(this.mesa);
-    // let mesa = JSON.parse(this.mesa);
-    // let json = {"id_mesa" : mesa.id_mesa};
-    let json = {"id_mesa" : this.mesa.id_mesa, "id_evento" : this.mesa.id_evento};
-    this.miServicioInvitados.TraerCantidadDeInvitadosPorMesa(JSON.stringify(json)).subscribe(
-      data =>{
-        console.log(data);
-        let respuesta3 = JSON.parse(data["_body"]);
-        this.cantidadInvitados = respuesta3.cantidad;
-        console.log(this.cantidadInvitados);
-      },
-      error =>{
-        console.log(error);
-      }
-    );
-  }
-
-  public verInvitados()
-  {
-    console.log(this.mesa);
-    // let mesa = JSON.parse(this.mesa);
-    let json = {"id_mesa" : this.mesa.id_mesa, "id_evento" : this.mesa.id_evento};
-    let json2 = {"id_evento" : this.mesa.id_evento};
+    this.sub = this.route.params.subscribe(params => {
+      this.idEvento = +params['idEvento']; // (+) converts string 'id' to a number
+      this.idMesa = + params['idMesa'];
+      // In a real app: dispatch action to load the details here.
+   });
+    console.log(this.idEvento);
+    console.log(this.idMesa);
+    let json = {"id_mesa" : this.idMesa, "id_evento" : this.idEvento};
+    let json2 = {"id_evento" : this.idEvento};
     this.miServicioInvitados.TraerCantidadDeInvitadosPorMesa(JSON.stringify(json)).subscribe(
       data =>{
         console.log(data);
@@ -103,7 +96,9 @@ export class MiMesaComponent implements OnInit {
       data=> {
         console.log(data);
         let respuesta = JSON.parse(data["_body"]);
-        this.source = respuesta;
+        //this.source = respuesta;
+        this.invitados = respuesta;
+        console.log(this.invitados);
       },
       error => {
         console.log(error);
@@ -121,80 +116,175 @@ export class MiMesaComponent implements OnInit {
         console.log(error);
       }
     );
-    this.ocultarInvitados = false;
   }
 
-  cerrarLista()
+  ngOnDestroy()
   {
-    this.ocultarInvitados = true;
+    this.sub.unsubscribe();
+  }  
+  
+
+  AgregarInvitado()
+  {
+    this.display = true;
   }
 
-  onCreateConfirm(event)
+  //Vuelve para la pagina de las mesas
+  VolverAtras()
   {
-    if(this.cantidadInvitados < 10)
+    this.router.navigate(['/PrincipalCliente/VerMesas',this.idEvento]);
+    
+  }
+
+
+  ConfirmarAgregarInvitado()
+  {
+    //let json = {};
+   this.ocultarProceso = false;
+   this.ocultarTabla = true;
+   let nombre = this.registroForm.get("registroNombre").value;
+   let apellido = this.registroForm.get("registroApellido").value;
+   let mail = this.registroForm.get("registroMail").value;
+   let nro_doc = this.registroForm.get("registroNroDoc").value;
+   let json = {"nombre":nombre,"apellido":apellido,"mail":mail,"nro_doc":nro_doc,"id_mesa":this.idMesa,"id_evento":this.idEvento};
+   //Inserto el invitado
+   this.miServicioInvitados.InsertarInvitado(JSON.stringify(json)).subscribe(
+    data =>{
+      console.log(data);
+      let respuesta = JSON.parse(data["_body"]);
+      if(respuesta.status == 200)
       {
-    if (window.confirm('Estas seguro que queres agregar el invitado?')) {
-      event.confirm.resolve(event.newData);
-      event.newData["id_mesa"] = this.mesa.id_mesa;//Insercion de la mesa
-      event.newData["id_evento"] = this.mesa.id_evento;//Insercion de evento 
-      //console.log(event.newData);
-      this.miServicioInvitados.InsertarInvitado(JSON.stringify(event.newData)).subscribe(
-        data =>{
-          console.log(data);
-          let respuesta = JSON.parse(data["_body"]);
-          if(respuesta.status == 200)
-          {
-            alert("Usted ha ingresado correctamente a la mesa!!");
-            this.cantidadInvitados += 1; //Incremento en 1 la cantidad de invitados!!
-
-          }
-        },
-        error =>
+        this.msgs = [];
+        this.msgs.push({severity:'info', summary:'Exito', detail: 'Se proceso tu invitado!'});
+      }
+      else if(respuesta.status == 400)
+      {
+        this.msgs = [];
+        this.msgs.push({severity:'info', summary:'Fracaso', detail: 'No pudimos procesar tu invitado!'});
+      }
+      else if(respuesta.status == 401)
         {
-          console.log(error);
+          this.msgs = [];
+          this.msgs.push({severity:'info', summary:'Fracaso', detail: 'Ocurrio un error interno y no pudimos asignar tu invitado a tu evento!'});
         }
-      );
-      }  else {
-        event.confirm.reject();
-       }
-     }
-     else
-      {
-        alert("Ya superaste la cantidad maxima de invitados por mesa!!");
-      }
-  }
-
-  onDeleteConfirm(event : any)
-  {
-    if (window.confirm('Estas seguro que queres borrar el invitado?')) {
-      event.confirm.resolve();
-      console.log(event);
-      let json = {"id_invitado":event.data.id_invitado, "id_evento": this.mesa.id_evento, "id_mesa":this.mesa.id_mesa};
-      this.miServicioInvitados.BorrarInvitadoEvento(json.id_invitado,json.id_evento,json.id_mesa).subscribe(
-        data =>{
-          console.log(data);
-          let respuesta = JSON.parse(data["_body"]);
-          if(respuesta.status == 200)
-            {
-              //alert("Usted ha borrado correctamente a un invitado de la mesa!!");
-              this.ocultarProceso = false;
-
-            }
-            else
-              {
-                alert("Ocurrio algo inesperado!!");
-              }
-        },
-        error =>{
-          console.log(error);
-        }
-      )
+    },
+    error =>
+    {
+      console.log(error);
     }
-    else
-      {
-        event.confirm.reject();
+  );
+  this.ocultarProceso = true;
+  this.display = false;
+  this.msgs = [];
+  //this.msgs = [];
+  //Actualizo la tabla 
+    var modelo=this;
+    setTimeout(function(){ 
+    let json3 = {"id_mesa":modelo.idMesa, "id_evento" : modelo.idEvento};
+      modelo.miServicioInvitados.TraerInvitadosPorEventoMesa(JSON.stringify(json3)).subscribe(
+      data=> {
+        console.log(data);
+        let respuesta = JSON.parse(data["_body"]);
+        modelo.invitados = respuesta;
+        console.log(this.invitados);
+        modelo.ocultarTabla = false;
+      },
+      error => {
+        console.log(error);
       }
+    );
+     }, 4000);
   }
+ 
+
+  BorrarInvitado(id_invitado : any)
+  {
+    console.log(id_invitado);
+   this.confirmationService.confirm({
+    message: 'Desea borrar este invitado?',
+    header: 'Borrar',
+    icon: 'fa fa-question-circle',
+    accept: () => {
+      this.ocultarTabla = true;
+       let json = {"id_invitado":id_invitado, "id_evento": this.idEvento, "id_mesa":this.idMesa};
+   this.miServicioInvitados.BorrarInvitadoEvento(json.id_invitado,json.id_evento,json.id_mesa).subscribe(
+     data =>{
+       console.log(data);
+       let respuesta = JSON.parse(data["_body"]);
+       if(respuesta.status == 200)
+         {
+           //alert("Usted ha borrado correctamente a un invitado de la mesa!!");
+         }
+         else
+           {
+             alert("Ocurrio algo inesperado!!");
+           }
+     },
+     error =>{
+       console.log(error);
+     }
+   );
+   var modelo=this;
+   setTimeout(function(){ 
+   let json3 = {"id_mesa":modelo.idMesa, "id_evento" : modelo.idEvento};
+     modelo.miServicioInvitados.TraerInvitadosPorEventoMesa(JSON.stringify(json3)).subscribe(
+     data=> {
+       console.log(data);
+       let respuesta = JSON.parse(data["_body"]);
+       modelo.invitados = respuesta;
+       console.log(modelo.invitados);
+       modelo.ocultarTabla = false;
+     },
+     error => {
+       console.log(error);
+     }
+   );
+    }, 4000);
+
+    },
+    reject: () => {
+    }
+    });
+  }
+
+  ModificarInvitado(invitado : any)
+  {
+    console.log(invitado);
+    this.invitadoModificar = invitado;
+    this.display2 = true;
+  // this.miServicioInvitados.ModificarInvitado(JSON.stringify(event.newData)).subscribe(
+  //   data =>
+  //   {
+  //     let respuesta = JSON.parse(data["_body"]);
+  //     if(respuesta.status == 200)
+  //       {
+  //         alert("Modificaste los datos de un usuario!");
+  //       }
+  //       else
+  //         {
+  //           alert("ocurrio algo inesperado!");
+  //         }
+  //   },
+  //   error =>
+  //   {
+  //   console.log(error);
+  //   }
+  // );
+  }
+  ConfirmarModificarInvitado()
+  {
+    console.log(this.invitadoModificar);
+  }
+
+
+
+
+
+
+
+
+
+//Todo lo que esta abajo es parte de la interfaz que era un app-mi-boton 
 
   onEditConfirm(event : any)
   {

@@ -18,6 +18,7 @@ export class MenuEncargadoComponent implements OnInit {
   fechaMañana = this.currentDate.getDate() + '/' + (this.currentDate.getMonth()+1) + '/' + this.currentDate.getFullYear();
   eventoHoy : any;
   display : boolean;
+  id_empleado : number;
   constructor(private route: ActivatedRoute,
     private router: Router, servicioAut : AutService, miServicioEventos : EventosService) 
     { 
@@ -33,7 +34,8 @@ export class MenuEncargadoComponent implements OnInit {
      console.log("este es el token que viene bien: ");
      console.log(tokenBien);
      this.fechaMañana = this.fechaActual;
-     let json = {"id_salon": token["data"].id_salon, "fecha_inicio": this.fechaActual, "fecha_fin": this.fechaMañana};
+     this.id_empleado = tokenBien["data"].id_empleado;
+     let json = {"id_salon": tokenBien["data"].id_salon, "fecha_inicio": this.fechaActual, "fecha_fin": this.fechaMañana};
      console.log(json);
      this.miServicioEventos.TraerEventoPorFechaActual(JSON.stringify(json)).subscribe(
        data =>{
@@ -44,7 +46,7 @@ export class MenuEncargadoComponent implements OnInit {
        error =>{
          console.log(error);
        }
-     )
+     );
   }
 
     public Ir(url : string)
@@ -69,6 +71,9 @@ export class MenuEncargadoComponent implements OnInit {
         break;
         case 'VerEstadisticas':
         this.router.navigate(['/PrincipalEncargado/VerEstadisticas']);
+        break;
+        case 'MisDatosEmpleado':
+        this.router.navigate(['/PrincipalEncargado/MisDatosEmpleado',this.id_empleado]);
         break;
       }
     }

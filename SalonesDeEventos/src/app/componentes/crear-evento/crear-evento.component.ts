@@ -41,7 +41,7 @@ public registroCaptcha : FormControl = new FormControl("",[Validators.required])
 
   fecha : any;
   fechaMañana : any;
-  fechaPosterior : Date;
+  fechaActual : Date;
   fecha_fin : any;
 
   //Fecha - Angular Prime Ng
@@ -92,24 +92,31 @@ public registroCaptcha : FormControl = new FormControl("",[Validators.required])
   invalidDate.setDate(today.getDate() - 1);
   this.invalidDates = [today,invalidDate];
   }
-
+  
+  //Calendario Ng Prime
   onSelect(event)
-  {
+  { let mesString = "";
     let dte = new Date(event);
-    let formato = dte.getDate()+"/"+(dte.getMonth()+1)+"/"+dte.getFullYear();
-    console.log(formato);
+    let mes = (dte.getMonth()+1);
+    if(mes < 10)
+    {
+      mesString = (String("00" + mes).slice(-2)); //Para que el mes sea en formato MM/DD/YYYY
+    }
+    else
+    {
+      mesString = mes.toString();
+    }
+    let formato = dte.getDate()+"/"+mesString+"/"+dte.getFullYear()+" "+"21:00";
+    // console.log(formato);
     let json = {"fecha":formato}
     this.fecha = formato;
-    let FecFormato = new Date(dte.getTime() + 24 * 60 * 60 * 1000);
-    this.fecha_fin = FecFormato.getDate()+"/"+(FecFormato.getMonth()+1)+"/"+FecFormato.getFullYear();
-    console.log(this.fecha_fin);
+
     this.ocultarSpinner = false;
     var modelo = this;
     setTimeout(function(){
       modelo.ocultarSpinner = true;
       modelo.miServicioSalones.TraerSalonesDisponibles(JSON.stringify(json)).subscribe(
         data => {
-          // modelo.fecha = event.formatted;
           modelo.ocultarSalones = false;
           console.log(data);
           let respuesta = JSON.parse(data["_body"]);
@@ -119,60 +126,9 @@ public registroCaptcha : FormControl = new FormControl("",[Validators.required])
           console.log(error);
         });
      }, 5000);
-    // this.miServicioSalones.TraerSalonesDisponibles(JSON.stringify(json)).subscribe(
-    //   data => {
-    //     this.fecha = event.formatted;
-    //     this.ocultarSalones = false;
-    //     console.log(data);
-    //     let respuesta = JSON.parse(data["_body"]);
-    //     this.salonesDisponibles = respuesta;
-    //   },
-    //   error =>{
-    //     console.log(error);
-    //   }
-    // );
   }
-
-  onDateChanged(event: IMyDateModel) {
-    // event properties are: event.date, event.jsdate, event.formatted and event.epoc
-    this.ocultarSalones = true;
-    let json =  {"fecha":event.formatted};
-    if(event.formatted == "")
-      {
-        console.log("esta vacio");
-      }
-    else
-      {
-        //Implementacion del Servicio
-        console.log(event);
-        this.fecha = event.formatted;
-        this.fechaPosterior = new Date(event.jsdate);
-        let number = this.fechaPosterior.getTime() + 24 * 60 * 60 * 1000;
-        this.fechaMañana = new Date(number);
-        console.log(this.fechaPosterior.getTime());
-        console.log(this.fechaPosterior.getTime() + 24 * 60 * 60 * 1000);
-        console.log(this.fechaMañana.getDate()+"/"+(this.fechaMañana.getMonth()+1)+this.fechaMañana.getYear());
-        this.fecha_fin = this.fechaMañana.getDate()+"/"+(this.fechaMañana.getMonth()+1)+"/"+this.fechaMañana.getFullYear();
-        this.miServicioSalones.TraerSalonesDisponibles(JSON.stringify(json)).subscribe(
-          data => {
-            this.fecha = event.formatted;
-            this.ocultarSalones = false;
-            console.log(data);
-            let respuesta = JSON.parse(data["_body"]);
-            this.salonesDisponibles = respuesta;
-          },
-          error =>{
-            console.log(error);
-          }
-        );
-      }
-}
-
-  public ver()
-  {
-    console.log(this.model);
-  }
-
+  
+  //Del otro calendario
   public Elegir(salon : any)
   {
     let token = this.miAutServicio.getToken();
@@ -219,33 +175,13 @@ ConfirmarEleccion()
   console.log("aqui iria el creador de eventos - api");
   console.log(this.salonElegido);
   console.log(this.fecha);
-  console.log(this.fecha_fin);
+  //console.log(this.fecha_fin);
   let tokenString = localStorage.getItem("token");
   let token = this.miAutServicio.getTokenParam(tokenString);
   let id_cliente = token["data"].id_cliente;
-  let json = {"id_cliente" : id_cliente, "fecha_inicio": this.fecha, "id_salon":this.salonElegido.id_salon, "fecha_fin": this.fecha_fin};
+  let json = {"id_cliente" : id_cliente, "fecha_inicio": this.fecha, "id_salon":this.salonElegido.id_salon};
   console.log(json);
   this.ocultarProceso = false;
-  // this.miEventosServicio.InsertarEvento(JSON.stringify(json)).subscribe(
-  //   data=>
-  //   {
-  //     let respuesta = JSON.parse(data["_body"]);
-  //     console.log(respuesta);
-  //     if(respuesta.status == 200)
-  //       {
-  //         alert("Usted ha ingresado un evento correctamente!");
-  //         this.router.navigate(['/PrincipalCliente/EventosCliente']);
-  //       }
-  //      else
-  //       {
-  //         alert("Ocurrio algo inesperado!");
-  //       }
-  //   },
-  //   error =>
-  //   {
-  //     console.log(error);
-  //   }
-  // );
 
   var modelo = this;
   setTimeout(function(){

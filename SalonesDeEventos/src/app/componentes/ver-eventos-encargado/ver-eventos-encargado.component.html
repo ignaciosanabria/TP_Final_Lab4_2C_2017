@@ -1,43 +1,42 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-2 col-sm-2"></div>
-        <div class="col-lg-8 col-sm-8">
-  <h1>Registro de todos los eventos del Salon</h1>
-<table class="table">
+         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Eventos</h3>
+                        </div>
+                        <table class="table" id="dev-table">
   <thead>
       <tr>
           <th>Salon</th>
           <th>Direccion</th>
-          <th>Nombre Cliente</th>
-          <th>Apellido Cliente</th>
+          <th>Nombre Completo Cliente</th>
           <th>Nro Doc Cliente</th>
           <th>Fecha</th>
           <th>Estado</th>
-          <th>Reservado</th>
+          <th>Acciones</th>
+          <th>Borrar</th>
       </tr>
   </thead>
   <tbody>
       <tr *ngFor="let evento of eventos">
        <td>{{evento.salon_nombre}}</td>
        <td>{{evento.salon_direccion}}</td>
-       <td>{{evento.nombre_cliente}}</td>
-       <td>{{evento.apellido_cliente}}</td>
+       <td>{{evento.nombre_cliente}} , {{evento.apellido_cliente}}</td>
        <td>{{evento.documento_cliente}}</td>
        <td>{{evento.fecha_inicio}}</td>
-       <td>{{evento.haFinalizado | estado}}</td>
-       <td>{{evento.estaReservado | reservado}}</td>
-       <td><button *ngIf="evento.haFinalizado == 1 && evento.estaReservado == 0" class="btn btn-danger" (click)="BorrarEvento(evento)"><i class="fa fa-trash-o" aria-hidden="true"></i>Borrar Evento</button></td>
-       <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td> -->
-       <!-- Falta Boton de Finalizar Evento y Borrar Evento -->
-       <td><button *ngIf="evento.fecha_fin == fechaActual"(click)="FinalizarEvento(evento)" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Finalizar Evento</button></td>
+       <td *ngIf="evento.haFinalizado == 'si' || evento.haFinalizado == 'cancelado'">{{evento.haFinalizado | estado}}</td>
+       <td *ngIf="evento.estaReservado == 'si'">{{evento.estaReservado | reservado}}</td>
+       <!-- Revisar lo de Finalizar y Cancelar -->
+       <!-- <td><button *ngIf="evento.estaReservado == 'si' && evento.fecha_fin <= fechaActual"(click)="FinalizarEvento(evento)" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i>Finalizar Evento</button></td> -->
+       <td><button class="btn btn-danger" (click)="BorrarEvento(evento)"><i class="fa fa-trash-o" aria-hidden="true"></i>Borrar Evento</button></td>
+      </tr>
   </tbody>
 </table>
-<button class="btn btn-success" (click)="descargarEventos()"><i class="fa fa-file-excel" aria-hidden="true"></i> Descargar Excel</button>
-<!-- <form action="http://localhost/API_Final/clases/descargarPDF.php" method="POST">
-<button class="btn btn-danger" (click)="descargarEventosPDF()"><i class="fa fa-file-pdf"></i> Descargar PDF</button>
-</form> -->
+</div>
+<br><br>
+<a class="btn btn-success" href="http://localhost/API_Final/clases/descargarCsvEventos.php" target="_blank"><i class="fa fa-file-excel"></i> Descargar Excel</a>
 <a class="btn btn-danger" href="http://localhost/API_Final/clases/descargarPDF.php" target="_blank"><i class="fa fa-file-pdf"></i> Descargar PDF</a>
-<!-- Cierre Form -->
         </div>
     </div>
 </div>

@@ -10,6 +10,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
             <p-dialog header="Advertencia" [(visible)]="display" modal="modal" width="400" [responsive]="true">
+                <div style="font-size:3em; color:Tomato; text-align: center;">
+                    <i class="fa fa-times"></i>
+                  </div>
                 <p>Lamentablemente hoy no se encuentra disponible ningun evento.</p>
                     <p-footer>
                         <button type="button" pButton icon="fa-check" (click)="display=false" label="Ok"></button>
@@ -21,6 +24,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <!-- <li><a routerLink="/QuienSoy"><span class="glyphicon glyphicon-user"></span> Mis Datos</a></li> -->
+              <li><a (click)="Ir('MisDatosEmpleado')"><i class="fa fa-user"></i> Mis Datos</a></li>
               <li><a (click)="CerrarSesion()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
             </ul>
     </div>

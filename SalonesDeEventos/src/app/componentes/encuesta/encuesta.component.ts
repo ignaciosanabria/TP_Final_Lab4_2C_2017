@@ -82,4 +82,16 @@ export class EncuestaComponent implements OnInit {
     });
   }
 
+  VolverAtras()
+  {
+    console.log("Falta hacer este metodo");
+  }
+
+  EnviarRespuestas()
+  {
+    console.log("Falta hacer este metodo");
+  }
+
+
+
 }

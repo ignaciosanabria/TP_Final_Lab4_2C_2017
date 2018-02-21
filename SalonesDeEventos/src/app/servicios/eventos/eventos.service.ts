@@ -79,6 +79,11 @@ export class EventosService {
    {
      return this.miServicioEventos.BorrarEventoApi(id_evento);
    }
+
+   public CancelarEvento(body : any)
+   {
+     return this.miServicioEventos.CancelarEventoApi(body);
+   }
    
    public TraerDatosExcel()
    {

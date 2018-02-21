@@ -19,7 +19,7 @@ export class BotonMesasComponent implements OnInit, OnDestroy {
   idEvento: number;
   private sub: any;
 
-  constructor(servicioMesas : MesasService, private route: ActivatedRoute) {
+  constructor(servicioMesas : MesasService, private route: ActivatedRoute, private router: Router) {
     this.miMesasServicio = servicioMesas;
     this.ocultarMesas = true;
    }
@@ -47,6 +47,12 @@ export class BotonMesasComponent implements OnInit, OnDestroy {
         console.log(error);
       }
     );
+  }
+
+  AbrirMesa(id_mesa : any)
+  {
+    console.log(id_mesa);
+    this.router.navigate(['/PrincipalCliente/VerMesas',this.idEvento,'MiMesa',id_mesa]);
   }
 
   ngOnDestroy()

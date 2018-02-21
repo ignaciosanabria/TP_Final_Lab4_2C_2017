@@ -47,7 +47,7 @@ const MiRuteo = [
   {path: 'RegistroCliente', component : RegistroClienteComponent},
   {path: 'Error', component : ErrorComponent},
   //Falta modificar Api -- Para recibir y que guarde imagenes
-  {path: 'SubirFotosCliente', component : SubirFotosClienteComponent},
+  {path: 'SubirFotosCliente/:idCliente', component : SubirFotosClienteComponent},
   {path: 'EncuestaCliente', component: EncuestaComponent},
   //Estos path necesitan auth - JWT
   {path: 'PrincipalCliente', component : PrincipalClienteComponent,
@@ -59,7 +59,9 @@ const MiRuteo = [
     {path : 'EventosCliente', component : EventosClientesComponent},
     {path : 'VerMesas/:idEvento', component : BotonMesasComponent},
     {path: 'MisDatosCliente/:idCliente', component: MisDatosClienteComponent},
-    {path: 'EditarDatosCliente/:idCliente', component: EditarDatosClienteComponent}
+    {path: 'EditarDatosCliente/:idCliente', component: EditarDatosClienteComponent},
+    //Este es nuevo --- Link a Mesas AppMiMesa
+    {path: 'VerMesas/:idEvento/MiMesa/:idMesa', component: MiMesaComponent}
   ]
   },
   {
@@ -77,7 +79,8 @@ const MiRuteo = [
       {path : '', component : InicialRecepcionistaComponent},
       {path : 'VerEventos', component : VerEventosRecepcionistaComponent},
       {path : 'VerClientes', component : VerClientesComponent},
-      {path : 'VerEventoHoyEmpleado/:idEvento', component: VerEventoHoyEmpleadoComponent}
+      {path : 'VerEventoHoyEmpleado/:idEvento', component: VerEventoHoyEmpleadoComponent},
+      {path: 'MisDatosEmpleado/:idEmpleado', component: MisDatosEmpleadoComponent}
     ]
   },
   {path: 'PrincipalEncargado', component : PrincipalEncargadoComponent,
@@ -87,7 +90,8 @@ const MiRuteo = [
     {path : 'VerEventoHoyEmpleado/:idEvento', component: VerEventoHoyEmpleadoComponent},
     {path : 'VerEventos', component : VerEventosEncargadoComponent},
     {path : 'VerClientes', component : VerClientesComponent},
-    {path : 'VerEstadisticas', component : VerEstadisticasComponent}
+    {path : 'VerEstadisticas', component : VerEstadisticasComponent},
+    {path: 'MisDatosEmpleado/:idEmpleado', component: MisDatosEmpleadoComponent}
   ]
    },
    {path: 'PrincipalAdministrador', component : PrincipalAdministradorComponent,

@@ -102,7 +102,7 @@ let confirmPassword = control.get('registroRepetirClave').value; // to get value
     if(respuesta.status = 200)
       {
         // alert("Usted se ha registrado!");
-        this.router.navigate(['/SubirFotosCliente']);
+        this.router.navigate(['/SubirFotosCliente',respuesta.id]);
       }
       else
       {

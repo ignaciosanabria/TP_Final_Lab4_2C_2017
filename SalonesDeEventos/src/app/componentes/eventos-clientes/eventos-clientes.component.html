@@ -1,29 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 col-lg-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-offset-2">
-<!-- <table class="table table-bordered table-responsive-lg">
-    <thead>
-        <tr>
-            <th scope="col">Salon</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Reservado</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let evento of eventos">
-         <td>{{evento.nombre}}</td>
-         <td>{{evento.direccion}}</td>
-         <td>{{evento.fecha_inicio}}</td>
-         <td>{{evento.haFinalizado | estado}}</td>
-         <td>{{evento.estaReservado | reservado}}</td>
-         Tratar de Cambiar por Router Link
-         <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><button class="btn btn-warning" (click)="verMesas(evento)">Ver Mesas</button></td>
-         <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td>
-        </tr>
-    </tbody>
-</table> -->
 <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Eventos</h3>
@@ -35,7 +12,8 @@
                             <th scope="col">Direccion</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Estado</th>
-                            <th scope="col">Reservado</th>
+                            <th scope="col">Borrar</th>
+                            <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,15 +21,23 @@
                                 <td>{{evento.nombre}}</td>
                                 <td>{{evento.direccion}}</td>
                                 <td>{{evento.fecha_inicio}}</td>
-                                <td>{{evento.haFinalizado | estado}}</td>
-                                <td>{{evento.estaReservado | reservado}}</td>
+                                <td *ngIf="evento.haFinalizado == 'si' || evento.haFinalizado == 'cancelado'">{{evento.haFinalizado | estado}}</td>
+                                <td *ngIf="evento.estaReservado == 'si'">{{evento.estaReservado | reservado}}</td>
                                 <!-- Tratar de Cambiar por Router Link -->
-                                <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><button class="btn btn-warning" (click)="verMesas(evento)">Ver Mesas</button></td>
+                                <td><button class="btn btn-danger" (click)="BorrarEvento(evento.id_evento)">Borrar</button></td>
+                                <td *ngIf="evento.haFinalizado == 'no' && evento.estaReservado == 'si'"><button class="btn btn-primary" (click)="verMesas(evento)">Ver Mesas</button><br><br>
+                                <button class="btn btn-warning" (click)="CancelarEvento(evento.id_evento)">Cancelar</button>
+                                </td>
                                 <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td> -->
                         </tr>
                 </tbody>
             </table>
+            <!-- <p-confirmDialog></p-confirmDialog> -->
 </div>
+        </div>
+        <div class="row">
+        <p-confirmDialog></p-confirmDialog>
+        <!-- <p-growl [value]="msgs"></p-growl> -->
         </div>
     </div>
 

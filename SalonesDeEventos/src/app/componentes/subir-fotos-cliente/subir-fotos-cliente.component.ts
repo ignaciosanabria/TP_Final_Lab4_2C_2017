@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Message} from 'primeng/components/common/api';
 import {FileUploadModule} from 'primeng/fileupload';
 import {GalleriaModule} from 'primeng/galleria';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-subir-fotos-cliente',
   templateUrl: './subir-fotos-cliente.component.html',
@@ -14,14 +15,22 @@ export class SubirFotosClienteComponent implements OnInit {
   uploadedFiles: any[] = [];
   ocultarGaleria : boolean;
   ocultarSpinner : boolean;
+   
 
-  constructor() {
+  idCliente: number;
+  private sub: any;
+  constructor(private route: ActivatedRoute) {
     this.ocultarGaleria = true;
     this.ocultarSpinner = true;
    }
     
     ngOnInit() {
-
+      this.sub = this.route.params.subscribe(params => {
+        this.idCliente = +params['idCliente']; // (+) converts string 'id' to a number
+  
+        // In a real app: dispatch action to load the details here.
+     });
+     console.log(this.idCliente);
       this.images = [];
       this.images.push({source:'assets/imagenes/empleados/empleado1.jpg', alt:'Description for Image 1', title:'Title 1'});
       this.images.push({source:'assets/imagenes/empleados/empleado2.jpg', alt:'Description for Image 2', title:'Title 2'});

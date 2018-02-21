@@ -14,7 +14,7 @@ export class ErrorComponent implements OnInit {
     var modelo=this;
     setTimeout(function(){ 
       modelo.router.navigate(['/']);
-     }, 3000);
+     }, 4000);
   }
 
 }

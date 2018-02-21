@@ -8,7 +8,7 @@ import {HttpModule} from '@angular/http';
 import { MyDatePickerModule } from 'mydatepicker';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 // import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
-import { ChartModule } from 'angular2-highcharts';
+// import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import {RuteandoModule} from './ruteando/ruteando.module';
 import { RecaptchaModule } from 'ng-recaptcha';
@@ -30,7 +30,8 @@ import {ConfirmationService} from 'primeng/api';//Servicio de Confirm
 import {DropdownModule} from 'primeng/dropdown';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {SelectButtonModule} from 'primeng/selectbutton';
-
+import {ChartModule} from 'primeng/chart';
+// import {ChartModule} from 'primeng/chart';
 
 //Componentes
 import { AppComponent } from './app.component';
