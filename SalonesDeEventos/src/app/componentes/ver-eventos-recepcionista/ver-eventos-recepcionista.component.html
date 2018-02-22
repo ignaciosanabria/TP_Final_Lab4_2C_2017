@@ -12,24 +12,25 @@
           <th>Salon</th>
           <th>Direccion</th>
           <th>Fecha</th>
+          <th>Nombre Cliente</th>
           <th>Estado</th>
-          <th>Reservado</th>
       </tr>
   </thead>
   <tbody>
       <tr *ngFor="let evento of eventos">
-       <td>{{evento.nombre}}</td>
-       <td>{{evento.direccion}}</td>
+       <td>{{evento.salon_nombre}}</td>
+       <td>{{evento.salon_direccion}}</td>
        <td>{{evento.fecha_inicio}}</td>
-       <td>{{evento.haFinalizado | estado}}</td>
-       <td>{{evento.estaReservado | reservado}}</td>
-       <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesas [evento]="evento">Mesas</app-boton-mesas></td> -->
-       <!-- <td *ngIf="evento.haFinalizado == 0 && evento.estaReservado == 1"><app-boton-mesa-recepcionista [evento]="evento"></app-boton-mesa-recepcionista></td> -->
+       <td>{{evento.nombre}}, {{evento.apellido}}</td>
+       <td *ngIf="evento.haFinalizado == 'si' || evento.haFinalizado == 'cancelado'">{{evento.haFinalizado | estado}}</td>
+       <td *ngIf="evento.estaReservado == 'si'">{{evento.estaReservado | reservado}}</td>
     </tr>
   </tbody>
 </table>
   </div>
-<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
 </div><!-- Cierre Col -->
+   <div class="row row2">
+       
+   </div>
 </div>
 </div>

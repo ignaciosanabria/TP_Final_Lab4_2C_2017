@@ -75,9 +75,9 @@ export class EventosService {
      return this.miServicioEventos.FinalizarEventoApi(body);
    }
 
-   public BorrarEvento(id_evento : any)
+   public BorrarEvento(id_evento : any, body : any)
    {
-     return this.miServicioEventos.BorrarEventoApi(id_evento);
+     return this.miServicioEventos.BorrarEventoApi(id_evento,body);
    }
 
    public CancelarEvento(body : any)

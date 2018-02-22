@@ -1,6 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-sm-8 col-md-8 col-xs-8 col-lg-offset-2 col-sm-offset-2 col-md-offset-2 col-xs-offset-2">
+        <h1 style="color:white" [hidden]="!ocultarEventos">Espera mientras actualizamos tus eventos...</h1>
+        <div [hidden]="ocultarEventos">
 <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Eventos</h3>
@@ -34,6 +36,7 @@
             </table>
             <!-- <p-confirmDialog></p-confirmDialog> -->
 </div>
+        </div><!-- Cierre Ocultar Evento -->
         </div>
         <div class="row">
         <p-confirmDialog></p-confirmDialog>

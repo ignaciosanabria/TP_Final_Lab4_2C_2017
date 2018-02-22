@@ -39,9 +39,10 @@ export class ApiInvitadosService {
    }
 
 
-   public BorrarInvitadoEventoApi(id_invitado : any, id_evento : any, id_mesa : any)
+   public BorrarInvitadoEventoApi(id_invitado : any, id_evento : any, id_mesa : any, body : any)
    {
-     return this.miHttpServicio.httpDelete("invitados/BorrarInvitadoEvento/"+id_invitado+"/"+id_evento+"/"+id_mesa);
+     //return this.miHttpServicio.httpDelete("invitados/BorrarInvitadoEvento/"+id_invitado+"/"+id_evento+"/"+id_mesa);
+     return this.miHttpServicio.httpPost("invitados/BorrarInvitadoEvento/"+id_invitado+"/"+id_evento+"/"+id_mesa,body);
    }
 
    public InsertarInvitadoApi(body : any)
@@ -51,7 +52,7 @@ export class ApiInvitadosService {
 
    public ModificarInvitadoApi(body : any)
    {
-     return this.miHttpServicio.httpPut("invitados/ModificarInvitado",body);
+     return this.miHttpServicio.httpPost("invitados/ModificarInvitado",body);
    }
 
    public TraerCantidadDeInvitadosPorMesaApi(body : any)
@@ -71,7 +72,7 @@ export class ApiInvitadosService {
 
    public CambiarConfirmacionInvitadoApi(body : any)
    {
-     return this.miHttpServicio.httpPut("invitados/CambiarConfirmacionInvitado",body);
+     return this.miHttpServicio.httpPost("invitados/CambiarConfirmacionInvitado",body);
    }
 
    public TraerCantidadDeInvitadosTraidosPorClienteApi()

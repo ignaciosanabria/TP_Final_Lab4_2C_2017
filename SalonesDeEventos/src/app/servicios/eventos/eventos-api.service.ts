@@ -70,17 +70,18 @@ export class EventosApiService {
    }
    public FinalizarEventoApi(body : any)
    {
-     return this.miHttpServicio.httpPut("eventos/FinalizarEvento",body);
+     return this.miHttpServicio.httpPost("eventos/FinalizarEvento",body);
    }
-
-   public BorrarEventoApi(id_evento : any)
+   //Fijarse si anda este metodo dsp
+   public BorrarEventoApi(id_evento : any,body : any)
    {
-     return this.miHttpServicio.httpDelete("eventos/BorrarEvento/"+id_evento);
+     //return this.miHttpServicio.httpDelete("eventos/BorrarEvento/"+id_evento);
+     return this.miHttpServicio.httpPost("eventos/BorrarEvento/"+id_evento,body);
    }
-
+//Cambiar por Put
    public CancelarEventoApi(body : any)
    {
-     return this.miHttpServicio.httpPut("eventos/CancelarEvento",body);
+     return this.miHttpServicio.httpPost("eventos/CancelarEvento",body);
    }
 
    public TraerDatosExcelApi()

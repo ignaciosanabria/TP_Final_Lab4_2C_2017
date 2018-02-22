@@ -207,7 +207,8 @@ export class MiMesaComponent implements OnInit, OnDestroy {
     accept: () => {
       this.ocultarTabla = true;
        let json = {"id_invitado":id_invitado, "id_evento": this.idEvento, "id_mesa":this.idMesa};
-   this.miServicioInvitados.BorrarInvitadoEvento(json.id_invitado,json.id_evento,json.id_mesa).subscribe(
+       let json5 = {};
+   this.miServicioInvitados.BorrarInvitadoEvento(json.id_invitado,json.id_evento,json.id_mesa,json5).subscribe(
      data =>{
        console.log(data);
        let respuesta = JSON.parse(data["_body"]);

@@ -16,10 +16,13 @@
           <ul class="nav navbar-nav navbar-right">
               <li><a (click)="Ir('MisDatosCliente')"><i class="fa fa-user"></i> Mis Datos</a></li>
               <li><a (click)="CerrarSesion()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
-              <p-confirmDialog key="dialog"></p-confirmDialog>
+              <!-- <p-confirmDialog key="dialog"></p-confirmDialog> -->
             </ul>
     </div>
   </div>
 </nav>
+<div class="row">
+    <p-confirmDialog key="dialog"></p-confirmDialog>
+</div>
 <!-- Salir Sesion Dialog -->
 <!-- <p-tabMenu [model]="items" [style]="{border:'1px solid black; background-color: red;'}"></p-tabMenu> -->

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {EventosService} from '../../servicios/eventos/eventos.service';
 import {InvitadosService} from '../../servicios/invitados/invitados.service';
 import {ChartModule} from 'primeng/chart';
+import {EncuestasService} from '../../servicios/encuestas/encuestas.service';
 @Component({
   selector: 'app-ver-estadisticas',
   templateUrl: './ver-estadisticas.component.html',
@@ -20,9 +21,23 @@ export class VerEstadisticasComponent implements OnInit {
   encuestaElegida : any;
   arrayClientes : String[];
   arrayCantidad : Number[];
-      constructor(servicioEventos : EventosService, servicioInvitados : InvitadosService) {
+  miServicioEncuesta : EncuestasService;
+  data2 : any;
+  data3 : any;
+  data4 : any;
+      constructor(servicioEventos : EventosService, servicioInvitados : InvitadosService,servicioEncuestas : EncuestasService) {
+        this.miServicioEncuesta = servicioEncuestas;
         this.miServicioEventos = servicioEventos;
         this.miServicioInvitados = servicioInvitados;
+        this.miServicioEncuesta.seleccionarCantidadRespuesta1().then(
+          data =>{
+            console.log(data);
+          }
+        ).catch(
+          error =>{
+            console.log(error);
+          }
+        );
         this.miServicioEventos.TraerCantidadEventosPorCliente().then(
               data => 
               {

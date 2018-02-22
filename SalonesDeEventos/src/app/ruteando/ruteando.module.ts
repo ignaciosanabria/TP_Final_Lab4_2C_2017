@@ -40,6 +40,7 @@ import { MisDatosClienteComponent } from '../componentes/mis-datos-cliente/mis-d
 import { SubirFotosClienteComponent } from '../componentes/subir-fotos-cliente/subir-fotos-cliente.component';
 import { EditarDatosClienteComponent } from '../componentes/editar-datos-cliente/editar-datos-cliente.component';
 import { EditarDatosEmpleadoComponent } from '../componentes/editar-datos-empleado/editar-datos-empleado.component';
+import { MiMesaEmpleadoComponent } from '../componentes/mi-mesa-empleado/mi-mesa-empleado.component';
 
 const MiRuteo = [
   {path: '' , component: LoginComponent},
@@ -72,6 +73,8 @@ const MiRuteo = [
       // {path : 'Direcciones', component : DireccionesComponent}
     ]
   },
+
+  /// EMPLEADOS -------------------------------------------
   {
     path: 'PrincipalRecepcionista', component : PrincipalRecepcionistaComponent,
     canActivate: [VerificarJWTService],
@@ -80,7 +83,8 @@ const MiRuteo = [
       {path : 'VerEventos', component : VerEventosRecepcionistaComponent},
       {path : 'VerClientes', component : VerClientesComponent},
       {path : 'VerEventoHoyEmpleado/:idEvento', component: VerEventoHoyEmpleadoComponent},
-      {path: 'MisDatosEmpleado/:idEmpleado', component: MisDatosEmpleadoComponent}
+      {path: 'MisDatosEmpleado/:idEmpleado', component: MisDatosEmpleadoComponent},
+      {path: 'VerEventoHoyEmpleado/:idEvento/MiMesaEmpleado/:idMesa', component: MiMesaEmpleadoComponent}
     ]
   },
   {path: 'PrincipalEncargado', component : PrincipalEncargadoComponent,
@@ -91,7 +95,8 @@ const MiRuteo = [
     {path : 'VerEventos', component : VerEventosEncargadoComponent},
     {path : 'VerClientes', component : VerClientesComponent},
     {path : 'VerEstadisticas', component : VerEstadisticasComponent},
-    {path: 'MisDatosEmpleado/:idEmpleado', component: MisDatosEmpleadoComponent}
+    {path: 'MisDatosEmpleado/:idEmpleado', component: MisDatosEmpleadoComponent},
+    {path: 'VerEventoHoyEmpleado/:idEvento/MiMesaEmpleado/:idMesa', component: MiMesaEmpleadoComponent}
   ]
    },
    {path: 'PrincipalAdministrador', component : PrincipalAdministradorComponent,

@@ -1,4 +1,5 @@
-<button class="btnMesa"(click)="verInvitados()"><h5>Mesa Nro:{{mesa.nro_mesa}}</h5><img src="../../../assets/imagenes/mesas.jpg" class="img-circle" width="250px" height="250px"></button>
+<!-- Version Vieja y Horrible -->
+<!-- <button class="btnMesa"(click)="verInvitados()"><h5>Mesa Nro:{{mesa.nro_mesa}}</h5><img src="../../../assets/imagenes/mesas.jpg" class="img-circle" width="250px" height="250px"></button>
 <div [hidden]="ocultarInvitados">
     <div class="modal">
         <div class="modal-content">
@@ -7,8 +8,8 @@
             <br>
             <br>
             <p>Si necesitas cambiar informacion sobre la mesa esta, no dudes en entrar al link previamente marcado abajo</p>
-            <a (click)="verLista()">Si deseas modificar algo sobre los invitados de esta mesa, hace click aquí</a>
-
+            <a (click)="verLista()">Si deseas modificar algo sobre los invitados de esta mesa, hace click aquí</a> -->
+<!-- 
 <div [hidden]="!ocultarProceso">
     <div [hidden]="ocultarLista">
         <button [hidden]="ocultarLista" (click)="cerrarListaModificacion()">Cerrar Lista Invitado</button>
@@ -18,9 +19,9 @@
     (editConfirm)="onEditConfirm($event)"
 [settings]="settings" [source]="source">
 </ng2-smart-table>
-<br><br>
+<br><br> -->
 <!-- Revisar Logica para agregar al Smart Table -->
-<h2><p [hidden]="ocultarProceso" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos el ingreso...</p></h2>
+<!-- <h2><p [hidden]="ocultarProceso" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos el ingreso...</p></h2>
 <div [hidden]="!ocultarProceso">
 <h5>Si hay que agregar un invitado que ya habia venido anteriormente a nuestros eventos!</h5>
 <p>Seleccionalo de aqui</p>
@@ -29,10 +30,12 @@
         <option *ngFor="let invitado of invitadosRegistrados" [value]="invitado | json">
         {{invitado.nombre}} , {{invitado.apellido}} - DNI: {{invitado.nro_doc}}
         </option>
-    </select>
-</div><!-- cierre div select -->
-</div><!-- cierre div listaModificar -->
-<h2><p [hidden]="ocultarSpinnerConfirmacion" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos la confirmacion...</p></h2>
+    </select> -->
+<!-- </div> -->
+><!-- cierre div select -->
+<!-- </div> -->
+<!-- cierre div listaModificar -->
+<!-- <h2><p [hidden]="ocultarSpinnerConfirmacion" class="spinner"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos la confirmacion...</p></h2>
 <div [hidden]="ocultarConfirmacion">
 <table class="table">
     <thead>
@@ -49,18 +52,172 @@
            <td>{{invitado.nombre}}</td>
            <td>{{invitado.apellido}}</td>
            <td>{{invitado.nro_doc}}</td>
-           <td>{{invitado.mail}}</td>
+           <td>{{invitado.mail}}</td> -->
            <!-- <td *ngIf="invitado.haAsistido == 1"><p>Ha Venido</p></td> -->
            <!-- <td *ngIf="invitado.haAsistido == 0"><p>No Ha Venido</p></td> -->
            <!-- <td *ngIf="invitado.haAsistido == 0"><input type="checkbox" (change)="addprop1(invitado)"></td> -->
            <!-- <td><input type="checkbox" (change)="addprop1($event)" [(ngModel)]="invitado.haAsitido"></td> -->
-           <td><input type="checkbox" (change)="addprop1($event,invitado)" [checked]="invitado.haAsistido == 1"></td>
+           <!-- <td><input type="checkbox" (change)="addprop1($event,invitado)" [checked]="invitado.haAsistido == 1"></td>
         </tr>
     </tbody>
 </table>           
-</div><!-- cierre div Confirmacion --> 
-</div>
+</div -->
+><!-- cierre div Confirmacion --> 
+<!-- </div>
 
 </div>
     </div>
+</div> -->
+
+<!-- Cambios para el Final -->
+
+
+
+<div class="container">
+        <div class="row">
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+    <h2 [hidden]="!ocultarTabla"><i class="fa fa-spinner fa-spin"></i>Espere mientras procesamos al invitado...</h2>
+    <div [hidden]="ocultarTabla">
+    <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Invitados</h3>
+            </div>
+            <table class="table" id="dev-table">
+                    <thead>
+                        <tr>
+                                <th scope="col">Nombre Completo</th>
+                                <th scope="col">Mail</th>
+                                <th scope="col">Nro Documento</th>
+                                <th scope="col">Borrar</th>
+                                <th scope="col">Modificar</th>
+                                <th scope="col">Ha Asistido?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr *ngFor="let invitado of invitados">
+                                    <td>{{invitado.nombre}} , {{invitado.apellido}}</td>
+                                    <td>{{invitado.mail}}</td>
+                                    <td>{{invitado.nro_doc}}</td>
+                                    <!-- Tratar de Cambiar por Router Link -->
+                                    <td><button class="btn btn-danger" (click)="BorrarInvitado(invitado.id_invitado)">Borrar</button></td>
+                                    <td><button class="btn btn-warning" (click)="ModificarInvitado(invitado)">Modificar</button></td>
+                                    <td><p-checkbox name="groupname" value="{{invitado.haAsistido}}" [(ngModel)]="selectedCategories" (onChange)="onChange($event,invitado.id_invitado)"></p-checkbox></td>
+                            </tr>
+                            <tr *ngIf="invitados">
+                               <p *ngIf="invitados.length == 0">No hay invitados registrados!</p>
+                            </tr>
+                            <!-- <tr *ngIf="invitados.length == 0">
+                                <p>No hay invitados registrados!</p>
+                            </tr> -->
+                    </tbody>
+                </table>
+                <!-- <p-confirmDialog></p-confirmDialog> -->
+    </div><!-- Panel -->
+    </div><!-- Ocultar Tabla -->
+
+
+    <button class="btn btn-primary" (click)="VolverAtras()">Volver Atras</button>
+    <button class="btn btn-success" (click)="AgregarInvitado()">Agregar Invitado</button>
+<div class="row"><!-- Dialog -->
+    <p-dialog header="Agregar" [(visible)]="display" modal="modal" width="600" [responsive]="true">
+            <p-growl [value]="msgs" sticky="sticky"></p-growl>    
+        <p style="font-size:25px">Por favor completa todos los campos para ingresar el invitado.</p>
+           <form [formGroup] = "registroForm">
+            <br>   
+            <label>Correo Electrónico:</label>
+               <input type="text" class="form-control" placeholder="Ingresa el correo del invitado" [formControl] = "registroMail" name="email">
+               <!-- <div *ngIf="registroMail.valid" style=" color: green;
+               font-size: 16px;">
+                    El correo electronico es válido.
+                  </div> -->
+                  <div *ngIf="registroMail.invalid && (registroMail.dirty || registroMail.touched)"
+                  style="color: red;
+                  font-size: 16px;">
+             
+               <div *ngIf="registroMail.errors.required">
+                 El correo electronico es requerido.
+               </div>
+               <div *ngIf="registroMail.errors.minlength">
+                El correo electronico debe contener 10 carácteres mínimo.
+              </div>
+              <div *ngIf="registroMail.errors.email">
+                El correo electronico debe ser como ejemplo <small>tuemail@hotmail.com</small>
+              </div>
+              <div *ngIf="registroMail.errors.maxlength">
+                El correo electronico debe contener 80 carácteres máximo.
+              </div>
+                  </div>
+               <br>
+               <label>Nombre:</label>
+               <input type="text" class="form-control" placeholder="Ingresa el nombre del invitado" [formControl] = "registroNombre" name="nombre">
+               <!-- <div *ngIf="registroNombre.valid"  style=" color: green;
+               font-size: 16px;">
+                    El nomre es válido.
+                  </div> -->
+                  <div *ngIf="registroNombre.invalid && (registroNombre.dirty || registroNombre.touched)"
+                  style="color: red;
+                  font-size: 16px;">
+                    <div *ngIf="registroNombre.errors.required">
+                       El nombre es requerido.
+                     </div>
+                     <div>
+                       El nombre debe tener al menos un largo de 4 caracteres.
+                     </div>
+                </div>
+               
+               
+               
+               <br>
+               <label>Apellido:</label>
+               <input type="text" class="form-control" placeholder="Ingresa el apellido del invitado" [formControl] = "registroApellido" name="apellido">
+               <!-- <div *ngIf="registroApellido.valid"  style=" color: green;
+               font-size: 16px;">
+                    El apellido es válido.
+                  </div> -->
+                  <div *ngIf="registroApellido.invalid && (registroApellido.dirty || registroApellido.touched)"
+                  style="color: red;
+                  font-size: 16px;">
+                    <div *ngIf="registroApellido.errors.required">
+                       El apellido es requerido.
+                     </div>
+                     <div *ngIf="registroApellido.errors.minlength">
+                       El apellido debe tener al menos un largo de 4 caracteres.
+                     </div>
+                </div>
+               
+               <br>
+               <label>Nro de Documento:</label>
+               <input type="text" class="form-control" placeholder="Ingresa el nro de documento del invitado" [formControl] = "registroNroDoc" name="nro_doc">
+               <!-- <div *ngIf="registroNroDoc.valid"  style=" color: green;
+               font-size: 16px;">
+                    El número de documento es válido.
+                  </div> -->
+                  <div *ngIf="registroNroDoc.invalid && (registroNroDoc.dirty || registroNroDoc.touched)"
+                  style="color: red;
+                  font-size: 16px;">
+                    <div *ngIf="registroNroDoc.errors.required">
+                       El nro de documento es requerido.
+                     </div>
+                     <div *ngIf="registroNroDoc.errors.minlength">
+                       El el nro de documento debe tener al menos un largo de 7 caracteres.
+                     </div>
+                     <div *ngIf="registroNroDoc.errors.maxlength">
+                        El el nro de documento debe tener un maximo largo de 9 caracteres.
+                      </div>
+                </div>
+               <br>
+            </form>
+                   <p-footer>
+                    <button type="button" class="btn btn-danger" (click)="display=false">Cancelar</button>
+                    <button type="button" class="btn btn-success" [disabled]="!registroForm.valid" (click)="ConfirmarAgregarInvitado()"><i *ngIf="ocultarProceso == false" class="fa fa-spinner fa-spin"></i>Aceptar</button>
+                </p-footer>
+        </p-dialog>
+        <!-- <p-confirmDialog></p-confirmDialog> -->
+</div><!-- Cierre row Dialog -->
+<div class="row"><!-- Dialog Update -->
+    <p-confirmDialog></p-confirmDialog>
+    <!-- Modificar Invitado Hacer Componente que redireccione a una Formulario -->
 </div>
+        </div>
+    </div>
+</div><!-- Cierre Container -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 @Component({
   selector: 'app-inicial-cliente',
   templateUrl: './inicial-cliente.component.html',

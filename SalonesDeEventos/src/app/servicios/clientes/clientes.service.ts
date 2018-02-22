@@ -46,4 +46,17 @@ export class ClientesService {
      return this.miClientesServicio.RegistrarClienteApi(body);
    }
 
+   public TraerFotosCliente(id_cliente : any)
+   {
+     return this.miClientesServicio.TraerFotosClienteApi(id_cliente).then(
+       data =>{
+         return data;
+       }
+     ).catch(
+       error =>{
+         console.log(error);
+       }
+     );
+   }
+
 }

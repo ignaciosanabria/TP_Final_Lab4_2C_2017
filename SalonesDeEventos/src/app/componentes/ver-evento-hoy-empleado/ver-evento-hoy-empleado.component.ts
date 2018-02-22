@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy} from '@angular/core';
 import {MesasService} from '../../servicios/mesas/mesas.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {AutService} from '../../servicios/aut.service';
 @Component({
   selector: 'app-ver-evento-hoy-empleado',
   templateUrl: './ver-evento-hoy-empleado.component.html',
@@ -17,10 +18,12 @@ export class VerEventoHoyEmpleadoComponent implements OnInit, OnDestroy {
   
     idEvento: number;
     private sub: any;
+    miServicioAut : AutService;
   
-    constructor(servicioMesas : MesasService, private route: ActivatedRoute) {
+    constructor(servicioMesas : MesasService, private route: ActivatedRoute, private router : Router, servicioAut : AutService) {
       this.miMesasServicio = servicioMesas;
       this.ocultarMesas = true;
+      this.miServicioAut = servicioAut;
      }
   
     ngOnInit() {
@@ -51,5 +54,23 @@ export class VerEventoHoyEmpleadoComponent implements OnInit, OnDestroy {
     {
       this.sub.unsubscribe();
     }  
+
+    AbrirMesa(id_mesa : any)
+    {
+      let tokenString = localStorage.getItem("token");
+      let tokenBien = this.miServicioAut.getTokenParam(tokenString);
+      console.log("este es el token que viene bien: ");
+      console.log(tokenBien);
+      let cargo =  tokenBien["data"].cargo;
+      if(cargo == "Recepcionista")
+        {
+          this.router.navigate(['/PrincipalRecepcionista/VerEventoHoyEmpleado',this.idEvento,'MiMesaEmpleado',id_mesa]);
+        }
+      else if(cargo == "Encargado")
+        {
+            // this.router.navigate(['/Principal/VerEventoHoyEmpleado/:idEvento/MiMesaEmpleado/:idMesa]);
+            this.router.navigate(['/PrincipalEncargado/VerEventoHoyEmpleado',this.idEvento,'MiMesaEmpleado',id_mesa]);
+        }
+    }
 
 }

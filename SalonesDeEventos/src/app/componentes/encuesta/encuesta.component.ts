@@ -6,6 +6,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {SelectItem} from 'primeng/api';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import {EncuestasService} from '../../servicios/encuestas/encuestas.service';
+import {Message} from 'primeng/components/common/api';
 @Component({
   selector: 'app-encuesta',
   templateUrl: './encuesta.component.html',
@@ -24,31 +26,25 @@ export class EncuestaComponent implements OnInit {
 
   //Parte del botton select -- Bueno, Regular, Malo
   types: SelectItem[];
-  
+  msgs: Message[] = [];
   selectedType: string;
   //Parte del formular -- Validar dsp
   public registroForm : FormGroup;
-  public registroPregunta1 : FormControl = new FormControl("",[Validators.required]);
-  constructor(servicioAut : AutService,private builder : FormBuilder) {
+  public registroRespuesta1 : FormControl = new FormControl("",[Validators.required]);
+  public registroRespuesta2 : FormControl = new FormControl("",[Validators.required]);
+  public registroRespuesta3 : FormControl = new FormControl("",[Validators.required]);
+  public registroRespuesta4 : FormControl = new FormControl("",[Validators.required]);
+
+  miServicioEncuesta: EncuestasService;
+
+  constructor(servicioAut : AutService,private builder : FormBuilder, public route : ActivatedRoute, public router : Router, servicioEncuestas : EncuestasService) {
     this.miServicioAut = servicioAut;
-    this.numeros = [
-      // {name: '1', code: '1'},
-      // {name: '2', code: '2'},
-      // {name: '3', code: '3'},
-      // {name: '4', code: '4'},
-      // {name: '5', code: '5'}
-      {label: 'Audi', value: 'Audi'},
-      {label: 'BMW', value: 'BMW'},
-      // {label: '1', value: '1'},
-      // {label: '2', value: '2'},
-      // {label: '3', value: '3'},
-      // {label: 'Ford', value: 'Ford'},
-      // {label: 'Honda', value: 'Honda'},
-  ];
+    this.miServicioEncuesta = servicioEncuestas;
+    //Para el boton Select
   this.types = [
-    {label: 'Paypal', value: 'PayPal', icon: 'fa fa-fw fa-cc-paypal'},
-    {label: 'Visa', value: 'Visa', icon: 'fa fa-fw fa-cc-visa'},
-    {label: 'MasterCard', value: 'MasterCard', icon: 'fa fa-fw fa-cc-mastercard'}
+    {label: 'Malo', value: 'malo'},
+    {label: 'Regular', value: 'regular'},
+    {label: 'Bueno', value: 'bueno'}
 ];
    }
 
@@ -56,21 +52,6 @@ export class EncuestaComponent implements OnInit {
     let tokenString = localStorage.getItem("token");
     let token = this.miServicioAut.getTokenParam(tokenString);
     this.id_cliente = token["data"].id_cliente;
-    // this.numeros = [
-      // {name: '1', code: '1'},
-      // {name: '2', code: '2'},
-      // {name: '3', code: '3'},
-      // {name: '4', code: '4'},
-      // {name: '5', code: '5'}
-      // {label: 'Audi', value: 'Audi'},
-      // {label: 'BMW', value: 'BMW'},
-
-      // {label: '1', value: '1'},
-      // {label: '2', value: '2'},
-      // {label: '3', value: '3'},
-      // {label: 'Ford', value: 'Ford'},
-      // {label: 'Honda', value: 'Honda'},
-  // ];
 
     this.CreateForm();
   }
@@ -78,18 +59,54 @@ export class EncuestaComponent implements OnInit {
   public CreateForm() : void
   {
     this.registroForm = this.builder.group({
-      'registroPregunta1' : this.registroPregunta1
+      'registroRespuesta1' : this.registroRespuesta1,
+      'registroRespuesta2': this.registroRespuesta2,
+      'registroRespuesta3': this.registroRespuesta3,
+      'registroRespuesta4': this.registroRespuesta4
     });
   }
 
   VolverAtras()
   {
-    console.log("Falta hacer este metodo");
+   this.router.navigate(["/PrincipalCliente"]);
   }
 
   EnviarRespuestas()
   {
-    console.log("Falta hacer este metodo");
+    let respuesta1 = this.registroForm.get("registroRespuesta1").value;
+    let respuesta2 = this.registroForm.get("registroRespuesta2").value;
+    let respuesta3 = this.registroForm.get("registroRespuesta3").value;
+    let respuesta4 = this.registroForm.get("registroRespuesta4").value;
+    console.log(respuesta1);
+    console.log(respuesta2);
+    console.log(respuesta3);
+    console.log(respuesta4);
+    let json = {"respuesta1":respuesta1,"respuesta2":respuesta2,"respuesta3":respuesta3,"respuesta4":respuesta4,"id_cliente":this.id_cliente};
+      this.miServicioEncuesta.InsertarEncuesta(JSON.stringify(json)).subscribe(
+      data =>
+     {
+       console.log(data);
+       let respuesta = JSON.parse(data["_body"]);
+       if(respuesta.status == 200)
+        {
+          this.msgs = [];
+          this.msgs.push({severity:'info', summary:'Exito', detail: 'Procesamos tus respuestas, aguarda unos segundos mientras te reedirigimos!'});
+          var modelo = this;
+          setTimeout(function(){
+            modelo.router.navigate(["/PrincipalCliente"]);
+           }, 3000);
+        }
+        else
+        {
+          this.msgs = [];
+          this.msgs.push({severity:'info', summary:'Fracaso', detail: 'No pudimos procesar tus respuestas!'});
+        }
+     },
+     error =>
+     {
+       console.log(error);
+     }
+    );
   }
 
 

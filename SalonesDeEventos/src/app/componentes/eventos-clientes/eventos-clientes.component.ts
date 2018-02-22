@@ -21,22 +21,26 @@ export class EventosClientesComponent implements OnInit {
   miServicioEventos : EventosService;
   miServicioEmpleados : EmpleadosService;
   miAutServicio : AutService;
-
+  ocultarEventos : boolean;
   today = new Date();
 
   idEventoCancelar : number;//Id para el metodo de Cancelar Evento
   idEventoBorrar : number;//Id para el metodo de Borrar Evento
 
+  idCliente : number;
+
   constructor(ServicioEventos : EventosService, ServicioAut : AutService, ServicioEmpleados : EmpleadosService, private route: ActivatedRoute,
     private router: Router,private confirmationService: ConfirmationService) {
     this.miServicioEventos = ServicioEventos;
     this.miAutServicio = ServicioAut;
+    this.ocultarEventos = false;
     console.log(this.today.getDate()+"/"+(this.today.getMonth()+1)+"/"+this.today.getFullYear());
     console.log(this.miAutServicio.getToken());
     // let token = this.miAutServicio.getToken();
     let tokenString = localStorage.getItem("token");
     let token = this.miAutServicio.getTokenParam(tokenString);
     console.log(token["data"].id_cliente);
+    this.idCliente = token["data"].id_cliente;
     let json = {"idCliente" : token["data"].id_cliente};
     console.log(JSON.stringify(json));
     this.miServicioEventos.TraerEventosCliente(JSON.stringify(json)).subscribe(
@@ -48,7 +52,7 @@ export class EventosClientesComponent implements OnInit {
       error =>{
         console.log(error);
       }
-    )
+    );
    }
 
   ngOnInit() {
@@ -66,7 +70,34 @@ export class EventosClientesComponent implements OnInit {
       header: 'Borrar',
       icon: 'fa fa-question-circle',
       accept: () => {
-          console.log(id_evento);
+        this.ocultarEventos = true;
+         let json = {};
+          this.miServicioEventos.BorrarEvento(id_evento,json).subscribe(
+            data =>{
+              let respuesta = JSON.parse(data["_body"]);
+              if(respuesta.status == 200)
+              {
+                var modelo = this;
+                setTimeout(function(){
+                  let json = {"idCliente" : modelo.idCliente};
+                  console.log(JSON.stringify(json));
+                  modelo.miServicioEventos.TraerEventosCliente(JSON.stringify(json)).subscribe(
+                    data => {
+                      console.log(data);
+                      let respuesta = JSON.parse(data["_body"]);
+                       modelo.eventos = respuesta;
+                    },
+                    error =>{
+                      console.log(error);
+                    }
+                  );
+                  modelo.ocultarEventos = false;
+                 }, 5000);
+              }
+            },
+            error =>{
+              console.log(error);
+            });
       },
       reject: () => {
       }
@@ -82,6 +113,7 @@ export class EventosClientesComponent implements OnInit {
       icon: 'fa fa-question-circle',
       accept: () => {
           //console.log(id_evento);
+          this.ocultarEventos = true;
           let json = {"id_evento": id_evento};
           this.miServicioEventos.CancelarEvento(JSON.stringify(json)).subscribe(
             data =>{
@@ -89,8 +121,22 @@ export class EventosClientesComponent implements OnInit {
               let respuesta = JSON.parse(data["_body"]);
               if(respuesta.status == 200)
                 {
-              alert("Usted ha cancelado un evento!");
-              //location.reload();
+                  var modelo = this;
+                  setTimeout(function(){
+                    let json = {"idCliente" : modelo.idCliente};
+                    console.log(JSON.stringify(json));
+                    modelo.miServicioEventos.TraerEventosCliente(JSON.stringify(json)).subscribe(
+                      data => {
+                        console.log(data);
+                        let respuesta = JSON.parse(data["_body"]);
+                         modelo.eventos = respuesta;
+                      },
+                      error =>{
+                        console.log(error);
+                      }
+                    );
+                    modelo.ocultarEventos = false;
+                   }, 5000);
                 }
                 else
                 {

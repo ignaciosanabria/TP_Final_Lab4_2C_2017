@@ -41,9 +41,9 @@ export class InvitadosService {
      );
    }
 
-   public BorrarInvitadoEvento(id_invitado : any, id_evento : any, id_mesa : any)
+   public BorrarInvitadoEvento(id_invitado : any, id_evento : any, id_mesa : any, body : any)
    {
-     return this.miApiInvitadosServicio.BorrarInvitadoEventoApi(id_invitado,id_evento,id_mesa);
+     return this.miApiInvitadosServicio.BorrarInvitadoEventoApi(id_invitado,id_evento,id_mesa,body);
    }
 
    public InsertarInvitado(body : any)

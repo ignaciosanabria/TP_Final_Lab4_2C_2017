@@ -3,6 +3,7 @@ import {Message} from 'primeng/components/common/api';
 import {FileUploadModule} from 'primeng/fileupload';
 import {GalleriaModule} from 'primeng/galleria';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {ClientesService} from '../../servicios/clientes/clientes.service';
 @Component({
   selector: 'app-subir-fotos-cliente',
   templateUrl: './subir-fotos-cliente.component.html',
@@ -19,9 +20,13 @@ export class SubirFotosClienteComponent implements OnInit {
 
   idCliente: number;
   private sub: any;
-  constructor(private route: ActivatedRoute) {
+  miServicioClientes : ClientesService;
+  misImagenes : Array<any>;
+  cliente : any;
+  constructor(private route: ActivatedRoute, servicioClientes : ClientesService, private router : Router) {
     this.ocultarGaleria = true;
     this.ocultarSpinner = true;
+    this.miServicioClientes = servicioClientes;
    }
     
     ngOnInit() {
@@ -31,19 +36,7 @@ export class SubirFotosClienteComponent implements OnInit {
         // In a real app: dispatch action to load the details here.
      });
      console.log(this.idCliente);
-      this.images = [];
-      this.images.push({source:'assets/imagenes/empleados/empleado1.jpg', alt:'Description for Image 1', title:'Title 1'});
-      this.images.push({source:'assets/imagenes/empleados/empleado2.jpg', alt:'Description for Image 2', title:'Title 2'});
-      this.images.push({source:'assets/imagenes/empleados/empleado3.jpg', alt:'Description for Image 3', title:'Title 3'});
-      this.images.push({source:'assets/imagenes/empleados/empleado4.jpg', alt:'Description for Image 4', title:'Title 4'});
-      this.images.push({source:'assets/imagenes/empleados/pordefecto.png', alt:'Description for Image 5', title:'Title 5'});
-      // this.images.push({source:'assets/imagenes/empleados/empleado6.jpg', alt:'Description for Image 6', title:'Title 6'});
-      // this.images.push({source:'assets/imagenes/empleados/empleado7.jpg', alt:'Description for Image 7', title:'Title 7'});
-      // this.images.push({source:'assets/imagenes/empleados/empleado8.jpg', alt:'Description for Image 8', title:'Title 8'});
-      // this.images.push({source:'assets/imagenes/empleados/empleado9.jpg', alt:'Description for Image 9', title:'Title 9'});
-      // this.images.push({source:'assets/imagenes/empleados/empleado10.jpg', alt:'Description for Image 10', title:'Title 10'});
-      // this.images.push({source:'assets/imagenes/empleados/empleado11.jpg', alt:'Description for Image 11', title:'Title 11'});
-      // this.images.push({source:'assets/imagenes/empleados/empleado12.jpg', alt:'Description for Image 12', title:'Title 12'});
+      this.cargarImagenes();
   }
 
   onUpload(event) {
@@ -61,17 +54,72 @@ export class SubirFotosClienteComponent implements OnInit {
         modelo.msgs.push({severity: 'info', summary: 'Imagenes subidas!', detail: 'Se ha completado la subida'});
         modelo.ocultarSpinner=true;
         modelo.ocultarGaleria=false;
+        modelo.cargarImagenes();
        }, 5000);
   }
 
   cargarImagenes()
   {
     console.log("Se cargarian las imagenes, traigo desde la API las imagenes del cliente!");
+    this.miServicioClientes.TraerFotosCliente(this.idCliente).then(
+      data =>{
+        console.log(data);
+        this.misImagenes = data.imagenes;
+        if(this.misImagenes.length > 0)
+        {
+          this.images = [];
+          for(let i=1;i<this.misImagenes.length;i++)
+          {
+            this.images.push({source:'assets/imagenes/clientes/'+this.misImagenes[i-1].path_foto, alt:'Imagen del Usuario', title:'Imagen '+i});
+          }
+          this.ocultarGaleria = false;
+        }
+      }
+    ).catch(
+      error =>{
+        console.log(error);
+      }
+    );
   }
 
   onImageClicked(event)
   {
     console.log(event);
+  }
+
+  TerminarSubida()
+  {
+    this.miServicioClientes.TraerClientePorId(this.idCliente).then(
+      data =>
+      {
+        this.cliente = data.cliente;
+        let json = {"mail":this.cliente.mail,"clave":this.cliente.clave};
+        this.miServicioClientes.ValidarCliente(JSON.stringify(json)).subscribe(
+          data => 
+          {
+            console.log(data);
+            let respuesta = JSON.parse(data["_body"]);
+            if(respuesta.status == 200)
+              {
+            if(respuesta.token)
+              {
+                localStorage.setItem("token",respuesta.token);
+                this.router.navigate(["/PrincipalCliente"]);
+              }
+            }
+          },
+          error => 
+          {
+            console.log(error);
+          }
+         );
+      }
+    ).catch(
+      error =>
+      {
+        console.log(error);
+      }
+    );
   }
 
 }

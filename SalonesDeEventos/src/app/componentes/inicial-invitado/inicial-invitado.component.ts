@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AutService} from '../../servicios/aut.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {InvitadosService} from '../../servicios/invitados/invitados.service';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 @Component({
   selector: 'app-inicial-invitado',
   templateUrl: './inicial-invitado.component.html',

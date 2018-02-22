@@ -28,4 +28,17 @@ export class ApiClientesService {
      return this.miHttpServicio.httpPost("Registro/RegistrarClienteSinFoto",body);
    }
 
+   public TraerFotosClienteApi(id_cliente : any)
+   {
+     return this.miHttpServicio.httpGetPromise("clientes/FotosCliente/"+id_cliente).then(
+       data =>{
+         return data;
+       }
+     ).catch(
+       error =>{
+         console.info(error);
+       }
+     )
+   }
+
 }

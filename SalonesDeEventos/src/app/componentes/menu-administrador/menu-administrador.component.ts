@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {AutService} from '../../servicios/aut.service';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 @Component({
   selector: 'app-menu-administrador',
   templateUrl: './menu-administrador.component.html',
@@ -11,7 +13,7 @@ export class MenuAdministradorComponent implements OnInit {
   id_empleado : number;
 
   constructor(private route: ActivatedRoute,
-    private router: Router,servicioAut : AutService) 
+    private router: Router,servicioAut : AutService,private confirmationService: ConfirmationService) 
     { 
       this.miServicioAut = servicioAut;
     }

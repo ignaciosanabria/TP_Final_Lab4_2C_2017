@@ -21,7 +21,8 @@ export class VerEventosRecepcionistaComponent implements OnInit {
    }
 
   ngOnInit() {
-    let token = this.miServicioAut.getToken();
+    let tokenString = localStorage.getItem("token");
+    let token = this.miServicioAut.getTokenParam(tokenString);
     console.log(token);
     console.log(this.today);
     console.log(this.currentDate);

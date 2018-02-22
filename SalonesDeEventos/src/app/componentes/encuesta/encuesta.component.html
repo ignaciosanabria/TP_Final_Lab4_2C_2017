@@ -6,32 +6,87 @@
                         <h2 class="panel-title">Encuesta de Satisfacción
                         </h2>
                 </div>
-            <form>
+                <p-growl [value]="msgs" sticky="sticky"></p-growl>
+            <form [formGroup] = "registroForm">
             <div class="panel-body">
             <p>1 - ¿Del 1 al 10 como encontras de útil la plataforma virtual de los Salones de Eventos?</p>
             <!-- Revisar por que no se muestran las opciones -->
-            <p-dropdown name="pregunta1" [options]="numeros" [(ngModel)]="numeroSeleccionado" placeholder="Seleccione un numero" optionLabel="numero">
+            <select class="form-control" formControlName="registroRespuesta1">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+
+            <div *ngIf="registroRespuesta1.valid" style="color:green; font-size: 12px;">
+                respuesta aceptada.
+                </div>
+                <div *ngIf="registroRespuesta1.invalid"
+                style="color: red; font-size: 10px;">
+                  <div *ngIf="registroRespuesta1.errors.required">
+                    Esta respuesta es requerida.
+                   </div>
+              </div>
+            <!-- <p-dropdown name="pregunta1" [options]="numeros" [(ngModel)]="numeroSeleccionado" placeholder="Seleccione un numero" optionLabel="numero">
             </p-dropdown>
-            <p>Selected City: {{numeroSeleccionado ? numeroSeleccionado.value : 'none'}}</p>
+            <p>Selected City: {{numeroSeleccionado ? numeroSeleccionado.value : 'none'}}</p> -->
            <br><br>
            <p>2 - Le recomendarías la página a un amigo o familiar?</p>
-           <p-radioButton name="groupname" value="si" label="Si" [(ngModel)]="respuesta2"></p-radioButton>
-           <p-radioButton name="groupname" value="no" label="No" [(ngModel)]="respuesta2"></p-radioButton>
+           <!-- <p-radioButton name="groupname" value="si" label="Si" [(ngModel)]="respuesta2" formControlName="respuesta2"></p-radioButton>
+           <p-radioButton name="groupname" value="no" label="No" [(ngModel)]="respuesta2" [formControl]="respuesta2"></p-radioButton> -->
+           <p-radioButton name="groupname" value="si" label="Si" formControlName="registroRespuesta2"></p-radioButton>
+           <p-radioButton name="groupname" value="no" label="No" formControlName="registroRespuesta2"></p-radioButton>
+           <div *ngIf="registroRespuesta2.valid" style="color:green; font-size: 12px;">
+                      respuesta aceptada.
+                      </div>
+                      <div *ngIf="registroRespuesta2.invalid"
+                      style="color: red; font-size: 10px;">
+                        <div *ngIf="registroRespuesta2.errors.required">
+                          Esta respuesta es requerida.
+                         </div>
+                    </div>
            <br><br>
            <p>3 - ¿Volverías a reservar un evento con nosotros?</p>
            <br><br>
-           <p-radioButton name="groupname2" value="si" label="Si" [(ngModel)]="respuesta3"></p-radioButton>
-           <p-radioButton name="groupname2" value="no" label="No" [(ngModel)]="respuesta3"></p-radioButton>
+           <!-- <p-radioButton name="groupname2" value="si" label="Si" [(ngModel)]="respuesta3"></p-radioButton>
+           <p-radioButton name="groupname2" value="no" label="No" [(ngModel)]="respuesta3"></p-radioButton> -->
+           <p-radioButton name="groupname2" value="si" label="Si"  formControlName="registroRespuesta3"></p-radioButton>
+           <p-radioButton name="groupname2" value="no" label="No" formControlName="registroRespuesta3"></p-radioButton>
+           <div *ngIf="registroRespuesta3.valid" style="color:green; font-size: 12px;">
+                        respuesta aceptada.
+                        </div>
+                        <div *ngIf="registroRespuesta3.invalid"
+                        style="color: red; font-size: 10px;">
+                          <div *ngIf="registroRespuesta3.errors.required">
+                            Esta respuesta es requerida.
+                           </div>
+                      </div>
            <p>4 - ¿Como te parece las vistas y estilos de la plataforma virtual?</p>
            <br><br>
            <!-- Agregar una pregunta mas -->
-           <p-selectButton name="selectButton" [options]="types" [(ngModel)]="selectedType"></p-selectButton>
-           
-           <p>Selected Type: {{selectedType}}</p>
+           <!-- <p-selectButton name="selectButton" [options]="types" [(ngModel)]="selectedType"></p-selectButton> -->
+            <p-selectButton name="selectButton" [options]="types" formControlName="registroRespuesta4"></p-selectButton> 
+            <div *ngIf="registroRespuesta4.valid" style="color:green; font-size: 12px;">
+                respuesta aceptada.
+                </div>
+                <div *ngIf="registroRespuesta4.invalid"
+                style="color: red; font-size: 10px;">
+                  <div *ngIf="registroRespuesta4.errors.required">
+                    Esta respuesta es requerida.
+                   </div>
+              </div>
+           <!-- formControlName="selectedCity"
+           <p>Selected Type: {{selectedType}}</p> -->
             </div>
                <span class="pull-right">
                     <button (click)="VolverAtras()" class="btn btn-danger">Cancelar y Volver</button>
-                            <button (click)="EnviarRespuestas()" class="btn btn-success">Enviar mis Respuestas</button>
+                            <button (click)="EnviarRespuestas()" [disabled]="!registroForm.valid"class="btn btn-success">Enviar mis Respuestas</button>
                     </span>
                     <br><br>
         </form>

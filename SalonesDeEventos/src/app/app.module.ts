@@ -31,6 +31,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {ChartModule} from 'primeng/chart';
+import {CheckboxModule} from 'primeng/checkbox';
 // import {ChartModule} from 'primeng/chart';
 
 //Componentes
@@ -63,6 +64,8 @@ import {AutService} from './servicios/aut.service';
 import {VerificarJWTService} from './servicios/verificar-jwt.service';
 import {ApiMesasService} from './servicios/mesas/api-mesas.service';
 import {MesasService} from './servicios/mesas/mesas.service';
+import {ApiEncuestasService} from './servicios/encuestas/api-encuestas.service';
+import {EncuestasService} from './servicios/encuestas/encuestas.service';
 
 //PIPES
 import { EstadoPipe } from './pipes/estado.pipe';
@@ -231,7 +234,8 @@ export function highchartsFactory() {
     ConfirmDialogModule,
     DropdownModule,
     RadioButtonModule,
-    SelectButtonModule
+    SelectButtonModule,
+    CheckboxModule
   ],
   providers: [
     MiHttpService,
@@ -253,7 +257,9 @@ export function highchartsFactory() {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
     },
-    ConfirmationService
+    ConfirmationService,
+    ApiEncuestasService,
+    EncuestasService
   ],
   bootstrap: [AppComponent]
 })
